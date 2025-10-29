@@ -2,7 +2,8 @@
 # Feel free to add content and custom Front Matter to this file.
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
-layout: home
+
+layout: default
 title: Home
 ---
 
@@ -36,6 +37,11 @@ Arkansas Sustainable Energy-Efficient Buildings Program requirements.
 ---
 
 ## About This Site
+
+This documentation is maintained by the UCA Physical Plant Department. For questions or to report issues with this documentation, please use the feedback form at the bottom of each page.
+
+**Last Updated:** {{ site.time | date: '%B %d, %Y' }}
+```
 
 This documentation is maintained by the UCA Physical Plant Department. For questions or to report issues with this documentation, please use the feedback form at the bottom of each page.
 
