@@ -11,14 +11,14 @@
     :root {
       --uca-purple: #4b2e83; /* Main Dark Purple */
       --uca-gray: #63666a; /* Civil Text/Bullets, Subheader Text */
-      --fire-red: #c8102e; /* Procurement and General Construction Text */
-      --plumbing-blue: #0067b9; /* Architectural Text/Bullets */
+      --fire-red: #c8102e; 
+      --plumbing-blue: #0067b9;
       --hvac-orange: #ff8200; /* Instructions Text/Bullets (Orange) */
       --electrical-yellow: #ffd100;
       --site-green: #00a651;
       --sustainable-green: #2e7d32;
       --procurement-navy: #003057;
-      --light-purple: #9370db; /* Approximate lighter banner color */
+      --soft-purple-banner: #b0a0c6; /* New: Lighter purple for the banner background */
     }
 	
 	/* Expandable submenu styles */
@@ -46,8 +46,7 @@
   right: 10px;
   transition: transform 0.3s ease;
   font-size: 0.8em;
-  /* FIX: Inherit color from the parent link text for dynamic coloring */
-  color: inherit; 
+  color: inherit;
 }
 
 .has-submenu.expanded .parent-link::after {
@@ -240,7 +239,7 @@
     .main-content-box {
         border: 2px solid var(--uca-purple);
         padding: 25px;
-        border-radius: 8px;
+        border-radius: 8px; /* FIX: Added subtle rounding to the box */
         margin-top: 20px;
     }
     
@@ -255,6 +254,8 @@
       color: var(--uca-purple); 
       font-size: 2.2em; 
       font-weight: bold;
+      /* FIX: Font changes to match image better */
+      font-family: 'Helvetica Neue', Arial, sans-serif; 
     }
 
     .subheader {
@@ -263,22 +264,22 @@
         margin-top: 0;
         text-transform: uppercase;
         letter-spacing: 0.5px;
-        font-style: italic; /* FIX: Added italic style */
+        font-style: italic; /* FIX: Italic style */
+        font-weight: 500;
     }
     
     /* Intro Banner Styling */
     .intro-banner {
-        background-color: var(--uca-purple); /* Original logic uses uca-purple */
-        background-color: #9370db; /* Using light-purple to match the image's color */
-        color: white;
+        background-color: var(--soft-purple-banner); /* FIX: Used softer color */
+        color: black; /* Text color is black in the sample image */
         padding: 15px;
         border-radius: 4px;
         margin-bottom: 20px;
-        font-weight: bold;
+        font-weight: normal;
     }
     
     .intro-banner h2 {
-        color: white;
+        color: black;
         margin: 0;
         font-size: 1.5em;
         border-bottom: none;
