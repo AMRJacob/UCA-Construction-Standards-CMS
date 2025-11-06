@@ -194,12 +194,12 @@
       border-left-color: var(--procurement-navy);
     }
 
-    .sidebar nav a[href*="general-requirements"]:hover {
+    .sidebar nav a[href*="general-construction"]:hover {
       background-color: rgba(0, 139, 139, 0.1);
       border-left-color: var(--general-teal);
     }
 
-    .sidebar nav a[href*="facility-construction"]:hover {
+    .sidebar nav a[href*="architectural"]:hover {
       background-color: rgba(99, 102, 106, 0.1);
       border-left-color: var(--uca-gray);
     }
@@ -209,12 +209,12 @@
       border-left-color: var(--hvac-orange);
     }
 
-    .sidebar nav a[href*="site-work"]:hover {
+    .sidebar nav a[href*="civil-landscape"]:hover {
       background-color: rgba(0, 166, 81, 0.1);
       border-left-color: var(--site-green);
     }
 
-    .sidebar nav a[href*="sustainable"]:hover {
+    .sidebar nav a[href*="sustainability"]:hover {
       background-color: rgba(46, 125, 50, 0.1);
       border-left-color: var(--sustainable-green);
     }
@@ -244,11 +244,11 @@
       border-left-color: var(--procurement-navy);
     }
 
-    body.general-requirements .page-header {
+    body.general-construction .page-header {
       border-left-color: var(--general-teal);
     }
 
-    body.facility-construction .page-header {
+    body.architectural .page-header {
       border-left-color: var(--uca-gray);
     }
 
@@ -256,11 +256,11 @@
       border-left-color: var(--hvac-orange);
     }
 
-    body.site-work .page-header {
+    body.civil-landscape .page-header {
       border-left-color: var(--site-green);
     }
 
-    body.sustainable-compliance .page-header {
+    body.sustainability .page-header {
       border-left-color: var(--sustainable-green);
     }
 
@@ -421,74 +421,106 @@
       <nav>
         <ul>
           
-          <li>
-            <a href="{{ '/' | relative_url }}">
-              <img src="{{ '/assets/images/logos/Home-Icon-36.png' | relative_url }}" alt="Home icon" class="nav-icon">
-              <span>Home</span>
-            </a>
-          </li>
-          
           <li class="has-submenu">
             <a href="{{ '/standards/instructions/' | relative_url }}" class="parent-link">
-              <img src="{{ '/assets/images/logos/Engineers.png' | relative_url }}" alt="Engineers icon" class="nav-icon">
-              <span>Instructions for A&E</span>
+              <img src="{{ '/assets/images/logos/Engineers.png' | relative_url }}" alt="Instructions icon" class="nav-icon">
+              <span>INSTRUCTIONS – READ THIS!</span>
             </a>
             <ul class="submenu">
-              <li><a href="{{ '/standards/instructions/architect-engineer/' | relative_url }}">A&E Requirements</a></li>
-              <li><a href="{{ '/standards/instructions/space-planning/' | relative_url }}">Space Planning</a></li>
+              <li><a href="{{ '/standards/instructions/architect-engineer/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Purple.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>ARCHITECT AND ENGINEER INSTRUCTIONS</span>
+              </a></li>
+              <li><a href="{{ '/standards/instructions/space-planning/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Purple.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>SPACE PLANNING REQUIREMENTS</span>
+              </a></li>
             </ul>
           </li>
 
           <li>
             <a href="{{ '/standards/procurement/' | relative_url }}">
               <img src="{{ '/assets/images/logos/Document-Icon.png' | relative_url }}" alt="Procurement icon" class="nav-icon">
-              <span>Procurement & Contracting</span>
-            </a>
-          </li>
-          
-          <li>
-            <a href="{{ '/standards/general-construction/' | relative_url }}">
-              <img src="{{ '/assets/images/logos/Construction.png' | relative_url }}" alt="General Requirements icon" class="nav-icon">
-              <span>General Requirements</span>
-            </a>
-          </li>
-          
-          <li class="has-submenu">
-            <a href="{{ '/standards/architectural/' | relative_url }}" class="parent-link">
-              <img src="{{ '/assets/images/logos/Architecture.png' | relative_url }}" alt="Architecture icon" class="nav-icon">
-              <span>Facility Construction</span>
-            </a>
-            <ul class="submenu">
-              <li><a href="{{ '/standards/architectural/masonry/' | relative_url }}">Masonry</a></li>
-              <li><a href="{{ '/standards/architectural/openings/' | relative_url }}">Openings</a></li>
-              <li><a href="{{ '/standards/architectural/finishes/' | relative_url }}">Finishes</a></li>
-              <li><a href="{{ '/standards/architectural/equipment/' | relative_url }}">Equipment</a></li>
-              <li><a href="{{ '/standards/architectural/furnishings/' | relative_url }}">Furnishings</a></li>
-            </ul>
-          </li>
-          
-          <li>
-            <a href="{{ '/standards/facility-services/' | relative_url }}">
-              <img src="{{ '/assets/images/logos/Bullet Orange.png' | relative_url }}" alt="Services icon" class="nav-icon">
-              <span>Facility Services</span>
+              <span>PROCUREMENT & CONTRACT DOCUMENTS</span>
             </a>
           </li>
           
           <li class="has-submenu">
             <a href="{{ '/standards/civil-landscape/' | relative_url }}" class="parent-link">
               <img src="{{ '/assets/images/logos/Landscape.png' | relative_url }}" alt="Landscape icon" class="nav-icon">
-              <span>Site Work</span>
+              <span>CIVIL AND LANDSCAPE REQUIREMENTS</span>
             </a>
             <ul class="submenu">
-              <li><a href="{{ '/standards/civil-landscape/earthwork/' | relative_url }}">Earthwork</a></li>
-              <li><a href="{{ '/standards/civil-landscape/exterior-improvements/' | relative_url }}">Exterior Improvements</a></li>
+              <li><a href="{{ '/standards/civil-landscape/earthwork/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Rust.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>EARTHWORK</span>
+              </a></li>
+              <li><a href="{{ '/standards/civil-landscape/exterior-improvements/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Rust.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>EXTERIOR IMPROVEMENTS</span>
+              </a></li>
+            </ul>
+          </li>
+          
+          <li>
+            <a href="{{ '/standards/facility-services/' | relative_url }}">
+              <img src="{{ '/assets/images/logos/Bullet Orange.png' | relative_url }}" alt="Services icon" class="nav-icon">
+              <span>FACILITY SERVICES (FMEP)</span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="{{ '/standards/general-construction/' | relative_url }}">
+              <img src="{{ '/assets/images/logos/Construction.png' | relative_url }}" alt="General Requirements icon" class="nav-icon">
+              <span>GENERAL CONSTRUCTION REQUIREMENTS</span>
+            </a>
+          </li>
+
+          <li class="has-submenu">
+            <a href="{{ '/standards/architectural/' | relative_url }}" class="parent-link">
+              <img src="{{ '/assets/images/logos/Architecture.png' | relative_url }}" alt="Architecture icon" class="nav-icon">
+              <span>ARCHITECTURAL, INTERIOR DESIGN, AND STRUCTURAL REQUIREMENTS</span>
+            </a>
+            <ul class="submenu">
+              <li><a href="{{ '/standards/architectural/masonry/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>MASONRY</span>
+              </a></li>
+              <li><a href="{{ '/standards/architectural/wood-plastic-composites/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>WOOD, PLASTIC AND COMPOSITES</span>
+              </a></li>
+              <li><a href="{{ '/standards/architectural/thermal-moisture-protection/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>THERMAL AND MOISTURE PROTECTION</span>
+              </a></li>
+              <li><a href="{{ '/standards/architectural/openings/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>OPENINGS</span>
+              </a></li>
+              <li><a href="{{ '/standards/architectural/finishes/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>FINISHES</span>
+              </a></li>
+              <li><a href="{{ '/standards/architectural/specialties/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>SPECIALTIES</span>
+              </a></li>
+              <li><a href="{{ '/standards/architectural/furnishings/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>FURNISHINGS</span>
+              </a></li>
+              <li><a href="{{ '/standards/architectural/equipment/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>EQUIPMENT</span>
+              </a></li>
             </ul>
           </li>
           
           <li>
             <a href="{{ '/standards/sustainability/' | relative_url }}">
               <img src="{{ '/assets/images/logos/Sustainability.png' | relative_url }}" alt="Sustainability icon" class="nav-icon">
-              <span>Sustainable Compliance</span>
+              <span>SUSTAINABLE COMPLIANCE</span>
             </a>
           </li>
 
