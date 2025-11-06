@@ -9,16 +9,16 @@
   <style>
     /* UCA Brand Colors */
     :root {
-      --uca-purple: #4b2e83;
-      --uca-gray: #63666a; /* Used for Civil Text/Bullets, Subheader Text */
-      --fire-red: #c8102e; 
-      --plumbing-blue: #0067b9;
-      --hvac-orange: #ff8200; /* Used for Instructions Text/Bullets */
+      --uca-purple: #4b2e83; /* Main Dark Purple */
+      --uca-gray: #63666a; /* Civil Text/Bullets, Subheader Text */
+      --fire-red: #c8102e; /* Procurement and General Construction Text */
+      --plumbing-blue: #0067b9; /* Architectural Text/Bullets */
+      --hvac-orange: #ff8200; /* Instructions Text/Bullets (Orange) */
       --electrical-yellow: #ffd100;
       --site-green: #00a651;
       --sustainable-green: #2e7d32;
       --procurement-navy: #003057;
-      --general-teal: #008b8b;
+      --light-purple: #9370db; /* Approximate lighter banner color */
     }
 	
 	/* Expandable submenu styles */
@@ -46,7 +46,8 @@
   right: 10px;
   transition: transform 0.3s ease;
   font-size: 0.8em;
-  color: inherit;
+  /* FIX: Inherit color from the parent link text for dynamic coloring */
+  color: inherit; 
 }
 
 .has-submenu.expanded .parent-link::after {
@@ -120,7 +121,7 @@
     }
 
     .sidebar {
-      width: 320px; /* FIX: Increased width to prevent overlap */
+      width: 320px; 
       padding: 20px;
       background-color: transparent;
       border-right: none; 
@@ -251,7 +252,7 @@
 
     .page-header h1 {
       margin: 0;
-      color: var(--uca-purple); /* Main heading color */
+      color: var(--uca-purple); 
       font-size: 2.2em; 
       font-weight: bold;
     }
@@ -267,7 +268,8 @@
     
     /* Intro Banner Styling */
     .intro-banner {
-        background-color: var(--uca-purple);
+        background-color: var(--uca-purple); /* Original logic uses uca-purple */
+        background-color: #9370db; /* Using light-purple to match the image's color */
         color: white;
         padding: 15px;
         border-radius: 4px;
@@ -375,7 +377,7 @@
           
           <li class="has-submenu">
             <a href="{{ '/standards/instructions/' | relative_url }}" class="parent-link">
-              <img src="{{ '/assets/images/logos/Bullet Orange.png' | relative_url }}" alt="Instructions icon" class="nav-icon">
+              <img src="{{ '/assets/images/logos/Exclamation-Icon.png' | relative_url }}" alt="Instructions icon" class="nav-icon">
               <span>INSTRUCTIONS – READ THIS!</span>
             </a>
             <ul class="submenu">
