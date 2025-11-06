@@ -11,8 +11,8 @@
     :root {
       --uca-purple: #4b2e83;
       --uca-gray: #63666a;
-      --fire-red: #c8102e;
-      --plumbing-blue: #0067b9;
+      --fire-red: #c8102e; /* Used for Procurement text/hover */
+      --plumbing-blue: #0067b9; /* Used for Architectural bullets */
       --hvac-orange: #ff8200;
       --electrical-yellow: #ffd100;
       --site-green: #00a651;
@@ -41,7 +41,7 @@
 }
 
 .parent-link::after {
-  content: '▼'; /* Changed to ▼ to match the image */
+  content: '▼';
   position: absolute;
   right: 10px;
   transition: transform 0.3s ease;
@@ -49,7 +49,7 @@
 }
 
 .has-submenu.expanded .parent-link::after {
-  content: '▲'; /* Changed to ▲ to match the image when open */
+  content: '▲';
 }
 
 /* Custom styling for sub-menu links (bullets) */
@@ -64,7 +64,7 @@
   border-left-color: transparent;
 }
 
-/* Base styles from original file (unchanged) */
+
     * {
       box-sizing: border-box;
     }
@@ -184,16 +184,16 @@
       margin-right: 10px;
       flex-shrink: 0;
     }
+
 /* --- Custom Coloring for Menu Text --- */
-/* The general text color is purple (var(--uca-purple)) to match the icons. */
 .sidebar nav a[href*="instructions"] span { color: var(--uca-purple); } /* Engineers Icon - Purple */
 .sidebar nav a[href*="procurement"] span { color: var(--fire-red); } /* Document Icon - Pink/Red */
 .sidebar nav a[href*="civil-landscape"] span { color: var(--uca-gray); } /* Landscape Icon - Brownish/Gray */
 .sidebar nav a[href*="facility-services"] span { color: var(--hvac-orange); } /* Orange Bullet/Icon */
-.sidebar nav a[href*="general-construction"] span { color: var(--uca-gray); } /* Construction Icon - Gray/Magenta */
+.sidebar nav a[href*="general-construction"] span { color: var(--fire-red); } /* Construction Icon - Pink/Red */
 .sidebar nav a[href*="architectural"] span { color: var(--uca-purple); } /* Architecture Icon - Purple */
 .sidebar nav a[href*="sustainability"] span { color: var(--sustainable-green); } /* Sustainability Icon - Green */
-/* --- END Custom Coloring --- */
+/* --- END Custom Coloring for Menu Text --- */
 
     .sidebar nav a[href*="instructions"]:hover {
       background-color: rgba(75, 46, 131, 0.1);
@@ -201,12 +201,12 @@
     }
 
     .sidebar nav a[href*="procurement"]:hover {
-      background-color: rgba(200, 16, 46, 0.1); /* Match Fire Red */
+      background-color: rgba(200, 16, 46, 0.1); 
       border-left-color: var(--fire-red);
     }
 
     .sidebar nav a[href*="civil-landscape"]:hover {
-      background-color: rgba(99, 102, 106, 0.1); /* Match UCA Gray */
+      background-color: rgba(99, 102, 106, 0.1); 
       border-left-color: var(--uca-gray);
     }
 
@@ -216,8 +216,8 @@
     }
 
     .sidebar nav a[href*="general-construction"]:hover {
-      background-color: rgba(99, 102, 106, 0.1); /* Match UCA Gray */
-      border-left-color: var(--uca-gray);
+      background-color: rgba(200, 16, 46, 0.1); 
+      border-left-color: var(--fire-red);
     }
 
     .sidebar nav a[href*="architectural"]:hover {
@@ -229,6 +229,42 @@
       background-color: rgba(46, 125, 50, 0.1);
       border-left-color: var(--sustainable-green);
     }
+
+/* --- Widget Styles (Search and Tags) --- */
+.sidebar-widgets {
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e0e0e0;
+    margin-bottom: 20px;
+}
+
+.tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 6px;
+    margin-top: 10px;
+}
+
+.tag-item {
+    font-size: 0.85em;
+    padding: 4px 10px;
+    border-radius: 12px;
+    color: white !important;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: var(--tag-color, var(--uca-gray)); /* Fallback to gray */
+    transition: opacity 0.2s;
+    border: none;
+}
+
+.tag-item:hover {
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.sidebar-search input[type="text"] {
+    font-size: 0.9em;
+}
+/* --- End Widget Styles --- */
 
     .main-content {
       flex: 1;
@@ -264,7 +300,7 @@
     }
 
     body.general-construction .page-header {
-      border-left-color: var(--uca-gray);
+      border-left-color: var(--fire-red);
     }
 
     body.architectural .page-header {
@@ -429,6 +465,48 @@
         <img src="{{ '/assets/images/logos/logo-full.png' | relative_url }}" alt="UCA Construction Standards">
       </div>
       
+      <div class="sidebar-widgets">
+          
+          <h3>🔍 Site Search</h3>
+          <form action="https://duckduckgo.com/" method="get" class="sidebar-search">
+              <input type="hidden" name="sites" value="{{ site.url | append: site.baseurl }}">
+              <input type="text" name="q" placeholder="Search Standards..." style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+              <input type="hidden" name="atb" value="v154-1">
+          </form>
+          
+          <h3>🏷️ Page Tags</h3>
+          <div class="tag-cloud">
+              {% assign tags = site.pages | map: 'tags' | join: ',' | split: ',' | uniq %}
+              {% for tag in tags %}
+                  {% if tag != "" %}
+                  {% assign tag_color = 'uca-gray' %}
+                  {% assign tag_url = '/tags#' | append: tag | slugify %}
+                  
+                  {% comment %} 
+                  Custom Logic for Color Coding Tags by Category Links
+                  {% endcomment %}
+
+                  {% if tag contains 'instruction' or tag contains 'a&e' %}
+                      {% assign tag_color = 'uca-purple' %}
+                  {% elsif tag contains 'procurement' or tag contains 'contract' %}
+                      {% assign tag_color = 'fire-red' %}
+                  {% elsif tag contains 'civil' or tag contains 'landscape' or tag contains 'site work' %}
+                      {% assign tag_color = 'uca-gray' %}
+                  {% elsif tag contains 'fmep' or tag contains 'services' or tag contains 'hvac' %}
+                      {% assign tag_color = 'hvac-orange' %}
+                  {% elsif tag contains 'general' or tag contains 'construction' %}
+                      {% assign tag_color = 'fire-red' %}
+                  {% elsif tag contains 'architectural' or tag contains 'masonry' or tag contains 'structural' %}
+                      {% assign tag_color = 'uca-purple' %}
+                  {% elsif tag contains 'sustainable' or tag contains 'leed' %}
+                      {% assign tag_color = 'sustainable-green' %}
+                  {% endif %}
+
+                  <a href="{{ tag_url | relative_url }}" class="tag-item" style="--tag-color: var(--{{ tag_color }});">{{ tag }}</a>
+                  {% endif %}
+              {% endfor %}
+          </div>
+      </div>
       <nav>
         <ul>
           
@@ -581,9 +659,6 @@
     document.querySelectorAll('.submenu a').forEach(link => {
       if (currentPath.includes(link.getAttribute('href'))) {
         link.closest('.has-submenu').classList.add('expanded');
-        
-        // NOTE: Keeping the active styling simple without border color here, as 
-        // the sub-menu items don't have left borders in your design.
         link.style.backgroundColor = 'rgba(75, 46, 131, 0.1)'; 
       }
     });
