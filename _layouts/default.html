@@ -9,17 +9,19 @@
   <style>
     /* UCA Brand Colors */
     :root {
-      --uca-purple: #4b2e83; 
-      --uca-gray: #63666a; 
+      --uca-purple: #4b2e83; /* Main Dark Purple */
+      --uca-gray: #63666a; /* Civil Text/Bullets, Subheader Text */
       --fire-red: #c8102e; 
       --plumbing-blue: #0067b9;
-      --hvac-orange: #ff8200; 
+      --hvac-orange: #ff8200; /* Instructions Text/Bullets (Orange) */
+      --electrical-yellow: #ffd100;
       --site-green: #00a651;
       --sustainable-green: #2e7d32;
-      --soft-purple-banner: #b0a0c6;
+      --procurement-navy: #003057;
+      --soft-purple-banner: #b0a0c6; /* Lighter purple for the welcome banner */
     }
 	
-	/* Expandable submenu styles (unchanged) */
+	/* Expandable submenu styles */
 .has-submenu {
   position: relative;
 }
@@ -104,14 +106,17 @@
       overflow-y: auto;
     }
 
-    /* Search/Tags Widgets (Box 1 & 3) */
-    .search-widget-box, .tag-widget-box, .sidebar nav {
-        border: 2px solid var(--uca-purple);
-        border-radius: 8px;
-        padding: 15px;
-        margin-bottom: 20px;
+    .sidebar-logo {
+      display: none;
     }
     
+    /* Search Widget Styling */
+    .search-widget-box, .tag-widget-box {
+        border: 2px solid var(--uca-purple);
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
     .sidebar-search input[type="text"] {
         font-size: 0.9em;
         border: 1px solid #ccc;
@@ -128,13 +133,72 @@
         cursor: pointer;
     }
     
-    /* Navigation Style Overrides (Box 2) */
+    /* Menu Container Style */
     .sidebar nav {
-        padding: 10px; /* Reduced padding here */
+        border: 2px solid var(--uca-purple); 
+        border-radius: 8px;
+        padding: 10px;
+        margin-top: 10px;
     }
 
 
-/* --- MAIN CONTENT & TYPOGRAPHY FIXES --- */
+    .sidebar nav h3 {
+      color: var(--uca-purple);
+      font-size: 1.1em;
+      margin-bottom: 15px;
+      margin-top: 25px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .sidebar nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .sidebar nav li {
+      margin-bottom: 8px;
+    }
+
+    .sidebar nav li a {
+      display: flex;
+      align-items: center;
+      padding: 10px 15px;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      border-left: 4px solid transparent; 
+      /* Ensure default link color is black/grey for hover override */
+      color: #333; 
+    }
+
+    .sidebar nav li a:hover {
+      background-color: #e8e9ea;
+      border-left-color: var(--uca-purple);
+    }
+
+    .nav-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+      flex-shrink: 0;
+    }
+
+/* --- Custom Coloring for Menu Text (FIXED) --- */
+/* Use span selectors to override default link color */
+.sidebar nav a[href*="instructions"] span { color: var(--hvac-orange); } 
+.sidebar nav a[href*="instructions"] .submenu a span { color: var(--hvac-orange); } 
+.sidebar nav a[href*="procurement"] span { color: var(--fire-red); } 
+.sidebar nav a[href*="civil-landscape"] span { color: var(--uca-gray); } 
+.sidebar nav a[href*="civil-landscape"] .submenu a span { color: var(--uca-gray); } 
+.sidebar nav a[href*="facility-services"] span { color: var(--uca-purple); } 
+.sidebar nav a[href*="general-construction"] span { color: var(--fire-red); } 
+.sidebar nav a[href*="architectural"] span { color: var(--plumbing-blue); } 
+.sidebar nav a[href*="architectural"] .submenu a span { color: var(--plumbing-blue); } 
+.sidebar nav a[href*="sustainability"] span { color: var(--sustainable-green); } 
+/* ------------------------------------------- */
+
 
     .main-content {
       flex: 1;
@@ -149,18 +213,33 @@
         margin-top: 20px;
     }
     
-    /* Global Markdown H1/H2 Styling for Page Content */
-    /* This applies to the page title AND section headers (if used correctly) */
+    .page-header {
+      border-left: none; 
+      padding-left: 0;
+      margin-bottom: 20px;
+    }
+
+    /* Styles applied to content within the page (Masonry, etc.) */
     h1 {
       margin-top: 0;
       color: var(--uca-purple); 
       font-size: 2.2em; 
       font-weight: 500; 
       padding-bottom: 5px; 
-      border-bottom: 1px solid #ccc; /* Gray line under the main H1 */
+      border-bottom: 1px solid #ccc;
+    }
+    /* Subsequent headings for content structure */
+    h2 {
+      color: var(--uca-purple);
+      font-size: 1.5em;
+      margin-top: 1.5em;
+    }
+    h3 {
+      color: #333;
+      font-size: 1.2em;
+      margin-top: 1em;
     }
 
-    /* Sub-Heading (for titles like "UNIVERSITY OF CENTRAL ARKANSAS") */
     .subheader {
         color: var(--uca-gray);
         font-size: 0.9em; 
@@ -171,7 +250,6 @@
         font-weight: normal;
     }
     
-    /* Intro Banner Styling (for "Welcome" and "Campus Unit Masonry" boxes) */
     .intro-banner {
         background-color: var(--soft-purple-banner); 
         color: white; 
@@ -188,38 +266,22 @@
         border-bottom: none;
         padding-bottom: 0;
     }
-    
-    /* List styles (A., B., 1., 2.) */
-    ol {
-        list-style-type: none; /* Remove default numbering */
-        padding-left: 0;
+
+    /* Markdown List Overrides for "A., B., 1., 2." Style */
+    /* This ensures Markdown's <ol> still works correctly */
+    .main-content ol {
+        list-style-type: none; 
+        padding-left: 20px; 
     }
-    ol li {
-        margin-bottom: 5px;
-    }
+    /* We will use explicit HTML lists in the Markdown for A., B., etc. */
 
-/* --- SIDEBAR COLORING (UNCHANGED) --- */
-.sidebar nav a[href*="instructions"] span { color: var(--hvac-orange); } 
-.sidebar nav a[href*="instructions"] ul a span { color: var(--hvac-orange); } 
-.sidebar nav a[href*="procurement"] span { color: var(--fire-red); } 
-.sidebar nav a[href*="civil-landscape"] span { color: var(--uca-gray); } 
-.sidebar nav a[href*="civil-landscape"] ul a span { color: var(--uca-gray); } 
-.sidebar nav a[href*="facility-services"] span { color: var(--uca-purple); } 
-.sidebar nav a[href*="general-construction"] span { color: var(--fire-red); } 
-.sidebar nav a[href*="architectural"] span { color: var(--plumbing-blue); } 
-.sidebar nav a[href*="architectural"] ul a span { color: var(--plumbing-blue); } 
-.sidebar nav a[href*="sustainability"] span { color: var(--sustainable-green); } 
-/* ------------------------------------ */
-
-
-    /* Page Tags Widget Styling (unchanged) */
+    /* --- Page Tags Widget Styling (UNCHANGED) --- */
     .tag-cloud {
         display: flex;
         flex-wrap: wrap;
         gap: 8px 6px;
         margin-top: 10px;
     }
-
     .tag-item {
         font-size: 0.85em;
         padding: 4px 10px;
@@ -231,11 +293,11 @@
         transition: opacity 0.2s;
         border: none;
     }
-
     .tag-item:hover {
         text-decoration: none;
         opacity: 0.8;
     }
+    /* ------------------------------------------- */
 
     @media (max-width: 968px) {
       .site-content {
@@ -251,10 +313,9 @@
         padding: 20px;
       }
     }
-
   </style>
 </head>
-<body>
+<body class="{{ page.title | slugify }}">
   
   <header class="site-header">
     <div class="wrapper">
@@ -424,6 +485,13 @@
       
       <div class="main-content-box">
           
+          <div class="page-header">
+            <a href="{{ '/' | relative_url }}" style="text-decoration: none;">
+              <h1>CONSTRUCTION STANDARDS</h1>
+            </a>
+            <p class="subheader">UNIVERSITY OF CENTRAL ARKANSAS</p>
+          </div>
+          
           {{ content }}
 
           
@@ -455,15 +523,4 @@
     });
     
     // Auto-expand if we're on a sub-page (unchanged)
-    const currentPath = window.location.pathname;
-    document.querySelectorAll('.submenu a').forEach(link => {
-      if (currentPath.includes(link.getAttribute('href'))) {
-        link.closest('.has-submenu').classList.add('expanded');
-        link.style.backgroundColor = 'rgba(75, 46, 131, 0.1)'; 
-      }
-    });
-  </script>
-
-
-</body>
-</html>
+    const currentPath

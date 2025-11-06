@@ -5,11 +5,6 @@ permalink: /standards/architectural/masonry/
 tags: architectural, masonry, structural
 ---
 
-<div class="page-header">
-  <h1>CONSTRUCTION STANDARDS</h1>
-  <p class="subheader">UNIVERSITY OF CENTRAL ARKANSAS</p>
-</div>
-
 <h1>MASONRY</h1>
 <p class="subheader">DIVISION 04 - MASONRY REQUIREMENTS</p>
 
