@@ -18,7 +18,7 @@
       --site-green: #00a651;
       --sustainable-green: #2e7d32;
       --procurement-navy: #003057;
-      --soft-purple-banner: #b0a0c6; /* New: Lighter purple for the banner background */
+      --soft-purple-banner: #b0a0c6; /* Lighter purple for the welcome banner */
     }
 	
 	/* Expandable submenu styles */
@@ -239,7 +239,7 @@
     .main-content-box {
         border: 2px solid var(--uca-purple);
         padding: 25px;
-        border-radius: 8px; /* FIX: Added subtle rounding to the box */
+        border-radius: 8px; /* Subtle rounding to the box */
         margin-top: 20px;
     }
     
@@ -253,25 +253,26 @@
       margin: 0;
       color: var(--uca-purple); 
       font-size: 2.2em; 
-      font-weight: bold;
-      /* FIX: Font changes to match image better */
-      font-family: 'Helvetica Neue', Arial, sans-serif; 
+      font-weight: 500; /* FIX: Skinnier weight font */
+      font-family: Arial, sans-serif;
+      padding-bottom: 5px; 
+      border-bottom: 1px solid #ccc; /* FIX: Gray line under heading */
     }
 
     .subheader {
         color: var(--uca-gray);
-        font-size: 1.1em;
-        margin-top: 0;
+        font-size: 0.9em; /* FIX: Smaller font size */
+        margin-top: 5px; 
         text-transform: uppercase;
         letter-spacing: 0.5px;
         font-style: italic; /* FIX: Italic style */
-        font-weight: 500;
+        font-weight: normal;
     }
     
     /* Intro Banner Styling */
     .intro-banner {
         background-color: var(--soft-purple-banner); /* FIX: Used softer color */
-        color: black; /* Text color is black in the sample image */
+        color: white; /* FIX: White text color */
         padding: 15px;
         border-radius: 4px;
         margin-bottom: 20px;
@@ -279,7 +280,7 @@
     }
     
     .intro-banner h2 {
-        color: black;
+        color: white; /* FIX: White text color */
         margin: 0;
         font-size: 1.5em;
         border-bottom: none;
