@@ -68,22 +68,22 @@
       color: #333;
     }
 
+    /* FIX: Header Alignment */
     .site-header {
       background-color: white; 
       padding: 15px 0;
       border-bottom: 1px solid #ddd;
-      width: 100%; /* Ensure header spans full width */
-      position: absolute; /* Allows alignment over main content */
+      width: 100%; 
+      position: absolute;
       z-index: 100;
     }
     
     .site-header .wrapper {
         display: flex;
         align-items: center;
-        /* FIX: Align content to the left edge of the sidebar box */
         max-width: 1400px;
         margin: 0 auto;
-        padding-left: 20px; /* Aligns with start of sidebar */
+        padding-left: 20px; 
     }
     
     .site-header img {
@@ -96,24 +96,24 @@
       display: flex;
       max-width: 1400px;
       margin: 0 auto;
-      padding-top: 80px; /* FIX: Push content down past the absolutely positioned header */
+      padding-top: 80px; 
       padding-left: 20px; 
       padding-right: 20px;
     }
 
     .sidebar {
       width: 320px; 
-      padding: 0; /* Removed initial padding as boxes now contain padding */
+      padding: 0;
       background-color: transparent;
       border-right: none; 
       position: sticky;
-      top: 80px; /* Align sidebar under the fixed header height */
+      top: 80px;
       height: fit-content;
       max-height: calc(100vh - 80px);
       overflow-y: auto;
     }
-    
-    /* Search, Navigation, and Tags Box Styles */
+
+    /* Box Styles */
     .search-widget-box, .tag-widget-box, .sidebar nav {
         border: 2px solid var(--uca-purple);
         border-radius: 8px;
@@ -124,71 +124,6 @@
         padding: 10px;
     }
 
-    /* FIX: Navigation Text Coloring */
-    .sidebar nav a[href*="instructions"] span { color: var(--hvac-orange); } 
-    .sidebar nav a[href*="instructions"] .submenu a span { color: var(--hvac-orange); } 
-    .sidebar nav a[href*="procurement"] span { color: var(--fire-red); } 
-    .sidebar nav a[href*="civil-landscape"] span { color: var(--uca-gray); } 
-    .sidebar nav a[href*="civil-landscape"] .submenu a span { color: var(--uca-gray); } 
-    .sidebar nav a[href*="facility-services"] span { color: var(--uca-purple); } 
-    .sidebar nav a[href*="general-construction"] span { color: var(--fire-red); } 
-    .sidebar nav a[href*="architectural"] span { color: var(--plumbing-blue); } 
-    .sidebar nav a[href*="architectural"] .submenu a span { color: var(--plumbing-blue); } 
-    .sidebar nav a[href*="sustainability"] span { color: var(--sustainable-green); } 
-
-
-    .main-content {
-      flex: 1;
-      padding: 0 0 0 40px; 
-      min-width: 0;
-    }
-
-    .main-content-box {
-        border: 2px solid var(--uca-purple);
-        padding: 25px;
-        border-radius: 8px; 
-        margin-top: 0; /* FIX: Remove top margin since sidebar starts lower */
-    }
-    
-    /* Ensure only Markdown H1 is used for page title */
-    h1:first-of-type {
-        margin-top: 0; 
-        color: var(--uca-purple); 
-        font-size: 2.2em; 
-        font-weight: 500; 
-        padding-bottom: 5px; 
-        border-bottom: 1px solid #ccc;
-    }
-    
-    /* Other CSS styles (subheader, intro-banner, etc.) unchanged for brevity */
-
-    /* ... (rest of CSS for widgets, footer, media queries) ... */
-    .sidebar-logo {
-      display: none;
-    }
-    .sidebar-search input[type="text"] {
-        font-size: 0.9em;
-        border: 1px solid #ccc;
-        padding: 8px;
-        width: calc(100% - 70px); 
-        box-sizing: border-box;
-    }
-    .sidebar-search button {
-        background-color: #eee;
-        border: 1px solid #ccc;
-        padding: 8px 10px;
-        margin-left: 5px;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-    .sidebar nav h3 {
-      color: var(--uca-purple);
-      font-size: 1.1em;
-      margin-bottom: 15px;
-      margin-top: 25px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
     .sidebar nav ul {
       list-style: none;
       margin: 0;
@@ -205,7 +140,7 @@
       border-radius: 5px;
       transition: all 0.3s ease;
       border-left: 4px solid transparent; 
-      color: #333; 
+      color: #333; /* Base color for default text */
     }
     .sidebar nav li a:hover {
       background-color: #e8e9ea;
@@ -217,6 +152,52 @@
       margin-right: 10px;
       flex-shrink: 0;
     }
+
+/* --- Navigation Text Coloring (FINAL FIX) --- */
+/* Target the anchor tag directly and use !important to guarantee the color override */
+.sidebar nav a[href*="instructions"] { color: var(--hvac-orange) !important; } 
+.sidebar nav a[href*="procurement"] { color: var(--fire-red) !important; } 
+.sidebar nav a[href*="civil-landscape"] { color: var(--uca-gray) !important; } 
+.sidebar nav a[href*="facility-services"] { color: var(--uca-purple) !important; } 
+.sidebar nav a[href*="general-construction"] { color: var(--fire-red) !important; } 
+.sidebar nav a[href*="architectural"] { color: var(--plumbing-blue) !important; } 
+.sidebar nav a[href*="sustainability"] { color: var(--sustainable-green) !important; } 
+/* Ensure submenu links inherit from the main link color */
+.sidebar nav .submenu a { 
+    color: inherit !important; 
+    font-weight: normal; /* Keep sublinks less bold */
+}
+/* ------------------------------------------- */
+
+
+    .main-content {
+      flex: 1;
+      padding: 0 0 0 40px; 
+      min-width: 0;
+    }
+
+    .main-content-box {
+        border: 2px solid var(--uca-purple);
+        padding: 25px;
+        border-radius: 8px; 
+        margin-top: 0;
+    }
+    
+    .page-header-wrapper {
+        border-left: none; 
+        padding-left: 0;
+        margin-bottom: 20px;
+    }
+
+    .page-header-wrapper h1 {
+        margin: 0;
+        color: var(--uca-purple); 
+        font-size: 2.2em; 
+        font-weight: 500; 
+        padding-bottom: 5px; 
+        border-bottom: 1px solid #ccc;
+    }
+
     .subheader {
         color: var(--uca-gray);
         font-size: 0.9em; 
@@ -226,6 +207,7 @@
         font-style: italic; 
         font-weight: normal;
     }
+    
     .intro-banner {
         background-color: var(--soft-purple-banner); 
         color: white; 
@@ -234,6 +216,7 @@
         margin-bottom: 20px;
         font-weight: normal;
     }
+    
     .intro-banner h2 {
         color: white; 
         margin: 0;
@@ -241,33 +224,27 @@
         border-bottom: none;
         padding-bottom: 0;
     }
-    .tag-cloud {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px 6px;
-        margin-top: 10px;
-    }
-    .tag-item {
-        font-size: 0.85em;
-        padding: 4px 10px;
-        border-radius: 12px;
-        color: white !important;
-        text-decoration: none;
+
+    /* Page-Specific Titles (H1 in Markdown) */
+    .main-content-box h1:first-of-type {
+        color: var(--uca-purple); 
+        font-size: 1.8em; 
         font-weight: bold;
-        background-color: var(--tag-color, var(--uca-gray));
-        transition: opacity 0.2s;
-        border: none;
-    }
-    .tag-item:hover {
-        text-decoration: none;
-        opacity: 0.8;
-    }
-    .page-header {
-      border-left: none; 
-      padding-left: 0;
-      margin-bottom: 20px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #ccc;
+        margin-top: 0;
     }
     
+    /* Other CSS styles unchanged for brevity */
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px 6px; margin-top: 10px; }
+    .tag-item { font-size: 0.85em; padding: 4px 10px; border-radius: 12px; color: white !important; text-decoration: none; font-weight: bold; background-color: var(--tag-color, var(--uca-gray)); transition: opacity 0.2s; border: none; }
+    .tag-item:hover { text-decoration: none; opacity: 0.8; }
+
+    @media (max-width: 968px) {
+      .site-content { flex-direction: column; }
+      .sidebar { width: 100%; position: relative; margin-bottom: 30px; max-height: none; top: 0; }
+      .main-content { padding: 20px; }
+    }
   </style>
 </head>
 <body>
@@ -361,13 +338,4 @@
                 <span>MASONRY</span>
               </a></li>
               <li><a href="{{ '/standards/architectural/wood-plastic-composites/' | relative_url }}">
-                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
-                <span>WOOD, PLASTIC AND COMPOSITES</span>
-              </a></li>
-              <li><a href="{{ '/standards/architectural/thermal-moisture-protection/' | relative_url }}">
-                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
-                <span>THERMAL AND MOISTURE PROTECTION</span>
-              </a></li>
-              <li><a href="{{ '/standards/architectural/openings/' | relative_url }}">
-                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
-                <span>OPENINGS</span>
+                <img src="{{ '/assets/
