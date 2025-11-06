@@ -419,17 +419,82 @@
       </div>
       
       <nav>
-        <aside class="sidebar">
-  <div class="sidebar-logo">
-    <img src="{{ '/assets/images/logos/logo-full.png' | relative_url }}" alt="UCA Construction Standards">
-  </div>
-  
-  <nav>
-    <!-- OLD NAVIGATION IS HERE - REPLACE EVERYTHING BETWEEN <nav> and </nav> -->
-  </nav>
-</aside>
+        <ul>
+          
+          <li>
+            <a href="{{ '/' | relative_url }}">
+              <img src="{{ '/assets/images/logos/Home-Icon-36.png' | relative_url }}" alt="Home icon" class="nav-icon">
+              <span>Home</span>
+            </a>
+          </li>
+          
+          <li class="has-submenu">
+            <a href="{{ '/standards/instructions/' | relative_url }}" class="parent-link">
+              <img src="{{ '/assets/images/logos/Engineers.png' | relative_url }}" alt="Engineers icon" class="nav-icon">
+              <span>Instructions for A&E</span>
+            </a>
+            <ul class="submenu">
+              <li><a href="{{ '/standards/instructions/architect-engineer/' | relative_url }}">A&E Requirements</a></li>
+              <li><a href="{{ '/standards/instructions/space-planning/' | relative_url }}">Space Planning</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="{{ '/standards/procurement/' | relative_url }}">
+              <img src="{{ '/assets/images/logos/Document-Icon.png' | relative_url }}" alt="Procurement icon" class="nav-icon">
+              <span>Procurement & Contracting</span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="{{ '/standards/general-construction/' | relative_url }}">
+              <img src="{{ '/assets/images/logos/Construction.png' | relative_url }}" alt="General Requirements icon" class="nav-icon">
+              <span>General Requirements</span>
+            </a>
+          </li>
+          
+          <li class="has-submenu">
+            <a href="{{ '/standards/architectural/' | relative_url }}" class="parent-link">
+              <img src="{{ '/assets/images/logos/Architecture.png' | relative_url }}" alt="Architecture icon" class="nav-icon">
+              <span>Facility Construction</span>
+            </a>
+            <ul class="submenu">
+              <li><a href="{{ '/standards/architectural/masonry/' | relative_url }}">Masonry</a></li>
+              <li><a href="{{ '/standards/architectural/openings/' | relative_url }}">Openings</a></li>
+              <li><a href="{{ '/standards/architectural/finishes/' | relative_url }}">Finishes</a></li>
+              <li><a href="{{ '/standards/architectural/equipment/' | relative_url }}">Equipment</a></li>
+              <li><a href="{{ '/standards/architectural/furnishings/' | relative_url }}">Furnishings</a></li>
+            </ul>
+          </li>
+          
+          <li>
+            <a href="{{ '/standards/facility-services/' | relative_url }}">
+              <img src="{{ '/assets/images/logos/Bullet Orange.png' | relative_url }}" alt="Services icon" class="nav-icon">
+              <span>Facility Services</span>
+            </a>
+          </li>
+          
+          <li class="has-submenu">
+            <a href="{{ '/standards/civil-landscape/' | relative_url }}" class="parent-link">
+              <img src="{{ '/assets/images/logos/Landscape.png' | relative_url }}" alt="Landscape icon" class="nav-icon">
+              <span>Site Work</span>
+            </a>
+            <ul class="submenu">
+              <li><a href="{{ '/standards/civil-landscape/earthwork/' | relative_url }}">Earthwork</a></li>
+              <li><a href="{{ '/standards/civil-landscape/exterior-improvements/' | relative_url }}">Exterior Improvements</a></li>
+            </ul>
+          </li>
+          
+          <li>
+            <a href="{{ '/standards/sustainability/' | relative_url }}">
+              <img src="{{ '/assets/images/logos/Sustainability.png' | relative_url }}" alt="Sustainability icon" class="nav-icon">
+              <span>Sustainable Compliance</span>
+            </a>
+          </li>
+
+        </ul>
       </nav>
-    </aside>
+      </aside>
 
     <main class="main-content">
       <div class="page-header">
