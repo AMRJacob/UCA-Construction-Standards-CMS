@@ -41,7 +41,7 @@
 }
 
 .parent-link::after {
-  content: '▶';
+  content: '▼'; /* Changed to ▼ to match the image */
   position: absolute;
   right: 10px;
   transition: transform 0.3s ease;
@@ -49,21 +49,22 @@
 }
 
 .has-submenu.expanded .parent-link::after {
-  transform: rotate(90deg);
+  content: '▲'; /* Changed to ▲ to match the image when open */
 }
 
+/* Custom styling for sub-menu links (bullets) */
 .submenu li a {
   font-size: 0.9em;
   padding: 8px 15px;
-  border-left: 2px solid transparent;
+  border-left: none; /* No vertical bar on sub-menu items */
 }
 
 .submenu li a:hover {
-  background-color: rgba(75, 46, 131, 0.05);
-  border-left-color: var(--uca-purple);
+  background-color: #f0f0f0; 
+  border-left-color: transparent;
 }
 
-
+/* Base styles from original file (unchanged) */
     * {
       box-sizing: border-box;
     }
@@ -183,6 +184,16 @@
       margin-right: 10px;
       flex-shrink: 0;
     }
+/* --- Custom Coloring for Menu Text --- */
+/* The general text color is purple (var(--uca-purple)) to match the icons. */
+.sidebar nav a[href*="instructions"] span { color: var(--uca-purple); } /* Engineers Icon - Purple */
+.sidebar nav a[href*="procurement"] span { color: var(--fire-red); } /* Document Icon - Pink/Red */
+.sidebar nav a[href*="civil-landscape"] span { color: var(--uca-gray); } /* Landscape Icon - Brownish/Gray */
+.sidebar nav a[href*="facility-services"] span { color: var(--hvac-orange); } /* Orange Bullet/Icon */
+.sidebar nav a[href*="general-construction"] span { color: var(--uca-gray); } /* Construction Icon - Gray/Magenta */
+.sidebar nav a[href*="architectural"] span { color: var(--uca-purple); } /* Architecture Icon - Purple */
+.sidebar nav a[href*="sustainability"] span { color: var(--sustainable-green); } /* Sustainability Icon - Green */
+/* --- END Custom Coloring --- */
 
     .sidebar nav a[href*="instructions"]:hover {
       background-color: rgba(75, 46, 131, 0.1);
@@ -190,17 +201,12 @@
     }
 
     .sidebar nav a[href*="procurement"]:hover {
-      background-color: rgba(0, 48, 87, 0.1);
-      border-left-color: var(--procurement-navy);
+      background-color: rgba(200, 16, 46, 0.1); /* Match Fire Red */
+      border-left-color: var(--fire-red);
     }
 
-    .sidebar nav a[href*="general-construction"]:hover {
-      background-color: rgba(0, 139, 139, 0.1);
-      border-left-color: var(--general-teal);
-    }
-
-    .sidebar nav a[href*="architectural"]:hover {
-      background-color: rgba(99, 102, 106, 0.1);
+    .sidebar nav a[href*="civil-landscape"]:hover {
+      background-color: rgba(99, 102, 106, 0.1); /* Match UCA Gray */
       border-left-color: var(--uca-gray);
     }
 
@@ -209,9 +215,14 @@
       border-left-color: var(--hvac-orange);
     }
 
-    .sidebar nav a[href*="civil-landscape"]:hover {
-      background-color: rgba(0, 166, 81, 0.1);
-      border-left-color: var(--site-green);
+    .sidebar nav a[href*="general-construction"]:hover {
+      background-color: rgba(99, 102, 106, 0.1); /* Match UCA Gray */
+      border-left-color: var(--uca-gray);
+    }
+
+    .sidebar nav a[href*="architectural"]:hover {
+      background-color: rgba(75, 46, 131, 0.1);
+      border-left-color: var(--uca-purple);
     }
 
     .sidebar nav a[href*="sustainability"]:hover {
@@ -241,14 +252,10 @@
     }
 
     body.procurement .page-header {
-      border-left-color: var(--procurement-navy);
+      border-left-color: var(--fire-red);
     }
 
-    body.general-construction .page-header {
-      border-left-color: var(--general-teal);
-    }
-
-    body.architectural .page-header {
+    body.civil-landscape .page-header {
       border-left-color: var(--uca-gray);
     }
 
@@ -256,8 +263,12 @@
       border-left-color: var(--hvac-orange);
     }
 
-    body.civil-landscape .page-header {
-      border-left-color: var(--site-green);
+    body.general-construction .page-header {
+      border-left-color: var(--uca-gray);
+    }
+
+    body.architectural .page-header {
+      border-left-color: var(--uca-purple);
     }
 
     body.sustainability .page-header {
@@ -464,7 +475,7 @@
           
           <li>
             <a href="{{ '/standards/facility-services/' | relative_url }}">
-              <img src="{{ '/assets/images/logos/Bullet Orange.png' | relative_url }}" alt="Services icon" class="nav-icon">
+              <img src="{{ '/assets/images/logos/Engineers.png' | relative_url }}" alt="Services icon" class="nav-icon">
               <span>FACILITY SERVICES (FMEP)</span>
             </a>
           </li>
@@ -570,7 +581,10 @@
     document.querySelectorAll('.submenu a').forEach(link => {
       if (currentPath.includes(link.getAttribute('href'))) {
         link.closest('.has-submenu').classList.add('expanded');
-        link.style.backgroundColor = 'rgba(75, 46, 131, 0.1)';
+        
+        // NOTE: Keeping the active styling simple without border color here, as 
+        // the sub-menu items don't have left borders in your design.
+        link.style.backgroundColor = 'rgba(75, 46, 131, 0.1)'; 
       }
     });
   </script>
