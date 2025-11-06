@@ -16,45 +16,46 @@
       --hvac-orange: #ff8200; 
       --site-green: #00a651;
       --sustainable-green: #2e7d32;
-      --soft-purple-banner: #b0a0c6; 
+      --soft-purple-banner: #a897c0;
+      --body-text-gray: #545454;
+      --subheading-gray: #9c9c9c;
     }
 	
-	/* Expandable submenu styles */
-.has-submenu {
-  position: relative;
-}
-.submenu {
-  display: none;
-  padding-left: 20px;
-  margin-top: 5px;
-}
-.has-submenu.expanded .submenu {
-  display: block;
-}
-.parent-link {
-  position: relative;
-}
-.parent-link::after {
-  content: '▼';
-  position: absolute;
-  right: 10px;
-  transition: transform 0.3s ease;
-  font-size: 0.8em;
-  color: inherit;
-}
-.has-submenu.expanded .parent-link::after {
-  content: '▲';
-}
-.submenu li a {
-  font-size: 0.9em;
-  padding: 8px 15px;
-  border-left: none;
-}
-.submenu li a:hover {
-  background-color: #f0f0f0; 
-  border-left-color: transparent;
-}
-
+    /* Expandable submenu styles */
+    .has-submenu {
+      position: relative;
+    }
+    .submenu {
+      display: none;
+      padding-left: 20px;
+      margin-top: 5px;
+    }
+    .has-submenu.expanded .submenu {
+      display: block;
+    }
+    .parent-link {
+      position: relative;
+    }
+    .parent-link::after {
+      content: '▼';
+      position: absolute;
+      right: 10px;
+      transition: transform 0.3s ease;
+      font-size: 0.8em;
+      color: inherit;
+    }
+    .has-submenu.expanded .parent-link::after {
+      content: '▲';
+    }
+    .submenu li a {
+      font-size: 0.9em;
+      padding: 8px 15px;
+      border-left: none;
+    }
+    .submenu li a:hover {
+      background-color: #f0f0f0; 
+      border-left-color: transparent;
+    }
 
     * {
       box-sizing: border-box;
@@ -63,12 +64,13 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
+      font-family: Calibri, 'Segoe UI', Arial, sans-serif;
+      font-size: 12pt;
       line-height: 1.6;
-      color: #333;
+      color: var(--body-text-gray);
     }
 
-    /* FIX: Header Alignment */
+    /* Header Alignment */
     .site-header {
       background-color: white; 
       padding: 15px 0;
@@ -140,7 +142,7 @@
       border-radius: 5px;
       transition: all 0.3s ease;
       border-left: 4px solid transparent; 
-      color: #333; /* Base color for default text */
+      color: #333;
     }
     .sidebar nav li a:hover {
       background-color: #e8e9ea;
@@ -153,22 +155,18 @@
       flex-shrink: 0;
     }
 
-/* --- Navigation Text Coloring (FINAL FIX) --- */
-/* Target the anchor tag directly and use !important to guarantee the color override */
-.sidebar nav a[href*="instructions"] { color: var(--hvac-orange) !important; } 
-.sidebar nav a[href*="procurement"] { color: var(--fire-red) !important; } 
-.sidebar nav a[href*="civil-landscape"] { color: var(--uca-gray) !important; } 
-.sidebar nav a[href*="facility-services"] { color: var(--uca-purple) !important; } 
-.sidebar nav a[href*="general-construction"] { color: var(--fire-red) !important; } 
-.sidebar nav a[href*="architectural"] { color: var(--plumbing-blue) !important; } 
-.sidebar nav a[href*="sustainability"] { color: var(--sustainable-green) !important; } 
-/* Ensure submenu links inherit from the main link color */
-.sidebar nav .submenu a { 
-    color: inherit !important; 
-    font-weight: normal; /* Keep sublinks less bold */
-}
-/* ------------------------------------------- */
-
+    /* Navigation Text Coloring */
+    .sidebar nav a[href*="instructions"] { color: var(--hvac-orange) !important; } 
+    .sidebar nav a[href*="procurement"] { color: var(--fire-red) !important; } 
+    .sidebar nav a[href*="civil-landscape"] { color: var(--uca-gray) !important; } 
+    .sidebar nav a[href*="facility-services"] { color: var(--uca-purple) !important; } 
+    .sidebar nav a[href*="general-construction"] { color: var(--fire-red) !important; } 
+    .sidebar nav a[href*="architectural"] { color: var(--plumbing-blue) !important; } 
+    .sidebar nav a[href*="sustainability"] { color: var(--sustainable-green) !important; } 
+    .sidebar nav .submenu a { 
+        color: inherit !important; 
+        font-weight: normal;
+    }
 
     .main-content {
       flex: 1;
@@ -225,25 +223,190 @@
         padding-bottom: 0;
     }
 
-    /* Page-Specific Titles (H1 in Markdown) */
+    /* === TYPOGRAPHY STYLES === */
+    
+    /* H1 - Landing Page Title (63pt, Black, ALL CAPS) */
     .main-content-box h1:first-of-type {
-        color: var(--uca-purple); 
-        font-size: 1.8em; 
-        font-weight: bold;
-        padding-bottom: 5px;
-        border-bottom: 1px solid #ccc;
+        font-family: Calibri, 'Segoe UI', sans-serif;
+        font-size: 63pt;
+        color: #000000;
+        text-transform: uppercase;
+        font-weight: normal;
         margin-top: 0;
+        padding-bottom: 10px;
+        border-bottom: none;
+        line-height: 1.2;
     }
     
-    /* Other CSS styles unchanged for brevity */
-    .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px 6px; margin-top: 10px; }
-    .tag-item { font-size: 0.85em; padding: 4px 10px; border-radius: 12px; color: white !important; text-decoration: none; font-weight: bold; background-color: var(--tag-color, var(--uca-gray)); transition: opacity 0.2s; border: none; }
-    .tag-item:hover { text-decoration: none; opacity: 0.8; }
+    /* H2 - Purple Background Sections (16.5pt Bold White on Purple) */
+    .main-content-box h2 {
+        font-family: Calibri, 'Segoe UI', sans-serif;
+        font-size: 16.5pt;
+        font-weight: bold;
+        color: #ffffff;
+        background-color: var(--soft-purple-banner);
+        padding: 12px 20px;
+        border-radius: 4px;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        border-bottom: none;
+    }
+    
+    /* H3 - Italic Gray Subheadings */
+    .main-content-box h3 {
+        font-family: Calibri, 'Segoe UI', sans-serif;
+        font-size: 14pt;
+        font-style: italic;
+        color: var(--subheading-gray);
+        font-weight: normal;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    
+    /* H4 - Standard Subheadings */
+    .main-content-box h4 {
+        font-family: Calibri, 'Segoe UI', sans-serif;
+        font-size: 13pt;
+        color: var(--body-text-gray);
+        font-weight: bold;
+        margin-top: 15px;
+        margin-bottom: 8px;
+    }
+    
+    /* Body Paragraphs (12pt, Dark Gray) */
+    .main-content-box p {
+        font-family: Calibri, 'Segoe UI', sans-serif;
+        font-size: 12pt;
+        color: var(--body-text-gray);
+        margin-bottom: 15px;
+        line-height: 1.6;
+    }
+    
+    /* Lists */
+    .main-content-box ul,
+    .main-content-box ol {
+        font-family: Calibri, 'Segoe UI', sans-serif;
+        font-size: 12pt;
+        color: var(--body-text-gray);
+        margin-left: 25px;
+        margin-bottom: 15px;
+        line-height: 1.6;
+    }
+    
+    .main-content-box li {
+        margin-bottom: 8px;
+    }
+    
+    /* Bold text */
+    .main-content-box strong {
+        font-weight: bold;
+        color: #000000;
+    }
+    
+    /* Italic text */
+    .main-content-box em {
+        font-style: italic;
+    }
+    
+    /* Tables */
+    .main-content-box table {
+        font-family: Calibri, 'Segoe UI', sans-serif;
+        font-size: 11pt;
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+    }
+    
+    .main-content-box table th {
+        background-color: var(--soft-purple-banner);
+        color: white;
+        padding: 12px;
+        text-align: left;
+        font-weight: bold;
+        border: 1px solid #ddd;
+    }
+    
+    .main-content-box table td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        color: var(--body-text-gray);
+    }
+    
+    .main-content-box table tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+    
+    /* Links */
+    .main-content-box a {
+        color: var(--uca-purple);
+        text-decoration: none;
+    }
+    
+    .main-content-box a:hover {
+        text-decoration: underline;
+    }
+    
+    /* Code blocks */
+    .main-content-box code {
+        background-color: #f8f9fa;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-family: 'Courier New', monospace;
+        font-size: 11pt;
+    }
+    
+    .main-content-box pre {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+        font-size: 11pt;
+    }
+    
+    /* Horizontal rules */
+    .main-content-box hr {
+        border: none;
+        border-top: 2px solid #e0e0e0;
+        margin: 30px 0;
+    }
+
+    /* === END TYPOGRAPHY STYLES === */
+    
+    .tag-cloud { 
+        display: flex; 
+        flex-wrap: wrap; 
+        gap: 8px 6px; 
+        margin-top: 10px; 
+    }
+    
+    .tag-item { 
+        font-size: 0.85em; 
+        padding: 4px 10px; 
+        border-radius: 12px; 
+        color: white !important; 
+        text-decoration: none; 
+        font-weight: bold; 
+        background-color: var(--tag-color, var(--uca-gray)); 
+        transition: opacity 0.2s; 
+        border: none; 
+    }
+    
+    .tag-item:hover { 
+        text-decoration: none; 
+        opacity: 0.8; 
+    }
 
     @media (max-width: 968px) {
       .site-content { flex-direction: column; }
       .sidebar { width: 100%; position: relative; margin-bottom: 30px; max-height: none; top: 0; }
       .main-content { padding: 20px; }
+    }
+    
+    @media print {
+      .sidebar { display: none; }
+      .site-header { background-color: white; border-bottom: 2px solid #333; }
+      .main-content { padding: 0; }
+      #feedback-form { display: none; }
     }
   </style>
 </head>
@@ -269,6 +432,7 @@
               <input type="hidden" name="atb" value="v154-1">
           </form>
       </div>
+      
       <nav>
         <ul>
           
@@ -377,6 +541,7 @@
 
         </ul>
       </nav>
+      
       {% assign tags = page.tags | join: ',' | split: ',' | uniq %}
       {% if tags.size > 0 %}
       <div class="tag-widget-box" style="margin-top: 20px;">
@@ -409,7 +574,8 @@
         </div>
       </div>
       {% endif %}
-      </aside>
+      
+    </aside>
 
     <main class="main-content">
       
@@ -423,7 +589,6 @@
           {% endif %}
           
           {{ content }}
-
           
           <hr style="margin-top: 50px;">
           <div id="feedback-form">
@@ -435,24 +600,21 @@
 
   </div>
 
-<script>
-    // FIX: The JavaScript to handle the collapsible menu expansion.
+  <script>
+    // Handle collapsible menu expansion
     document.querySelectorAll('.has-submenu > .parent-link').forEach(link => {
       link.addEventListener('click', function(e) {
         e.preventDefault();
         const parent = this.parentElement;
-        // Toggle the 'expanded' class on click
         parent.classList.toggle('expanded');
         
-        // If the menu is now NOT expanded, navigate to the index page.
-        // This ensures the link is still functional but allows collapsing.
         if (!parent.classList.contains('expanded')) {
           window.location.href = this.href;
         }
       });
     });
     
-    // Auto-expand if we're on a sub-page (unchanged)
+    // Auto-expand if on a sub-page
     const currentPath = window.location.pathname;
     document.querySelectorAll('.submenu a').forEach(link => {
       if (currentPath.includes(link.getAttribute('href'))) {
@@ -461,7 +623,6 @@
       }
     });
   </script>
-
 
 </body>
 </html>
