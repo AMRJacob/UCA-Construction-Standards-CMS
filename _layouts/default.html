@@ -410,5 +410,31 @@
     </div>
   </footer>
 
+<script>
+    // Toggle expandable menu
+    document.querySelectorAll('.has-submenu > .parent-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const parent = this.parentElement;
+        parent.classList.toggle('expanded');
+        
+        // Navigate to main page if clicking on already expanded menu
+        if (!parent.classList.contains('expanded')) {
+          window.location.href = this.href;
+        }
+      });
+    });
+    
+    // Auto-expand if we're on a sub-page
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.submenu a').forEach(link => {
+      if (currentPath.includes(link.getAttribute('href'))) {
+        link.closest('.has-submenu').classList.add('expanded');
+        link.style.backgroundColor = 'rgba(75, 46, 131, 0.1)';
+      }
+    });
+  </script>
+
+
 </body>
 </html>
