@@ -20,6 +20,49 @@
       --procurement-navy: #003057;
       --general-teal: #008b8b;
     }
+	
+	/* Expandable submenu styles */
+.has-submenu {
+  position: relative;
+}
+
+.submenu {
+  display: none;
+  padding-left: 20px;
+  margin-top: 5px;
+}
+
+.has-submenu.expanded .submenu {
+  display: block;
+}
+
+.parent-link {
+  position: relative;
+}
+
+.parent-link::after {
+  content: '▶';
+  position: absolute;
+  right: 10px;
+  transition: transform 0.3s ease;
+  font-size: 0.8em;
+}
+
+.has-submenu.expanded .parent-link::after {
+  transform: rotate(90deg);
+}
+
+.submenu li a {
+  font-size: 0.9em;
+  padding: 8px 15px;
+  border-left: 2px solid transparent;
+}
+
+.submenu li a:hover {
+  background-color: rgba(75, 46, 131, 0.05);
+  border-left-color: var(--uca-purple);
+}
+
 
     * {
       box-sizing: border-box;
