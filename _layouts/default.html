@@ -181,19 +181,24 @@
         margin-top: 0;
     }
     
+    /* Homepage Title Wrapper - ONLY shows on homepage */
     .page-header-wrapper {
         border-left: none; 
         padding-left: 0;
         margin-bottom: 20px;
     }
 
+    /* Homepage H1 Title - 48pt Black ALL CAPS */
     .page-header-wrapper h1 {
+        font-family: Calibri, 'Segoe UI', sans-serif;
+        font-size: 48pt;
+        color: #000000;
+        text-transform: uppercase;
+        font-weight: normal;
         margin: 0;
-        color: var(--uca-purple); 
-        font-size: 2.2em; 
-        font-weight: 500; 
-        padding-bottom: 5px; 
+        padding-bottom: 10px;
         border-bottom: 1px solid #ccc;
+        line-height: 1.2;
     }
 
     .subheader {
@@ -225,17 +230,18 @@
 
     /* === TYPOGRAPHY STYLES === */
     
-    /* H1 - Landing Page Title (63pt, Black, ALL CAPS) */
-    .main-content-box h1:first-of-type {
+    /* H1 - Regular content pages (NOT homepage) */
+    .main-content-box h1 {
         font-family: Calibri, 'Segoe UI', sans-serif;
-        font-size: 63pt;
-        color: #000000;
-        text-transform: uppercase;
-        font-weight: normal;
+        font-size: 24pt;
+        color: var(--uca-purple);
+        font-weight: bold;
         margin-top: 0;
+        margin-bottom: 20px;
         padding-bottom: 10px;
-        border-bottom: none;
+        border-bottom: 2px solid var(--uca-purple);
         line-height: 1.2;
+        text-transform: none;
     }
     
     /* H2 - Purple Background Sections (16.5pt Bold White on Purple) */
@@ -522,107 +528,4 @@
                 <span>SPECIALTIES</span>
               </a></li>
               <li><a href="{{ '/standards/architectural/furnishings/' | relative_url }}">
-                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
-                <span>FURNISHINGS</span>
-              </a></li>
-              <li><a href="{{ '/standards/architectural/equipment/' | relative_url }}">
-                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
-                <span>EQUIPMENT</span>
-              </a></li>
-            </ul>
-          </li>
-          
-          <li>
-            <a href="{{ '/standards/sustainability/' | relative_url }}">
-              <img src="{{ '/assets/images/logos/Sustainability.png' | relative_url }}" alt="Sustainability icon" class="nav-icon">
-              <span>SUSTAINABLE COMPLIANCE</span>
-            </a>
-          </li>
-
-        </ul>
-      </nav>
-      
-      {% assign tags = page.tags | join: ',' | split: ',' | uniq %}
-      {% if tags.size > 0 %}
-      <div class="tag-widget-box" style="margin-top: 20px;">
-        <h3>🏷️ Page Tags</h3>
-        <div class="tag-cloud">
-            {% for tag in tags %}
-                {% if tag != "" %}
-                {% assign tag_color = 'uca-gray' %}
-                {% assign tag_url = '/tags#' | append: tag | slugify %}
-                
-                {% if tag contains 'instruction' or tag contains 'a&e' %}
-                    {% assign tag_color = 'hvac-orange' %}
-                {% elsif tag contains 'procurement' or tag contains 'contract' %}
-                    {% assign tag_color = 'fire-red' %}
-                {% elsif tag contains 'civil' or tag contains 'landscape' or tag contains 'site work' %}
-                    {% assign tag_color = 'uca-gray' %}
-                {% elsif tag contains 'fmep' or tag contains 'services' or tag contains 'hvac' %}
-                    {% assign tag_color = 'uca-purple' %}
-                {% elsif tag contains 'general' or tag contains 'construction' %}
-                    {% assign tag_color = 'fire-red' %}
-                {% elsif tag contains 'architectural' or tag contains 'masonry' or tag contains 'structural' %}
-                    {% assign tag_color = 'plumbing-blue' %}
-                {% elsif tag contains 'sustainable' or tag contains 'leed' %}
-                    {% assign tag_color = 'sustainable-green' %}
-                {% endif %}
-
-                <a href="{{ tag_url | relative_url }}" class="tag-item" style="--tag-color: var(--{{ tag_color }});">{{ tag }}</a>
-                {% endif %}
-            {% endfor %}
-        </div>
-      </div>
-      {% endif %}
-      
-    </aside>
-
-    <main class="main-content">
-      
-      <div class="main-content-box">
-          
-          {% if page.permalink == '/' %}
-          <div class="page-header-wrapper">
-              <h1>CONSTRUCTION STANDARDS</h1>
-              <p class="subheader">UNIVERSITY OF CENTRAL ARKANSAS</p>
-          </div>
-          {% endif %}
-          
-          {{ content }}
-          
-          <hr style="margin-top: 50px;">
-          <div id="feedback-form">
-            <h2>Feedback</h2>
-            <p>Have suggestions or found an error? <a href="https://github.com/AMRJacob/UCA-Construction-Standards/issues/new?title=Feedback for {{ page.title }}&body=Page: {{ page.url }}" target="_blank">Submit feedback on GitHub</a></p>
-          </div>
-      </div>
-    </main>
-
-  </div>
-
-  <script>
-    // Handle collapsible menu expansion
-    document.querySelectorAll('.has-submenu > .parent-link').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const parent = this.parentElement;
-        parent.classList.toggle('expanded');
-        
-        if (!parent.classList.contains('expanded')) {
-          window.location.href = this.href;
-        }
-      });
-    });
-    
-    // Auto-expand if on a sub-page
-    const currentPath = window.location.pathname;
-    document.querySelectorAll('.submenu a').forEach(link => {
-      if (currentPath.includes(link.getAttribute('href'))) {
-        link.closest('.has-submenu').classList.add('expanded');
-        link.style.backgroundColor = 'rgba(75, 46, 131, 0.1)'; 
-      }
-    });
-  </script>
-
-</body>
-</html>
+                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav
