@@ -4,10 +4,9 @@ title: Home
 permalink: /
 ---
 
-<div class="intro-banner">
-  <h2>Welcome to UCA Construction Standards</h2>
-  <p>This site provides comprehensive building requirements and standards for all University of Central Arkansas construction projects. Use the navigation menu to browse standards by category.</p>
-</div>
+## Welcome to UCA Construction Standards
+
+This site provides comprehensive building requirements and standards for all University of Central Arkansas construction projects. Use the navigation menu to browse standards by category.
 
 ## About This Documentation
 
