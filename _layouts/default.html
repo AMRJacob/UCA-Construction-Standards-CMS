@@ -98,7 +98,7 @@
       display: flex;
       max-width: 1400px;
       margin: 0 auto;
-      padding-top: 80px; 
+      padding-top: 100px; 
       padding-left: 20px; 
       padding-right: 20px;
     }
@@ -109,9 +109,9 @@
       background-color: transparent;
       border-right: none; 
       position: sticky;
-      top: 80px;
+      top: 100px;
       height: fit-content;
-      max-height: calc(100vh - 80px);
+      max-height: calc(100vh - 100px);
       overflow-y: auto;
     }
 
@@ -170,7 +170,7 @@
 
     .main-content {
       flex: 1;
-      padding: 0 0 0 40px; 
+      padding: 0 0 0 20px; 
       min-width: 0;
     }
 
@@ -528,4 +528,107 @@
                 <span>SPECIALTIES</span>
               </a></li>
               <li><a href="{{ '/standards/architectural/furnishings/' | relative_url }}">
-                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav
+                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>FURNISHINGS</span>
+              </a></li>
+              <li><a href="{{ '/standards/architectural/equipment/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>EQUIPMENT</span>
+              </a></li>
+            </ul>
+          </li>
+          
+          <li>
+            <a href="{{ '/standards/sustainability/' | relative_url }}">
+              <img src="{{ '/assets/images/logos/Sustainability.png' | relative_url }}" alt="Sustainability icon" class="nav-icon">
+              <span>SUSTAINABLE COMPLIANCE</span>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+      
+      {% assign tags = page.tags | join: ',' | split: ',' | uniq %}
+      {% if tags.size > 0 %}
+      <div class="tag-widget-box" style="margin-top: 20px;">
+        <h3>🏷️ Page Tags</h3>
+        <div class="tag-cloud">
+            {% for tag in tags %}
+                {% if tag != "" %}
+                {% assign tag_color = 'uca-gray' %}
+                {% assign tag_url = '/tags#' | append: tag | slugify %}
+                
+                {% if tag contains 'instruction' or tag contains 'a&e' %}
+                    {% assign tag_color = 'hvac-orange' %}
+                {% elsif tag contains 'procurement' or tag contains 'contract' %}
+                    {% assign tag_color = 'fire-red' %}
+                {% elsif tag contains 'civil' or tag contains 'landscape' or tag contains 'site work' %}
+                    {% assign tag_color = 'uca-gray' %}
+                {% elsif tag contains 'fmep' or tag contains 'services' or tag contains 'hvac' %}
+                    {% assign tag_color = 'uca-purple' %}
+                {% elsif tag contains 'general' or tag contains 'construction' %}
+                    {% assign tag_color = 'fire-red' %}
+                {% elsif tag contains 'architectural' or tag contains 'masonry' or tag contains 'structural' %}
+                    {% assign tag_color = 'plumbing-blue' %}
+                {% elsif tag contains 'sustainable' or tag contains 'leed' %}
+                    {% assign tag_color = 'sustainable-green' %}
+                {% endif %}
+
+                <a href="{{ tag_url | relative_url }}" class="tag-item" style="--tag-color: var(--{{ tag_color }});">{{ tag }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+      
+    </aside>
+
+    <main class="main-content">
+      
+      <div class="main-content-box">
+          
+          {% if page.permalink == '/' %}
+          <div class="page-header-wrapper">
+              <h1>CONSTRUCTION STANDARDS</h1>
+              <p class="subheader">UNIVERSITY OF CENTRAL ARKANSAS</p>
+          </div>
+          {% endif %}
+          
+          {{ content }}
+          
+          <hr style="margin-top: 50px;">
+          <div id="feedback-form">
+            <h2>Feedback</h2>
+            <p>Have suggestions or found an error? <a href="https://github.com/AMRJacob/UCA-Construction-Standards/issues/new?title=Feedback for {{ page.title }}&body=Page: {{ page.url }}" target="_blank">Submit feedback on GitHub</a></p>
+          </div>
+      </div>
+    </main>
+
+  </div>
+
+  <script>
+    // Handle collapsible menu expansion
+    document.querySelectorAll('.has-submenu > .parent-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const parent = this.parentElement;
+        parent.classList.toggle('expanded');
+        
+        if (!parent.classList.contains('expanded')) {
+          window.location.href = this.href;
+        }
+      });
+    });
+    
+    // Auto-expand if on a sub-page
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.submenu a').forEach(link => {
+      if (currentPath.includes(link.getAttribute('href'))) {
+        link.closest('.has-submenu').classList.add('expanded');
+        link.style.backgroundColor = 'rgba(75, 46, 131, 0.1)'; 
+      }
+    });
+  </script>
+
+</body>
+</html>
