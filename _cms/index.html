@@ -1,13 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="pagescms-config-path" content="/pagescms.config.yml" />
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- IMPORTANT: use your GitHub Pages baseurl here -->
+    <meta name="pagescms-config-path" content="/UCA-Construction-Standards/pagescms.config.yml">
     <title>UCA Construction Standards CMS</title>
-</head>
-<body>
-    <h2>Loading Pages CMS...</h2>
-    <script src="https://cdn.jsdelivr.net/npm/pages-cms@latest/dist/pagescms.min.js"></script>
-</body>
+  </head>
+  <body>
+    <!-- Some builds require a mount node -->
+    <div id="pagescms"></div>
+
+    <!-- Load the Pages CMS app -->
+    <script src="https://unpkg.com/pages-cms@latest/dist/pagescms.js"></script>
+  </body>
 </html>
+
