@@ -260,7 +260,20 @@
 
     /* === TYPOGRAPHY STYLES === */
     
-    /* H1 - Regular content pages (NOT homepage) */
+    /* Auto-generated Page Title H1 from front matter */
+    .page-title {
+        font-family: Calibri, 'Segoe UI', sans-serif;
+        font-size: 48pt;
+        color: #000000;
+        text-transform: uppercase;
+        font-weight: normal;
+        margin: 0 0 20px 0;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--body-text-gray);
+        line-height: 1.2;
+    }
+    
+    /* H1 - Regular content pages (NOT homepage, not auto-title) */
     .main-content-box h1 {
         font-family: Calibri, 'Segoe UI', sans-serif;
         font-size: 24pt;
@@ -274,18 +287,19 @@
         text-transform: none;
     }
     
-    /* H2 - Purple Background Sections (16.5pt Bold White on Purple) */
+    /* H2 - Purple Background Sections - Centered with offset */
     .main-content-box h2 {
         font-family: Calibri, 'Segoe UI', sans-serif;
         font-size: 16.5pt;
         font-weight: bold;
         color: #ffffff;
         background-color: var(--soft-purple-banner);
-        padding: 12px 20px;
+        padding: 10px 20px;
         border-radius: 4px;
-        margin-top: 30px;
-        margin-bottom: 15px;
+        margin: 25px auto 15px auto;
         border-bottom: none;
+        max-width: 85%;
+        text-align: left;
     }
     
     /* H3 - Italic Gray Subheadings */
@@ -318,19 +332,43 @@
         line-height: 1.6;
     }
     
-    /* Lists */
+    /* Lists - Proper indentation */
     .main-content-box ul,
     .main-content-box ol {
         font-family: Calibri, 'Segoe UI', sans-serif;
         font-size: 12pt;
         color: var(--body-text-gray);
-        margin-left: 25px;
+        margin-left: 40px;
         margin-bottom: 15px;
         line-height: 1.6;
+        padding-left: 0;
+    }
+    
+    /* Sub-bullets - Additional indentation */
+    .main-content-box ul ul,
+    .main-content-box ol ul,
+    .main-content-box ul ol,
+    .main-content-box ol ol {
+        margin-left: 30px;
+        margin-top: 8px;
+        margin-bottom: 8px;
     }
     
     .main-content-box li {
         margin-bottom: 8px;
+    }
+    
+    /* Paragraphs within list items - align with bullet text */
+    .main-content-box li > p {
+        margin-left: 0;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+    
+    /* Paragraphs immediately following lists - maintain indent */
+    .main-content-box ul + p,
+    .main-content-box ol + p {
+        margin-left: 40px;
     }
     
     /* Bold text */
@@ -621,6 +659,8 @@
               <h1>CONSTRUCTION STANDARDS</h1>
               <p class="subheader">UNIVERSITY OF CENTRAL ARKANSAS</p>
           </div>
+          {% elsif page.title %}
+          <h1 class="page-title">{{ page.title }}</h1>
           {% endif %}
           
           {{ content }}
