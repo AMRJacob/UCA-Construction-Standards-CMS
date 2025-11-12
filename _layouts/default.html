@@ -333,17 +333,28 @@
         line-height: 1.6;
     }
     
-    /* Lists - Hanging indent style */
+    /* Lists - Hanging indent style with text-indent method */
     .main-content-box ul,
     .main-content-box ol {
         font-family: Calibri, 'Segoe UI', sans-serif;
         font-size: 12pt;
         color: var(--body-text-gray);
-        margin-left: 0;
+        margin-left: 40px;
         margin-bottom: 15px;
         line-height: 1.6;
-        padding-left: 40px;
-        list-style-position: outside;
+        padding-left: 0;
+    }
+    
+    /* List items with hanging indent */
+    .main-content-box li {
+        margin-bottom: 8px;
+        padding-left: 10px;
+        text-indent: -10px;
+    }
+    
+    /* Cancel text-indent for child elements */
+    .main-content-box li > * {
+        text-indent: 0;
     }
     
     /* Sub-bullets - Additional indentation */
@@ -351,27 +362,22 @@
     .main-content-box ol ul,
     .main-content-box ul ol,
     .main-content-box ol ol {
-        margin-left: 0;
-        padding-left: 30px;
+        margin-left: 30px;
         margin-top: 8px;
         margin-bottom: 8px;
-    }
-    
-    .main-content-box li {
-        margin-bottom: 8px;
-        padding-left: 8px;
+        padding-left: 0;
     }
     
     /* Paragraphs within list items - NO extra indent, flows with text */
     .main-content-box li > p {
         margin: 5px 0 10px 0;
-        padding: 0;
+        padding-left: 10px;
     }
     
     /* Paragraphs immediately following lists - maintain indent */
     .main-content-box ul + p,
     .main-content-box ol + p {
-        margin-left: 48px;
+        margin-left: 40px;
     }
     
     /* Bold text */
