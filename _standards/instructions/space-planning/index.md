@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Space Planning Requirements
-permalink: /standards/instructions/space-planning-requirements/
+permalink: /standards/instructions/space-planning/
 tags: [instructions, planning, architecture, design]
 ---
 
