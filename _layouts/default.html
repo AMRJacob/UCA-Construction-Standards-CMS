@@ -52,6 +52,7 @@
       font-size: 0.9em;
       padding: 8px 15px;
       border-left: none;
+      color: inherit !important;
     }
     .submenu li a:hover {
       background-color: #f0f0f0; 
@@ -155,7 +156,7 @@
       flex-shrink: 0;
     }
 
-    /* Navigation Text Coloring */
+    /* Navigation Text Coloring - Parent categories */
     .sidebar nav a[href*="instructions"] { color: var(--hvac-orange) !important; } 
     .sidebar nav a[href*="procurement"] { color: var(--fire-red) !important; } 
     .sidebar nav a[href*="civil-landscape"] { color: var(--civil-rust) !important; } 
@@ -163,10 +164,11 @@
     .sidebar nav a[href*="general-construction"] { color: var(--fire-red) !important; } 
     .sidebar nav a[href*="architectural"] { color: var(--plumbing-blue) !important; } 
     .sidebar nav a[href*="sustainability"] { color: var(--sustainable-green) !important; } 
-    .sidebar nav .submenu a { 
-        color: inherit !important; 
-        font-weight: normal;
-    }
+
+    /* Submenu items inherit parent color */
+    .has-submenu:has(a[href*="instructions"]) .submenu a { color: var(--hvac-orange) !important; }
+    .has-submenu:has(a[href*="civil-landscape"]) .submenu a { color: var(--civil-rust) !important; }
+    .has-submenu:has(a[href*="architectural"]) .submenu a { color: var(--plumbing-blue) !important; }
 
     /* Hover Effect - Left border matches text color */
     .sidebar nav a[href*="instructions"]:hover { 
@@ -260,11 +262,11 @@
 
     /* === TYPOGRAPHY STYLES === */
     
-    /* Auto-generated Page Title H1 from front matter */
-    .page-title {
-        font-family: Calibri, 'Segoe UI', sans-serif;
-        font-size: 48pt;
-        color: #000000;
+    /* Auto-generated Page Title H1 from front matter - PRIMARY method */
+    h1.page-title {
+        font-family: Calibri, sans-serif !important;
+        font-size: 48pt !important;
+        color: #000000 !important;
         text-transform: uppercase;
         font-weight: normal;
         margin: 0 0 20px 0;
@@ -273,32 +275,31 @@
         line-height: 1.2;
     }
     
-    /* H1 - Regular content pages (NOT homepage, not auto-title) */
+    /* H1 in content - BACKUP method (matches page-title exactly) */
     .main-content-box h1 {
-        font-family: Calibri, 'Segoe UI', sans-serif;
-        font-size: 24pt;
-        color: var(--uca-purple);
-        font-weight: bold;
-        margin-top: 0;
-        margin-bottom: 20px;
+        font-family: Calibri, sans-serif !important;
+        font-size: 48pt !important;
+        color: #000000 !important;
+        text-transform: uppercase;
+        font-weight: normal;
+        margin: 0 0 20px 0;
         padding-bottom: 10px;
-        border-bottom: 2px solid var(--uca-purple);
+        border-bottom: 1px solid var(--body-text-gray);
         line-height: 1.2;
-        text-transform: none;
     }
     
-    /* H2 - Purple Background Sections - Centered with offset */
+    /* H2 - Purple Background Sections - Aligned with text, minimal padding */
     .main-content-box h2 {
         font-family: Calibri, 'Segoe UI', sans-serif;
         font-size: 16.5pt;
         font-weight: bold;
         color: #ffffff;
         background-color: var(--soft-purple-banner);
-        padding: 10px 20px;
+        padding: 6px 12px;
         border-radius: 4px;
-        margin: 25px auto 15px auto;
+        margin: 25px 0 15px 0;
         border-bottom: none;
-        max-width: 85%;
+        max-width: fit-content;
         text-align: left;
     }
     
