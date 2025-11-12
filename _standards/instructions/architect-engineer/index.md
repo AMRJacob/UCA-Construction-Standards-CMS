@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Architect and Engineer Instructions
-permalink: /standards/instructions/architect-engineer-instructions/
+permalink: /standards/instructions/architect-engineer/
 tags: [instructions, coordination, architecture, engineering]
 ---
 
