@@ -1,6 +1,6 @@
 backend:
  name: github
- repo: YOUR_GITHUB_USERNAME/UCA-Construction-Standards
+ repo: AMRJacob/UCA-Construction-Standards
  branch: main
  auth:
    type: implicit
