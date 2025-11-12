@@ -359,11 +359,17 @@
         margin-bottom: 8px;
     }
     
-    /* Paragraphs within list items - align with bullet text */
+    /* Paragraphs within list items - align with bullet text (keep indented) */
     .main-content-box li > p {
         margin-left: 0;
         margin-top: 5px;
         margin-bottom: 10px;
+        text-indent: 0;
+    }
+    
+    /* Multi-paragraph list items stay aligned */
+    .main-content-box li p:first-child {
+        display: inline;
     }
     
     /* Paragraphs immediately following lists - maintain indent */
