@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
   
+  <!-- Netlify Identity Widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  
   <style>
     /* UCA Brand Colors */
     :root {
@@ -735,6 +738,19 @@
         link.style.backgroundColor = 'rgba(75, 46, 131, 0.1)'; 
       }
     });
+  </script>
+
+  <!-- Netlify Identity Redirect -->
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/UCA-Construction-Standards/admin/";
+          });
+        }
+      });
+    }
   </script>
 
 </body>
