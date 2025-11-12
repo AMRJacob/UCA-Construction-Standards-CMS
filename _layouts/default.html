@@ -366,18 +366,39 @@
         vertical-align: top;
     }
     
+    /* Ordered lists - First level: A, B, C */
     .main-content-box ol {
         counter-reset: list-counter;
     }
     
     .main-content-box ol > li::before {
-        content: counter(list-counter) ".";
+        content: counter(list-counter, upper-alpha) ".";
         counter-increment: list-counter;
         display: table-cell;
         padding-right: 10px;
         width: 2em;
         text-align: left;
         vertical-align: top;
+    }
+    
+    /* Ordered lists - Second level: 1, 2, 3 */
+    .main-content-box ol ol {
+        counter-reset: list-counter-2;
+    }
+    
+    .main-content-box ol ol > li::before {
+        content: counter(list-counter-2, decimal) ".";
+        counter-increment: list-counter-2;
+    }
+    
+    /* Ordered lists - Third level: a, b, c */
+    .main-content-box ol ol ol {
+        counter-reset: list-counter-3;
+    }
+    
+    .main-content-box ol ol ol > li::before {
+        content: counter(list-counter-3, lower-alpha) ".";
+        counter-increment: list-counter-3;
     }
     
     /* Content wrapper for list items */
