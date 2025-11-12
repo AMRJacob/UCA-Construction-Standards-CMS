@@ -1,6 +1,6 @@
 ---
 layout: default
-title: General Requirements
+title: General Construction Requirements
 permalink: /standards/general-construction/
 tags: [general-construction, division-01, administration]
 ---
@@ -13,56 +13,38 @@ UCA will have **final approval** of all substitutions.
 
 ## Submittal Procedures
 ### (Section 013300)
-- Contractor shall **copy the UCA Construction Manager** on all RFIs and Submittals.  
-- Architect shall **forward a copy of all approved submittals** to the Construction Manager **immediately after approval**.  
-- Architect shall **copy the UCA Construction Manager** on all **RFI responses** and **Proposal Requests** when issued.
+A. Contractor to copy UCA Construction Manager with all RFIs and Submittals.  
+B. Architect to forward a copy of all submittals to the Construction Manager immediately after approval.  
+C. Architect to copy UCA Construction Manager with all RFI responses and Proposal Requests when issued.
 
 ---
 
 ## Temporary Facilities and Controls
 ### (Section 015000)
-
-**Field Office**  
-Provide a conditioned field office large enough to accommodate an **8' table and chairs**, and a **plans table**.  
-The field office shall be available to the architect and owner for conducting site meetings as necessary.
-
-**Site Security and Storage**  
-- Install **chain-link fencing** completely around the construction area to secure the building and material storage.  
-- Provide **separate storage facilities** for tools, equipment, and materials.
+A. **Field Office** – Provide field office of sufficient size to accommodate an **8′ table and chairs** and large enough to hold a plans table, with conditioned air. The field office will be made available to the architect and owner for conducting site meetings as necessary.  
+B. Install **chain-link fence** completely around construction area to secure building and materials storage area.  
+C. Provide **separate storage facilities** for tools, equipment, and materials.
 
 ---
 
 ## Construction Waste Management and Disposal
 ### (Section 017419)
-- **No debris** of any kind shall be disposed of on the Owner’s property.  
-- **Waste disposal** is the responsibility of the Contractor.
+A. **Earthwork** – No debris of any kind is to be disposed of on Owner’s property.  
+B. **Waste Disposal** is the responsibility of the Contractor.
 
 ---
 
 ## Project Closeout
 ### (Section 017700)
+Submit the following to the University Physical Plant prior to **Substantial Completion**:
 
-**Project Record Documents**  
-- Deliver a **complete set of as-built drawings in digital format** to the Physical Plant at the time of Substantial Completion, along with paper copies.  
-- Deliver **as-built drawings** for elevators, energy management systems, and similar controls at the time of Substantial Completion.  
+A. **Digital copies** of construction drawings, as-built drawings, elevator, energy management system, and similar control drawings.  
+B. **Paper copies** of the as-built drawings.  
+C. **Two physical copies and one digital copy** of all Operating and Maintenance Manuals. Architect to confirm all required manuals with the UCA Construction Manager during design.  
 
-**Operating and Maintenance Data**  
-- Provide **Operating and Maintenance Manuals** to the Owner **before the Substantial Completion Date**.  
-- The Architect shall **prepare a checklist** of all O&M manuals and deliver it to the Construction Manager for Owner approval during design.  
-- Provide **two copies** of each manual plus **one electronic copy**.
-
-**Digital File Standards**  
-- Contact the **UCA Physical Plant Department** for the preferred **media** and **CAD software version** prior to delivery.
-
-**Attic Stock**  
-Provide at Substantial Completion:  
-- **Flooring:** One full box and any open boxes of floor covering, carpet tiles, LVT, etc.  
-- **Paint:** One gallon of each color used.  
-- **Filters and Belts:** One complete change-out of HVAC filters and belts.  
-
-Physical Plant will determine which items are to remain in the building and which shall be delivered to the Plant.
-
----
-
-### Summary
-This section defines the general requirements for project administration, submittals, temporary facilities, waste management, and closeout documentation for all University of Central Arkansas construction projects.
+**Attic Stock Requirements:**  
+1. One full box and any open boxes of floor covering, carpet tiles, LVT, etc.  
+2. One gallon of each paint color.  
+3. One complete change-out of HVAC filters.  
+4. Physical Plant will discuss with the various crafts what to leave in the building and what to deliver to the Physical Plant.  
+5. Deliver a complete set of filters and belts to the Physical Plant at Substantial Completion.
