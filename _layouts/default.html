@@ -19,6 +19,7 @@
       --soft-purple-banner: #a897c0;
       --body-text-gray: #545454;
       --subheading-gray: #9c9c9c;
+      --civil-rust: #9d3a08;
     }
 	
     /* Expandable submenu styles */
@@ -146,7 +147,6 @@
     }
     .sidebar nav li a:hover {
       background-color: #e8e9ea;
-      border-left-color: var(--uca-purple);
     }
     .nav-icon {
       width: 24px;
@@ -158,7 +158,7 @@
     /* Navigation Text Coloring */
     .sidebar nav a[href*="instructions"] { color: var(--hvac-orange) !important; } 
     .sidebar nav a[href*="procurement"] { color: var(--fire-red) !important; } 
-    .sidebar nav a[href*="civil-landscape"] { color: var(--uca-gray) !important; } 
+    .sidebar nav a[href*="civil-landscape"] { color: var(--civil-rust) !important; } 
     .sidebar nav a[href*="facility-services"] { color: var(--uca-purple) !important; } 
     .sidebar nav a[href*="general-construction"] { color: var(--fire-red) !important; } 
     .sidebar nav a[href*="architectural"] { color: var(--plumbing-blue) !important; } 
@@ -166,6 +166,36 @@
     .sidebar nav .submenu a { 
         color: inherit !important; 
         font-weight: normal;
+    }
+
+    /* Hover Effect - Left border matches text color */
+    .sidebar nav a[href*="instructions"]:hover { 
+        background-color: rgba(255, 130, 0, 0.1); 
+        border-left-color: var(--hvac-orange) !important; 
+    }
+    .sidebar nav a[href*="procurement"]:hover { 
+        background-color: rgba(200, 16, 46, 0.1); 
+        border-left-color: var(--fire-red) !important; 
+    }
+    .sidebar nav a[href*="civil-landscape"]:hover { 
+        background-color: rgba(157, 58, 8, 0.1); 
+        border-left-color: var(--civil-rust) !important; 
+    }
+    .sidebar nav a[href*="facility-services"]:hover { 
+        background-color: rgba(75, 46, 131, 0.1); 
+        border-left-color: var(--uca-purple) !important; 
+    }
+    .sidebar nav a[href*="general-construction"]:hover { 
+        background-color: rgba(200, 16, 46, 0.1); 
+        border-left-color: var(--fire-red) !important; 
+    }
+    .sidebar nav a[href*="architectural"]:hover { 
+        background-color: rgba(0, 103, 185, 0.1); 
+        border-left-color: var(--plumbing-blue) !important; 
+    }
+    .sidebar nav a[href*="sustainability"]:hover { 
+        background-color: rgba(46, 125, 50, 0.1); 
+        border-left-color: var(--sustainable-green) !important; 
     }
 
     .main-content {
@@ -431,11 +461,10 @@
     <aside class="sidebar">
       
       <div class="search-widget-box">
-          <form action="https://duckduckgo.com/" method="get" class="sidebar-search">
-              <input type="hidden" name="sites" value="{{ site.url | append: site.baseurl }}">
-              <input type="text" name="q" placeholder="Search" style="width: calc(100% - 70px);">
-              <button type="submit">Search</button>
-              <input type="hidden" name="atb" value="v154-1">
+          <form action="https://www.google.com/search" method="get" class="sidebar-search">
+              <input type="hidden" name="sitesearch" value="amrjacob.github.io/UCA-Construction-Standards">
+              <input type="text" name="q" placeholder="Search site..." style="width: calc(100% - 70px); padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+              <button type="submit" style="padding: 8px 15px; background-color: var(--uca-purple); color: white; border: none; border-radius: 4px; cursor: pointer;">Search</button>
           </form>
       </div>
       
