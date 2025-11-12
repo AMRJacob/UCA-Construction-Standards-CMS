@@ -333,28 +333,54 @@
         line-height: 1.6;
     }
     
-    /* Lists - Hanging indent style with text-indent method */
+    /* Lists - Hanging indent with display table method */
     .main-content-box ul,
     .main-content-box ol {
         font-family: Calibri, 'Segoe UI', sans-serif;
         font-size: 12pt;
         color: var(--body-text-gray);
-        margin-left: 40px;
+        margin-left: 20px;
         margin-bottom: 15px;
         line-height: 1.6;
         padding-left: 0;
+        list-style: none;
     }
     
-    /* List items with hanging indent */
+    /* List items as table rows for hanging indent */
     .main-content-box li {
         margin-bottom: 8px;
-        padding-left: 10px;
-        text-indent: -10px;
+        display: table;
+        width: 100%;
     }
     
-    /* Cancel text-indent for child elements */
-    .main-content-box li > * {
-        text-indent: 0;
+    /* Create bullet using ::before pseudo-element */
+    .main-content-box ul > li::before {
+        content: "•";
+        display: table-cell;
+        padding-right: 10px;
+        width: 1em;
+        text-align: left;
+        vertical-align: top;
+    }
+    
+    .main-content-box ol {
+        counter-reset: list-counter;
+    }
+    
+    .main-content-box ol > li::before {
+        content: counter(list-counter) ".";
+        counter-increment: list-counter;
+        display: table-cell;
+        padding-right: 10px;
+        width: 2em;
+        text-align: left;
+        vertical-align: top;
+    }
+    
+    /* Content wrapper for list items */
+    .main-content-box li > *:first-child {
+        display: table-cell;
+        width: 100%;
     }
     
     /* Sub-bullets - Additional indentation */
@@ -365,13 +391,16 @@
         margin-left: 30px;
         margin-top: 8px;
         margin-bottom: 8px;
-        padding-left: 0;
     }
     
-    /* Paragraphs within list items - NO extra indent, flows with text */
+    /* Paragraphs within list items */
     .main-content-box li > p {
-        margin: 5px 0 10px 0;
-        padding-left: 10px;
+        margin: 0 0 10px 0;
+        padding: 0;
+    }
+    
+    .main-content-box li > p:last-child {
+        margin-bottom: 0;
     }
     
     /* Paragraphs immediately following lists - maintain indent */
