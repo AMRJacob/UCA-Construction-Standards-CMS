@@ -1,159 +1,663 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }} - UCA Construction Standards</title>
-    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  
+  <style>
+    /* UCA Brand Colors */
+    :root {
+      --uca-purple: #4b2e83; 
+      --uca-gray: #63666a; 
+      --fire-red: #c8102e; 
+      --plumbing-blue: #0067b9;
+      --hvac-orange: #ff8200; 
+      --site-green: #00a651;
+      --sustainable-green: #2e7d32;
+      --soft-purple-banner: #a897c0;
+      --body-text-gray: #545454;
+      --subheading-gray: #9c9c9c;
+      --civil-rust: #9d3a08;
+    }
+	
+    /* Expandable submenu styles */
+    .has-submenu {
+      position: relative;
+    }
+    .submenu {
+      display: none;
+      padding-left: 20px;
+      margin-top: 5px;
+    }
+    .has-submenu.expanded .submenu {
+      display: block;
+    }
+    .parent-link {
+      position: relative;
+    }
+    .parent-link::after {
+      content: '▼';
+      position: absolute;
+      right: 10px;
+      transition: transform 0.3s ease;
+      font-size: 0.8em;
+      color: inherit;
+    }
+    .has-submenu.expanded .parent-link::after {
+      content: '▲';
+    }
+    .submenu li a {
+      font-size: 0.9em;
+      padding: 8px 15px;
+      border-left: none;
+    }
+    .submenu li a:hover {
+      background-color: #f0f0f0; 
+      border-left-color: transparent;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Calibri, 'Segoe UI', Arial, sans-serif;
+      font-size: 12pt;
+      line-height: 1.6;
+      color: var(--body-text-gray);
+    }
+
+    /* Header Alignment */
+    .site-header {
+      background-color: white; 
+      padding: 15px 0;
+      border-bottom: 1px solid #ddd;
+      width: 100%; 
+      position: absolute;
+      z-index: 100;
+    }
+    
+    .site-header .wrapper {
+        display: flex;
+        align-items: center;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding-left: 20px; 
+    }
+    
+    .site-header img {
+        height: 50px;
+        width: auto;
+        margin-right: 20px;
+    }
+
+    .site-content {
+      display: flex;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding-top: 100px; 
+      padding-left: 20px; 
+      padding-right: 20px;
+    }
+
+    .sidebar {
+      width: 320px; 
+      padding: 0;
+      background-color: transparent;
+      border-right: none; 
+      position: sticky;
+      top: 100px;
+      height: fit-content;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+    }
+
+    /* Box Styles */
+    .search-widget-box, .tag-widget-box, .sidebar nav {
+        border: 2px solid var(--uca-purple);
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    .sidebar nav {
+        padding: 10px;
+    }
+
+    .sidebar nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .sidebar nav li {
+      margin-bottom: 8px;
+    }
+    .sidebar nav li a {
+      display: flex;
+      align-items: center;
+      padding: 10px 15px;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      border-left: 4px solid transparent; 
+      color: #333;
+    }
+    .sidebar nav li a:hover {
+      background-color: #e8e9ea;
+    }
+    .nav-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+      flex-shrink: 0;
+    }
+
+    /* Navigation Text Coloring */
+    .sidebar nav a[href*="instructions"] { color: var(--hvac-orange) !important; } 
+    .sidebar nav a[href*="procurement"] { color: var(--fire-red) !important; } 
+    .sidebar nav a[href*="civil-landscape"] { color: var(--civil-rust) !important; } 
+    .sidebar nav a[href*="facility-services"] { color: var(--uca-purple) !important; } 
+    .sidebar nav a[href*="general-construction"] { color: var(--fire-red) !important; } 
+    .sidebar nav a[href*="architectural"] { color: var(--plumbing-blue) !important; } 
+    .sidebar nav a[href*="sustainability"] { color: var(--sustainable-green) !important; } 
+    .sidebar nav .submenu a { 
+        color: inherit !important; 
+        font-weight: normal;
+    }
+
+    /* Hover Effect - Left border matches text color */
+    .sidebar nav a[href*="instructions"]:hover { 
+        background-color: rgba(255, 130, 0, 0.1); 
+        border-left-color: var(--hvac-orange) !important; 
+    }
+    .sidebar nav a[href*="procurement"]:hover { 
+        background-color: rgba(200, 16, 46, 0.1); 
+        border-left-color: var(--fire-red) !important; 
+    }
+    .sidebar nav a[href*="civil-landscape"]:hover { 
+        background-color: rgba(157, 58, 8, 0.1); 
+        border-left-color: var(--civil-rust) !important; 
+    }
+    .sidebar nav a[href*="facility-services"]:hover { 
+        background-color: rgba(75, 46, 131, 0.1); 
+        border-left-color: var(--uca-purple) !important; 
+    }
+    .sidebar nav a[href*="general-construction"]:hover { 
+        background-color: rgba(200, 16, 46, 0.1); 
+        border-left-color: var(--fire-red) !important; 
+    }
+    .sidebar nav a[href*="architectural"]:hover { 
+        background-color: rgba(0, 103, 185, 0.1); 
+        border-left-color: var(--plumbing-blue) !important; 
+    }
+    .sidebar nav a[href*="sustainability"]:hover { 
+        background-color: rgba(46, 125, 50, 0.1); 
+        border-left-color: var(--sustainable-green) !important; 
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 0 0 0 20px; 
+      min-width: 0;
+    }
+
+    .main-content-box {
+        border: 2px solid var(--uca-purple);
+        padding: 25px;
+        border-radius: 8px; 
+        margin-top: 0;
+    }
+    
+    /* Homepage Title Wrapper - ONLY shows on homepage */
+    .page-header-wrapper {
+        border-left: none; 
+        padding-left: 0;
+        margin-bottom: 20px;
+    }
+
+    /* Homepage H1 Title - 48pt Black ALL CAPS */
+    .page-header-wrapper h1 {
+        font-family: Calibri, 'Segoe UI', sans-serif;
+        font-size: 48pt;
+        color: #000000;
+        text-transform: uppercase;
+        font-weight: normal;
+        margin: 0;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+        line-height: 1.2;
+    }
+
+    .subheader {
+        color: var(--uca-gray);
+        font-size: 0.9em; 
+        margin-top: 5px; 
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-style: italic; 
+        font-weight: normal;
+    }
+    
+    .intro-banner {
+        background-color: var(--soft-purple-banner); 
+        color: white; 
+        padding: 15px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        font-weight: normal;
+    }
+    
+    .intro-banner h2 {
+        color: white; 
+        margin: 0;
+        font-size: 1.5em;
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    /* === TYPOGRAPHY STYLES === */
+    
+    /* H1 - Regular content pages (NOT homepage) */
+    .main-content-box h1 {
+        font-family: Calibri, 'Segoe UI', sans-serif;
+        font-size: 24pt;
+        color: var(--uca-purple);
+        font-weight: bold;
+        margin-top: 0;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--uca-purple);
+        line-height: 1.2;
+        text-transform: none;
+    }
+    
+    /* H2 - Purple Background Sections (16.5pt Bold White on Purple) */
+    .main-content-box h2 {
+        font-family: Calibri, 'Segoe UI', sans-serif;
+        font-size: 16.5pt;
+        font-weight: bold;
+        color: #ffffff;
+        background-color: var(--soft-purple-banner);
+        padding: 12px 20px;
+        border-radius: 4px;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        border-bottom: none;
+    }
+    
+    /* H3 - Italic Gray Subheadings */
+    .main-content-box h3 {
+        font-family: Calibri, 'Segoe UI', sans-serif;
+        font-size: 14pt;
+        font-style: italic;
+        color: var(--subheading-gray);
+        font-weight: normal;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    
+    /* H4 - Standard Subheadings */
+    .main-content-box h4 {
+        font-family: Calibri, 'Segoe UI', sans-serif;
+        font-size: 13pt;
+        color: var(--body-text-gray);
+        font-weight: bold;
+        margin-top: 15px;
+        margin-bottom: 8px;
+    }
+    
+    /* Body Paragraphs (12pt, Dark Gray) */
+    .main-content-box p {
+        font-family: Calibri, 'Segoe UI', sans-serif;
+        font-size: 12pt;
+        color: var(--body-text-gray);
+        margin-bottom: 15px;
+        line-height: 1.6;
+    }
+    
+    /* Lists */
+    .main-content-box ul,
+    .main-content-box ol {
+        font-family: Calibri, 'Segoe UI', sans-serif;
+        font-size: 12pt;
+        color: var(--body-text-gray);
+        margin-left: 25px;
+        margin-bottom: 15px;
+        line-height: 1.6;
+    }
+    
+    .main-content-box li {
+        margin-bottom: 8px;
+    }
+    
+    /* Bold text */
+    .main-content-box strong {
+        font-weight: bold;
+        color: #000000;
+    }
+    
+    /* Italic text */
+    .main-content-box em {
+        font-style: italic;
+    }
+    
+    /* Tables */
+    .main-content-box table {
+        font-family: Calibri, 'Segoe UI', sans-serif;
+        font-size: 11pt;
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+    }
+    
+    .main-content-box table th {
+        background-color: var(--soft-purple-banner);
+        color: white;
+        padding: 12px;
+        text-align: left;
+        font-weight: bold;
+        border: 1px solid #ddd;
+    }
+    
+    .main-content-box table td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        color: var(--body-text-gray);
+    }
+    
+    .main-content-box table tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+    
+    /* Links */
+    .main-content-box a {
+        color: var(--uca-purple);
+        text-decoration: none;
+    }
+    
+    .main-content-box a:hover {
+        text-decoration: underline;
+    }
+    
+    /* Code blocks */
+    .main-content-box code {
+        background-color: #f8f9fa;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-family: 'Courier New', monospace;
+        font-size: 11pt;
+    }
+    
+    .main-content-box pre {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+        font-size: 11pt;
+    }
+    
+    /* Horizontal rules */
+    .main-content-box hr {
+        border: none;
+        border-top: 2px solid #e0e0e0;
+        margin: 30px 0;
+    }
+
+    /* === END TYPOGRAPHY STYLES === */
+    
+    .tag-cloud { 
+        display: flex; 
+        flex-wrap: wrap; 
+        gap: 8px 6px; 
+        margin-top: 10px; 
+    }
+    
+    .tag-item { 
+        font-size: 0.85em; 
+        padding: 4px 10px; 
+        border-radius: 12px; 
+        color: white !important; 
+        text-decoration: none; 
+        font-weight: bold; 
+        background-color: var(--tag-color, var(--uca-gray)); 
+        transition: opacity 0.2s; 
+        border: none; 
+    }
+    
+    .tag-item:hover { 
+        text-decoration: none; 
+        opacity: 0.8; 
+    }
+
+    @media (max-width: 968px) {
+      .site-content { flex-direction: column; }
+      .sidebar { width: 100%; position: relative; margin-bottom: 30px; max-height: none; top: 0; }
+      .main-content { padding: 20px; }
+    }
+    
+    @media print {
+      .sidebar { display: none; }
+      .site-header { background-color: white; border-bottom: 2px solid #333; }
+      .main-content { padding: 0; }
+      #feedback-form { display: none; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>University of Central Arkansas</h1>
-        <p>Construction Standards & Guidelines</p>
-    </header>
-
-    <div class="container">
-        <aside class="sidebar">
-            <h2>Standards</h2>
-            
-            <!-- Search Box -->
-            <div class="search-container">
-                <input type="text" id="search-input" placeholder="Search standards...">
-                <div id="results-container"></div>
-            </div>
-            
-            <nav>
-                <ul>
-                    <li class="instructions">
-                        <a href="#" class="dropdown-toggle">Instructions</a>
-                        <ul class="submenu">
-                            <li><a href="{{ '/instructions/architects-engineers.html' | relative_url }}">Instructions to Architects & Engineers</a></li>
-                            <li><a href="{{ '/instructions/checklist.html' | relative_url }}">Checklist</a></li>
-                        </ul>
-                    </li>
-                    
-                    <li class="procurement">
-                        <a href="#" class="dropdown-toggle">Procurement & Contracting</a>
-                        <ul class="submenu">
-                            <li><a href="{{ '/procurement/weather-delays.html' | relative_url }}">Weather Delays</a></li>
-                            <li><a href="{{ '/procurement/rfi.html' | relative_url }}">Request for Information</a></li>
-                            <li><a href="{{ '/procurement/electronic-files.html' | relative_url }}">Electronic File Release</a></li>
-                            <li><a href="{{ '/procurement/trench-safety.html' | relative_url }}">Trench Safety</a></li>
-                        </ul>
-                    </li>
-                    
-                    <li class="civil">
-                        <a href="#" class="dropdown-toggle">Civil & Landscape</a>
-                        <ul class="submenu">
-                            <li><a href="{{ '/civil/earthwork.html' | relative_url }}">Earthwork</a></li>
-                            <li><a href="{{ '/civil/paving.html' | relative_url }}">Paving & Pavement Markings</a></li>
-                            <li><a href="{{ '/civil/landscape.html' | relative_url }}">Landscape & Irrigation</a></li>
-                        </ul>
-                    </li>
-                    
-                    <li class="facility">
-                        <a href="#" class="dropdown-toggle">Facility Services</a>
-                        <ul class="submenu">
-                            <li><a href="{{ '/facility/fire-suppression.html' | relative_url }}">Fire Suppression</a></li>
-                            <li><a href="{{ '/facility/plumbing.html' | relative_url }}">Plumbing</a></li>
-                            <li><a href="{{ '/facility/hvac.html' | relative_url }}">HVAC</a></li>
-                            <li><a href="{{ '/facility/electrical.html' | relative_url }}">Electrical</a></li>
-                            <li><a href="{{ '/facility/communications.html' | relative_url }}">Communications</a></li>
-                        </ul>
-                    </li>
-                    
-                    <li class="general">
-                        <a href="#" class="dropdown-toggle">General Construction</a>
-                        <ul class="submenu">
-                            <li><a href="{{ '/general/requirements.html' | relative_url }}">General Requirements</a></li>
-                            <li><a href="{{ '/general/concrete.html' | relative_url }}">Concrete</a></li>
-                            <li><a href="{{ '/general/masonry.html' | relative_url }}">Masonry</a></li>
-                            <li><a href="{{ '/general/wood-composites.html' | relative_url }}">Wood & Composites</a></li>
-                            <li><a href="{{ '/general/thermal-moisture.html' | relative_url }}">Thermal & Moisture Protection</a></li>
-                        </ul>
-                    </li>
-                    
-                    <li class="architectural">
-                        <a href="#" class="dropdown-toggle">Architectural</a>
-                        <ul class="submenu">
-                            <li>
-                                <a href="#" class="sub-dropdown-toggle">Openings</a>
-                                <ul class="sub-submenu">
-                                    <li><a href="{{ '/architectural/openings/doors-frames.html' | relative_url }}">Doors & Frames</a></li>
-                                    <li><a href="{{ '/architectural/openings/windows.html' | relative_url }}">Windows</a></li>
-                                    <li><a href="{{ '/architectural/openings/hardware.html' | relative_url }}">Hardware</a></li>
-                                    <li><a href="{{ '/architectural/openings/glazing.html' | relative_url }}">Glazing</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#" class="sub-dropdown-toggle">Finishes</a>
-                                <ul class="sub-submenu">
-                                    <li><a href="{{ '/architectural/finishes/ceilings.html' | relative_url }}">Ceilings</a></li>
-                                    <li><a href="{{ '/architectural/finishes/flooring.html' | relative_url }}">Flooring</a></li>
-                                    <li><a href="{{ '/architectural/finishes/carpet.html' | relative_url }}">Carpet</a></li>
-                                    <li><a href="{{ '/architectural/finishes/wallcoverings.html' | relative_url }}">Wallcoverings</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#" class="sub-dropdown-toggle">Specialties</a>
-                                <ul class="sub-submenu">
-                                    <li><a href="{{ '/architectural/specialties/visual-displays.html' | relative_url }}">Visual Displays</a></li>
-                                    <li><a href="{{ '/architectural/specialties/signage.html' | relative_url }}">Signage</a></li>
-                                    <li><a href="{{ '/architectural/specialties/toilet-partitions.html' | relative_url }}">Toilet Partitions</a></li>
-                                    <li><a href="{{ '/architectural/specialties/accessories.html' | relative_url }}">Accessories</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="{{ '/architectural/equipment.html' | relative_url }}">Equipment</a></li>
-                            <li><a href="{{ '/architectural/furnishings.html' | relative_url }}">Furnishings</a></li>
-                        </ul>
-                    </li>
-                    
-                    <li class="sustainability">
-                        <a href="{{ '/sustainability/index.html' | relative_url }}">Sustainability</a>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
-
-        <main class="content">
-            {{ content }}
-            
-            <!-- Feedback Section -->
-            <div class="feedback-section">
-                <h3>Report an Issue or Suggest Improvement</h3>
-                <p>Found an error or have a suggestion for this page? Let us know!</p>
-                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                    <input type="hidden" name="_subject" value="UCA Standards Feedback">
-                    <input type="hidden" name="page" value="{{ page.url }}">
-                    <input type="hidden" name="page_title" value="{{ page.title }}">
-                    
-                    <div style="margin-bottom: 15px;">
-                        <label for="feedback-name" style="display: block; margin-bottom: 5px; font-weight: bold;">Your Name (optional):</label>
-                        <input type="text" id="feedback-name" name="name" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 3px; font-size: 14pt;">
-                    </div>
-                    
-                    <div style="margin-bottom: 15px;">
-                        <label for="feedback-email" style="display: block; margin-bottom: 5px; font-weight: bold;">Your Email (optional):</label>
-                        <input type="email" id="feedback-email" name="_replyto" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 3px; font-size: 14pt;">
-                    </div>
-                    
-                    <div style="margin-bottom: 15px;">
-                        <label for="feedback-message" style="display: block; margin-bottom: 5px; font-weight: bold;">Your Feedback:</label>
-                        <textarea id="feedback-message" name="message" rows="5" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 3px; font-size: 14pt; font-family: Calibri, Arial, sans-serif;"></textarea>
-                    </div>
-                    
-                    <button type="submit" style="background-color: #582C83; color: white; padding: 10px 20px; border: none; border-radius: 4px; font-size: 14pt; cursor: pointer;">Submit Feedback</button>
-                </form>
-            </div>
-        </main>
+  
+  <header class="site-header">
+    <div class="wrapper">
+      <a href="{{ '/' | relative_url }}" style="text-decoration: none; display: flex; align-items: center;">
+        <img src="{{ '/assets/images/logos/logo-header-2.png' | relative_url }}" alt="UCA Construction Standards Logo"> 
+      </a>
     </div>
+  </header>
 
-    <footer>
-        <p>&copy; 2024 University of Central Arkansas - Physical Plant Department</p>
-    </footer>
+  <div class="site-content">
+    
+    <aside class="sidebar">
+      
+      <div class="search-widget-box">
+          <form action="https://www.google.com/search" method="get" class="sidebar-search">
+              <input type="hidden" name="sitesearch" value="amrjacob.github.io/UCA-Construction-Standards">
+              <input type="text" name="q" placeholder="Search site..." style="width: calc(100% - 70px); padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+              <button type="submit" style="padding: 8px 15px; background-color: var(--uca-purple); color: white; border: none; border-radius: 4px; cursor: pointer;">Search</button>
+          </form>
+      </div>
+      
+      <nav>
+        <ul>
+          
+          <li class="has-submenu">
+            <a href="{{ '/standards/instructions/' | relative_url }}" class="parent-link">
+              <img src="{{ '/assets/images/logos/Exclamation-Icon.png' | relative_url }}" alt="Instructions icon" class="nav-icon">
+              <span>INSTRUCTIONS – READ THIS!</span>
+            </a>
+            <ul class="submenu">
+              <li><a href="{{ '/standards/instructions/architect-engineer/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Orange.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>ARCHITECT AND ENGINEER INSTRUCTIONS</span>
+              </a></li>
+              <li><a href="{{ '/standards/instructions/space-planning/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Orange.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>SPACE PLANNING REQUIREMENTS</span>
+              </a></li>
+            </ul>
+          </li>
 
-    <script src="{{ '/assets/js/navigation.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/simple-jekyll-search.min.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/search.js' | relative_url }}"></script>
+          <li>
+            <a href="{{ '/standards/procurement/' | relative_url }}">
+              <img src="{{ '/assets/images/logos/Document-Icon.png' | relative_url }}" alt="Procurement icon" class="nav-icon">
+              <span>PROCUREMENT & CONTRACT DOCUMENTS</span>
+            </a>
+          </li>
+          
+          <li class="has-submenu">
+            <a href="{{ '/standards/civil-landscape/' | relative_url }}" class="parent-link">
+              <img src="{{ '/assets/images/logos/Landscape.png' | relative_url }}" alt="Landscape icon" class="nav-icon">
+              <span>CIVIL AND LANDSCAPE REQUIREMENTS</span>
+            </a>
+            <ul class="submenu">
+              <li><a href="{{ '/standards/civil-landscape/earthwork/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Rust.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>EARTHWORK</span>
+              </a></li>
+              <li><a href="{{ '/standards/civil-landscape/exterior-improvements/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Rust.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>EXTERIOR IMPROVEMENTS</span>
+              </a></li>
+            </ul>
+          </li>
+          
+          <li>
+            <a href="{{ '/standards/facility-services/' | relative_url }}">
+              <img src="{{ '/assets/images/logos/Engineers.png' | relative_url }}" alt="Services icon" class="nav-icon">
+              <span>FACILITY SERVICES (FMEP)</span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="{{ '/standards/general-construction/' | relative_url }}">
+              <img src="{{ '/assets/images/logos/Construction.png' | relative_url }}" alt="General Requirements icon" class="nav-icon">
+              <span>GENERAL CONSTRUCTION REQUIREMENTS</span>
+            </a>
+          </li>
+
+          <li class="has-submenu">
+            <a href="{{ '/standards/architectural/' | relative_url }}" class="parent-link">
+              <img src="{{ '/assets/images/logos/Architecture.png' | relative_url }}" alt="Architecture icon" class="nav-icon">
+              <span>ARCHITECTURAL, INTERIOR DESIGN, AND STRUCTURAL REQUIREMENTS</span>
+            </a>
+            <ul class="submenu">
+              <li><a href="{{ '/standards/architectural/masonry/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>MASONRY</span>
+              </a></li>
+              <li><a href="{{ '/standards/architectural/wood-plastic-composites/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>WOOD, PLASTIC AND COMPOSITES</span>
+              </a></li>
+              <li><a href="{{ '/standards/architectural/thermal-moisture-protection/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>THERMAL AND MOISTURE PROTECTION</span>
+              </a></li>
+              <li><a href="{{ '/standards/architectural/openings/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>OPENINGS</span>
+              </a></li>
+              <li><a href="{{ '/standards/architectural/finishes/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>FINISHES</span>
+              </a></li>
+              <li><a href="{{ '/standards/architectural/specialties/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>SPECIALTIES</span>
+              </a></li>
+              <li><a href="{{ '/standards/architectural/furnishings/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>FURNISHINGS</span>
+              </a></li>
+              <li><a href="{{ '/standards/architectural/equipment/' | relative_url }}">
+                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
+                <span>EQUIPMENT</span>
+              </a></li>
+            </ul>
+          </li>
+          
+          <li>
+            <a href="{{ '/standards/sustainability/' | relative_url }}">
+              <img src="{{ '/assets/images/logos/Sustainability.png' | relative_url }}" alt="Sustainability icon" class="nav-icon">
+              <span>SUSTAINABLE COMPLIANCE</span>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+      
+      {% assign tags = page.tags | join: ',' | split: ',' | uniq %}
+      {% if tags.size > 0 %}
+      <div class="tag-widget-box" style="margin-top: 20px;">
+        <h3>🏷️ Page Tags</h3>
+        <div class="tag-cloud">
+            {% for tag in tags %}
+                {% if tag != "" %}
+                {% assign tag_color = 'uca-gray' %}
+                {% assign tag_url = '/tags#' | append: tag | slugify %}
+                
+                {% if tag contains 'instruction' or tag contains 'a&e' %}
+                    {% assign tag_color = 'hvac-orange' %}
+                {% elsif tag contains 'procurement' or tag contains 'contract' %}
+                    {% assign tag_color = 'fire-red' %}
+                {% elsif tag contains 'civil' or tag contains 'landscape' or tag contains 'site work' %}
+                    {% assign tag_color = 'uca-gray' %}
+                {% elsif tag contains 'fmep' or tag contains 'services' or tag contains 'hvac' %}
+                    {% assign tag_color = 'uca-purple' %}
+                {% elsif tag contains 'general' or tag contains 'construction' %}
+                    {% assign tag_color = 'fire-red' %}
+                {% elsif tag contains 'architectural' or tag contains 'masonry' or tag contains 'structural' %}
+                    {% assign tag_color = 'plumbing-blue' %}
+                {% elsif tag contains 'sustainable' or tag contains 'leed' %}
+                    {% assign tag_color = 'sustainable-green' %}
+                {% endif %}
+
+                <a href="{{ tag_url | relative_url }}" class="tag-item" style="--tag-color: var(--{{ tag_color }});">{{ tag }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+      
+    </aside>
+
+    <main class="main-content">
+      
+      <div class="main-content-box">
+          
+          {% if page.permalink == '/' %}
+          <div class="page-header-wrapper">
+              <h1>CONSTRUCTION STANDARDS</h1>
+              <p class="subheader">UNIVERSITY OF CENTRAL ARKANSAS</p>
+          </div>
+          {% endif %}
+          
+          {{ content }}
+          
+          <hr style="margin-top: 50px;">
+          <div id="feedback-form">
+            <h2>Feedback</h2>
+            <p>Have suggestions or found an error? <a href="https://github.com/AMRJacob/UCA-Construction-Standards/issues/new?title=Feedback for {{ page.title }}&body=Page: {{ page.url }}" target="_blank">Submit feedback on GitHub</a></p>
+          </div>
+      </div>
+    </main>
+
+  </div>
+
+  <script>
+    // Handle collapsible menu expansion
+    document.querySelectorAll('.has-submenu > .parent-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const parent = this.parentElement;
+        parent.classList.toggle('expanded');
+        
+        if (!parent.classList.contains('expanded')) {
+          window.location.href = this.href;
+        }
+      });
+    });
+    
+    // Auto-expand if on a sub-page
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.submenu a').forEach(link => {
+      if (currentPath.includes(link.getAttribute('href'))) {
+        link.closest('.has-submenu').classList.add('expanded');
+        link.style.backgroundColor = 'rgba(75, 46, 131, 0.1)'; 
+      }
+    });
+  </script>
+
 </body>
 </html>
