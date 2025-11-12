@@ -1,12 +1,7 @@
 backend:
-  name: github
-  repo: AMRJacob/UCA-Construction-Standards
+  name: git-gateway
   branch: main
-  base_url: https://api.netlify.com
-  auth_endpoint: auth
 
-# For local development/testing
-local_backend: true
 
 media_folder: "assets/images"
 public_folder: "/assets/images"
