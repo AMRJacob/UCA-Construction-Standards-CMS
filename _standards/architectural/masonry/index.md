@@ -1,14 +1,13 @@
 ---
 layout: default
-title: Masonry
+title: "MASONRY"
 permalink: /standards/architectural/masonry/
-tags: [architectural, masonry, construction]
+tags: [architecture]
 ---
 
 ## Campus Unit Masonry
 
 ### (Section 1)
 
-**A. Brick:** Acme UCA Blend: 240/260 Blend, 60% 240 and 40% 260
-
-**B. Texture** – Ruff
+1. **Brick**: Acme UCA Blend: 240/260 Blend, 60% 240 and 40% 260
+2. **Texture** - Ruff
