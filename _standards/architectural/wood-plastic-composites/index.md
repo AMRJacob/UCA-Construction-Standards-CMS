@@ -1,5 +1,4 @@
 ---
-
 layout: default
 
 title: "WOOD, PLASTIC AND COMPOSITES"
@@ -10,15 +9,8 @@ tags: \[architecture, interior-design, plumbing]
 
 ---
 
+## Interior Architectural Woodwork
 
+### (Section 1)
 
-\## Interior Architectural Woodwork
-
-
-
-\### (Section 1)
-
-
-
-1\. Solid Surfacing shall be used for all countertops.
-
+1. Solid Surfacing shall be used for all countertops.
