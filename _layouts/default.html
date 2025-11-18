@@ -39,6 +39,18 @@
     }
     .parent-link {
       position: relative;
+      display: flex;
+      align-items: center;
+      padding: 10px 15px;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      border-left: 4px solid transparent;
+      color: #333;
+      cursor: pointer;
+    }
+    .parent-link:hover {
+      background-color: #e8e9ea;
     }
     .parent-link::after {
       content: '▼';
@@ -167,6 +179,11 @@
     .sidebar nav a[href*="general-construction"] { color: var(--fire-red) !important; } 
     .sidebar nav a[href*="architectural"] { color: var(--plumbing-blue) !important; } 
     .sidebar nav a[href*="sustainability"] { color: var(--sustainable-green) !important; } 
+
+    /* Span parent-link colors (non-clickable dropdowns) */
+    .has-submenu:has([href*="instructions"]) > .parent-link { color: var(--hvac-orange) !important; }
+    .has-submenu:has([href*="civil-landscape"]) > .parent-link { color: var(--civil-rust) !important; }
+    .has-submenu:has([href*="architectural"]) > .parent-link { color: var(--plumbing-blue) !important; }
 
     /* Submenu items inherit parent color */
     .has-submenu:has(a[href*="instructions"]) .submenu a { color: var(--hvac-orange) !important; }
@@ -550,10 +567,10 @@
         <ul>
           
           <li class="has-submenu">
-            <a href="{{ '/standards/instructions/' | relative_url }}" class="parent-link">
+            <span class="parent-link">
               <img src="{{ '/assets/images/logos/Exclamation-Icon.png' | relative_url }}" alt="Instructions icon" class="nav-icon">
               <span>INSTRUCTIONS – READ THIS!</span>
-            </a>
+            </span>
             <ul class="submenu">
               <li><a href="{{ '/standards/instructions/architect-engineer/' | relative_url }}">
                 <img src="{{ '/assets/images/logos/Bullet Orange.png' | relative_url }}" alt="Bullet" class="nav-icon">
@@ -574,10 +591,10 @@
           </li>
           
           <li class="has-submenu">
-            <a href="{{ '/standards/civil-landscape/' | relative_url }}" class="parent-link">
+            <span class="parent-link">
               <img src="{{ '/assets/images/logos/Landscape.png' | relative_url }}" alt="Landscape icon" class="nav-icon">
               <span>CIVIL AND LANDSCAPE REQUIREMENTS</span>
-            </a>
+            </span>
             <ul class="submenu">
               <li><a href="{{ '/standards/civil-landscape/earthwork/' | relative_url }}">
                 <img src="{{ '/assets/images/logos/Bullet Rust.png' | relative_url }}" alt="Bullet" class="nav-icon">
@@ -605,10 +622,10 @@
           </li>
 
           <li class="has-submenu">
-            <a href="{{ '/standards/architectural/' | relative_url }}" class="parent-link">
+            <span class="parent-link">
               <img src="{{ '/assets/images/logos/Architecture.png' | relative_url }}" alt="Architecture icon" class="nav-icon">
               <span>ARCHITECTURAL, INTERIOR DESIGN, AND STRUCTURAL REQUIREMENTS</span>
-            </a>
+            </span>
             <ul class="submenu">
               <li><a href="{{ '/standards/architectural/masonry/' | relative_url }}">
                 <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
@@ -697,7 +714,6 @@
           {% if page.permalink == '/' %}
           <div class="page-header-wrapper">
               <h1>CONSTRUCTION STANDARDS</h1>
-              <p class="subheader">UNIVERSITY OF CENTRAL ARKANSAS</p>
           </div>
           {% elsif page.title %}
           <h1 class="page-title">{{ page.title }}</h1>
@@ -719,11 +735,12 @@
     // Handle collapsible menu expansion
     document.querySelectorAll('.has-submenu > .parent-link').forEach(link => {
       link.addEventListener('click', function(e) {
-        e.preventDefault();
+        e.preventDefault(); // Always prevent default
         const parent = this.parentElement;
         parent.classList.toggle('expanded');
         
-        if (!parent.classList.contains('expanded')) {
+        // Only navigate if it's an actual link (not a span)
+        if (!parent.classList.contains('expanded') && this.tagName === 'A') {
           window.location.href = this.href;
         }
       });
