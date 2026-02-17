@@ -1,4 +1,60 @@
-<!DOCTYPE html>
+<!DOCTYPE html>  <!-- Search term highlighter -->
+  <script>
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var query = params.get('q');
+      if (!query || query.trim() === '') return;
+
+      var content = document.querySelector('.main-content-box');
+      if (!content) return;
+
+      // Highlight style
+      var style = document.createElement('style');
+      style.textContent = '.search-highlight { background-color: #fff176; color: #000; border-radius: 2px; padding: 0 2px; }';
+      document.head.appendChild(style);
+
+      // Walk text nodes and wrap matches
+      var terms = query.trim().split(/\s+/);
+      var regex = new RegExp('(' + terms.map(function(t) {
+        return t.replace(/[.*+?^${}()|[\]\\]/g, '\\
+');
+      }).join('|') + ')', 'gi');
+
+      function highlightNode(node) {
+        if (node.nodeType === 3) {
+          if (!regex.test(node.textContent)) return;
+          regex.lastIndex = 0;
+          var span = document.createElement('span');
+          span.innerHTML = node.textContent.replace(regex, '<mark class="search-highlight">$1</mark>');
+          node.parentNode.replaceChild(span, node);
+        } else if (
+          node.nodeType === 1 &&
+          node.tagName !== 'SCRIPT' &&
+          node.tagName !== 'STYLE' &&
+          node.tagName !== 'A'
+        ) {
+          Array.from(node.childNodes).forEach(highlightNode);
+        }
+      }
+
+      highlightNode(content);
+
+      // Scroll to first highlight
+      var first = content.querySelector('.search-highlight');
+      if (first) {
+        first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      // Show a dismiss banner
+      var banner = document.createElement('div');
+      banner.style.cssText = 'background: #fff9c4; border: 1px solid #f9a825; border-radius: 6px; padding: 8px 14px; margin-bottom: 16px; font-size: 11pt; display: flex; justify-content: space-between; align-items: center;';
+      banner.innerHTML =
+        '<span>Showing results for: <strong>' + query + '</strong></span>' +
+        '<a href="' + window.location.pathname + '" style="color: var(--uca-purple); font-size: 10pt; margin-left: 16px;">✕ Clear</a>';
+      content.insertBefore(banner, content.firstChild);
+    })();
+  </script>
+
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -742,7 +798,7 @@
         var li = document.createElement('li');
         li.style.cssText = 'border-bottom: 1px solid #eee; padding: 8px 0;';
         li.innerHTML =
-          '<a href="' + doc.url + '" style="color: var(--uca-purple); font-weight: bold; font-size: 11pt;">' + doc.title + '</a>' +
+          '<a href="' + doc.url + '?q=' + encodeURIComponent(query) + '" style="color: var(--uca-purple); font-weight: bold; font-size: 11pt;">' + doc.title + '</a>' +
           (doc.tags ? '<br><span style="font-size: 9pt; color: var(--subheading-gray);">' + doc.tags + '</span>' : '');
         container.appendChild(li);
       });
