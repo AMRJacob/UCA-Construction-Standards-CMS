@@ -33,38 +33,45 @@ permalink: /tags/
 {% for tag in all_tags %}
   {% if tag != "" %}
 
-    {% comment %} Match the same color logic used in default.html {% endcomment %}
-    {% assign tag_color = '#63666a' %}
-    {% if tag contains 'instruction' or tag contains 'a&e' %}
-      {% assign tag_color = '#ff8200' %}
-    {% elsif tag contains 'procurement' or tag contains 'contract' %}
-      {% assign tag_color = '#c8102e' %}
-    {% elsif tag contains 'civil' or tag contains 'landscape' or tag contains 'site work' %}
-      {% assign tag_color = '#9d3a08' %}
+    {% comment %} Mirror the exact same color logic as default.html {% endcomment %}
+    {% assign tag_color = 'uca-gray' %}
+
+    {% comment %} Navigation category colors — bold {% endcomment %}
+    {% if tag contains 'instruction' or tag == 'a&e' %}
+      {% assign tag_color = 'hvac-orange' %}
+    {% elsif tag contains 'procurement' or tag contains 'contracting' %}
+      {% assign tag_color = 'fire-red' %}
     {% elsif tag contains 'fmep' or tag contains 'services' or tag contains 'hvac' %}
-      {% assign tag_color = '#4b2e83' %}
-    {% elsif tag contains 'general' or tag contains 'construction' %}
-      {% assign tag_color = '#c8102e' %}
-    {% elsif tag contains 'architectural' or tag contains 'masonry' or tag contains 'structural' %}
-      {% assign tag_color = '#0067b9' %}
+      {% assign tag_color = 'uca-purple' %}
     {% elsif tag contains 'sustainable' or tag contains 'leed' %}
-      {% assign tag_color = '#2e7d32' %}
+      {% assign tag_color = 'sustainable-green' %}
+
+    {% comment %} Discipline colors — muted {% endcomment %}
+    {% elsif tag == 'architecture' %}
+      {% assign tag_color = 'tag-architecture' %}
+    {% elsif tag == 'civil' or tag == 'landscape' or tag contains 'site work' %}
+      {% assign tag_color = 'tag-civil' %}
+    {% elsif tag == 'mechanical' %}
+      {% assign tag_color = 'tag-mechanical' %}
+    {% elsif tag == 'electrical' %}
+      {% assign tag_color = 'tag-electrical' %}
+    {% elsif tag == 'plumbing' %}
+      {% assign tag_color = 'tag-plumbing' %}
+    {% elsif tag == 'structure' or tag == 'structural' %}
+      {% assign tag_color = 'tag-structure' %}
+    {% elsif tag == 'interior-design' %}
+      {% assign tag_color = 'tag-interior' %}
+    {% elsif tag == 'contractor' %}
+      {% assign tag_color = 'tag-contractor' %}
+    {% elsif tag == 'specifications' %}
+      {% assign tag_color = 'tag-specs' %}
     {% endif %}
 
     <div id="{{ tag | slugify }}" style="margin-bottom: 40px; border-top: 2px solid #e0e0e0; padding-top: 20px;">
-      
-      <span style="
-        display: inline-block;
-        background-color: {{ tag_color }};
-        color: white;
-        font-weight: bold;
-        font-size: 14pt;
-        padding: 5px 14px;
-        border-radius: 12px;
-        margin-bottom: 15px;
-      ">{{ tag }}</span>
 
-      <ul style="list-style: disc; margin-left: 30px;">
+      <span class="tag-item" style="--tag-color: var(--{{ tag_color }}); font-size: 14pt; padding: 5px 14px;">{{ tag }}</span>
+
+      <ul style="list-style: disc; margin-left: 30px; margin-top: 15px;">
         {% assign found = false %}
 
         {% for collection in site.collections %}
@@ -72,7 +79,7 @@ permalink: /tags/
             {% if doc.tags contains tag %}
               {% assign found = true %}
               <li style="margin-bottom: 8px;">
-                <a href="{{ doc.url | relative_url }}" style="color: #4b2e83;">{{ doc.title }}</a>
+                <a href="{{ doc.url | relative_url }}">{{ doc.title }}</a>
               </li>
             {% endif %}
           {% endfor %}
@@ -82,7 +89,7 @@ permalink: /tags/
           {% if p.tags contains tag %}
             {% assign found = true %}
             <li style="margin-bottom: 8px;">
-              <a href="{{ p.url | relative_url }}" style="color: #4b2e83;">{{ p.title }}</a>
+              <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
             </li>
           {% endif %}
         {% endfor %}
