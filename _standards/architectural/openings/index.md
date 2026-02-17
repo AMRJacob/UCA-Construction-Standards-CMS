@@ -5,7 +5,7 @@ title: "OPENINGS"
 
 permalink: /standards/architectural/openings/
 
-tags: \[architecture, mechanical]
+tags: [architecture, mechanical]
 
 ---
 

@@ -5,7 +5,7 @@ title: "FINISHES"
 
 permalink: /standards/architectural/finishes/
 
-tags: \[architecture, interior-design]
+tags: [architecture, interior-design]
 
 ---
 

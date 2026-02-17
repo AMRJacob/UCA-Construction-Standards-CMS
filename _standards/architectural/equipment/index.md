@@ -5,7 +5,7 @@ title: "EQUIPMENT"
 
 permalink: /standards/architectural/equipment/
 
-tags: \[architecture, contractor, electrical, interior-design, specifications]
+tags: [architecture, contractor, electrical, interior-design, specifications]
 
 ---
 
