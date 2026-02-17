@@ -2,13 +2,17 @@
 layout: none
 ---
 [
-  {% assign all_docs = site.documents | where_exp: "doc", "doc.title != nil and doc.title != ''" %}
-  {% for doc in all_docs %}
-  {
-    "title": {{ doc.title | jsonify }},
-    "url": {{ doc.url | relative_url | jsonify }},
-    "tags": {{ doc.tags | join: ", " | jsonify }},
-    "content": {{ doc.content | strip_html | strip_newlines | truncate: 500 | jsonify }}
-  }{% unless forloop.last %},{% endunless %}
+  {% assign first = true %}
+  {% for doc in site.documents %}
+    {% if doc.title and doc.title != "" %}
+      {% unless first %},{% endunless %}
+      {% assign first = false %}
+      {
+        "title": {{ doc.title | jsonify }},
+        "url": {{ doc.url | relative_url | jsonify }},
+        "tags": {{ doc.tags | join: ", " | jsonify }},
+        "content": {{ doc.content | strip_html | strip_newlines | truncate: 500 | jsonify }}
+      }
+    {% endif %}
   {% endfor %}
 ]
