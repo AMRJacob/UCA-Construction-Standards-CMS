@@ -12,29 +12,30 @@
   <style>
     /* UCA Brand Colors */
     :root {
-      --uca-purple: #4b2e83; 
-      --uca-gray: #63666a; 
-      --fire-red: #c8102e; 
+      --uca-purple: #4b2e83;
+      --uca-gray: #63666a;
+      --fire-red: #c8102e;
       --plumbing-blue: #0067b9;
-      --hvac-orange: #ff8200; 
+      --hvac-orange: #ff8200;
       --site-green: #00a651;
       --sustainable-green: #2e7d32;
       --soft-purple-banner: #a897c0;
       --body-text-gray: #545454;
       --subheading-gray: #9c9c9c;
       --civil-rust: #9d3a08;
-      /* Muted discipline tag colors — add these inside :root {} */
-      --tag-architecture:  #7b6a9b;   /* muted purple — architectural discipline */
-      --tag-civil:         #8a9e7a;   /* muted sage green — civil/landscape */
-      --tag-mechanical:    #b07840;   /* muted amber — mechanical */
-      --tag-electrical:    #a89040;   /* muted gold — electrical */
-      --tag-plumbing:      #5a8fa8;   /* muted steel blue — plumbing */
-      --tag-structure:     #7a8a72;   /* muted olive — structural */
-      --tag-interior:      #a87890;   /* muted mauve — interior design */
-      --tag-contractor:    #7a7a7a;   /* medium gray — contractor */
-      --tag-specs:         #6a8a8a;   /* muted teal — specifications */
-          }
-	
+
+      /* Muted discipline tag colors */
+      --tag-architecture: #7b6a9b;
+      --tag-civil:        #8a9e7a;
+      --tag-mechanical:   #b07840;
+      --tag-electrical:   #a89040;
+      --tag-plumbing:     #5a8fa8;
+      --tag-structure:    #7a8a72;
+      --tag-interior:     #a87890;
+      --tag-contractor:   #7a7a7a;
+      --tag-specs:        #6a8a8a;
+    }
+
     /* Expandable submenu styles */
     .has-submenu {
       position: relative;
@@ -80,7 +81,7 @@
       color: inherit !important;
     }
     .submenu li a:hover {
-      background-color: #f0f0f0; 
+      background-color: #f0f0f0;
       border-left-color: transparent;
     }
 
@@ -97,44 +98,42 @@
       color: var(--body-text-gray);
     }
 
-    /* Header Alignment */
+    /* Header */
     .site-header {
-      background-color: white; 
+      background-color: white;
       padding: 15px 0;
       border-bottom: 1px solid #ddd;
-      width: 100%; 
+      width: 100%;
       position: absolute;
       z-index: 100;
     }
-    
     .site-header .wrapper {
-        display: flex;
-        align-items: center;
-        max-width: 1400px;
-        margin: 0 auto;
-        padding-left: 20px; 
+      display: flex;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding-left: 20px;
     }
-    
     .site-header img {
-        height: 50px;
-        width: auto;
-        margin-right: 20px;
+      height: 50px;
+      width: auto;
+      margin-right: 20px;
     }
 
     .site-content {
       display: flex;
       max-width: 1400px;
       margin: 0 auto;
-      padding-top: 100px; 
-      padding-left: 20px; 
+      padding-top: 100px;
+      padding-left: 20px;
       padding-right: 20px;
     }
 
     .sidebar {
-      width: 320px; 
+      width: 320px;
       padding: 0;
       background-color: transparent;
-      border-right: none; 
+      border-right: none;
       position: sticky;
       top: 100px;
       height: fit-content;
@@ -144,13 +143,25 @@
 
     /* Box Styles */
     .search-widget-box, .tag-widget-box, .sidebar nav {
-        border: 2px solid var(--uca-purple);
-        border-radius: 8px;
-        padding: 15px;
-        margin-bottom: 20px;
+      border: 2px solid var(--uca-purple);
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
     }
     .sidebar nav {
-        padding: 10px;
+      padding: 10px;
+    }
+
+    /* Search results */
+    #search-results {
+      list-style: none;
+      margin: 8px 0 0 0;
+      padding: 0;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    #search-results li:last-child {
+      border-bottom: none !important;
     }
 
     .sidebar nav ul {
@@ -168,7 +179,7 @@
       text-decoration: none;
       border-radius: 5px;
       transition: all 0.3s ease;
-      border-left: 4px solid transparent; 
+      border-left: 4px solid transparent;
       color: #333;
     }
     .sidebar nav li a:hover {
@@ -181,16 +192,16 @@
       flex-shrink: 0;
     }
 
-    /* Navigation Text Coloring - Parent categories */
-    .sidebar nav a[href*="instructions"] { color: var(--hvac-orange) !important; } 
-    .sidebar nav a[href*="procurement"] { color: var(--fire-red) !important; } 
-    .sidebar nav a[href*="civil-landscape"] { color: var(--civil-rust) !important; } 
-    .sidebar nav a[href*="facility-services"] { color: var(--uca-purple) !important; } 
-    .sidebar nav a[href*="general-construction"] { color: var(--fire-red) !important; } 
-    .sidebar nav a[href*="architectural"] { color: var(--plumbing-blue) !important; } 
-    .sidebar nav a[href*="sustainability"] { color: var(--sustainable-green) !important; } 
+    /* Navigation Text Coloring */
+    .sidebar nav a[href*="instructions"] { color: var(--hvac-orange) !important; }
+    .sidebar nav a[href*="procurement"] { color: var(--fire-red) !important; }
+    .sidebar nav a[href*="civil-landscape"] { color: var(--civil-rust) !important; }
+    .sidebar nav a[href*="facility-services"] { color: var(--uca-purple) !important; }
+    .sidebar nav a[href*="general-construction"] { color: var(--fire-red) !important; }
+    .sidebar nav a[href*="architectural"] { color: var(--plumbing-blue) !important; }
+    .sidebar nav a[href*="sustainability"] { color: var(--sustainable-green) !important; }
 
-    /* Span parent-link colors (non-clickable dropdowns) */
+    /* Span parent-link colors */
     .has-submenu:has([href*="instructions"]) > .parent-link { color: var(--hvac-orange) !important; }
     .has-submenu:has([href*="civil-landscape"]) > .parent-link { color: var(--civil-rust) !important; }
     .has-submenu:has([href*="architectural"]) > .parent-link { color: var(--plumbing-blue) !important; }
@@ -200,341 +211,266 @@
     .has-submenu:has(a[href*="civil-landscape"]) .submenu a { color: var(--civil-rust) !important; }
     .has-submenu:has(a[href*="architectural"]) .submenu a { color: var(--plumbing-blue) !important; }
 
-    /* Hover Effect - Left border matches text color */
-    .sidebar nav a[href*="instructions"]:hover { 
-        background-color: rgba(255, 130, 0, 0.1); 
-        border-left-color: var(--hvac-orange) !important; 
-    }
-    .sidebar nav a[href*="procurement"]:hover { 
-        background-color: rgba(200, 16, 46, 0.1); 
-        border-left-color: var(--fire-red) !important; 
-    }
-    .sidebar nav a[href*="civil-landscape"]:hover { 
-        background-color: rgba(157, 58, 8, 0.1); 
-        border-left-color: var(--civil-rust) !important; 
-    }
-    .sidebar nav a[href*="facility-services"]:hover { 
-        background-color: rgba(75, 46, 131, 0.1); 
-        border-left-color: var(--uca-purple) !important; 
-    }
-    .sidebar nav a[href*="general-construction"]:hover { 
-        background-color: rgba(200, 16, 46, 0.1); 
-        border-left-color: var(--fire-red) !important; 
-    }
-    .sidebar nav a[href*="architectural"]:hover { 
-        background-color: rgba(0, 103, 185, 0.1); 
-        border-left-color: var(--plumbing-blue) !important; 
-    }
-    .sidebar nav a[href*="sustainability"]:hover { 
-        background-color: rgba(46, 125, 50, 0.1); 
-        border-left-color: var(--sustainable-green) !important; 
-    }
+    /* Hover Effects */
+    .sidebar nav a[href*="instructions"]:hover { background-color: rgba(255, 130, 0, 0.1); border-left-color: var(--hvac-orange) !important; }
+    .sidebar nav a[href*="procurement"]:hover { background-color: rgba(200, 16, 46, 0.1); border-left-color: var(--fire-red) !important; }
+    .sidebar nav a[href*="civil-landscape"]:hover { background-color: rgba(157, 58, 8, 0.1); border-left-color: var(--civil-rust) !important; }
+    .sidebar nav a[href*="facility-services"]:hover { background-color: rgba(75, 46, 131, 0.1); border-left-color: var(--uca-purple) !important; }
+    .sidebar nav a[href*="general-construction"]:hover { background-color: rgba(200, 16, 46, 0.1); border-left-color: var(--fire-red) !important; }
+    .sidebar nav a[href*="architectural"]:hover { background-color: rgba(0, 103, 185, 0.1); border-left-color: var(--plumbing-blue) !important; }
+    .sidebar nav a[href*="sustainability"]:hover { background-color: rgba(46, 125, 50, 0.1); border-left-color: var(--sustainable-green) !important; }
 
     .main-content {
       flex: 1;
-      padding: 0 0 0 20px; 
+      padding: 0 0 0 20px;
       min-width: 0;
     }
 
     .main-content-box {
-        border: 2px solid var(--uca-purple);
-        padding: 25px;
-        border-radius: 8px; 
-        margin-top: 0;
+      border: 2px solid var(--uca-purple);
+      padding: 25px;
+      border-radius: 8px;
+      margin-top: 0;
     }
-    
-    /* Homepage Title Wrapper - ONLY shows on homepage */
+
+    /* Homepage */
     .page-header-wrapper {
-        border-left: none; 
-        padding-left: 0;
-        margin-bottom: 20px;
+      border-left: none;
+      padding-left: 0;
+      margin-bottom: 20px;
     }
-
-    /* Homepage H1 Title - 48pt Black ALL CAPS */
     .page-header-wrapper h1 {
-        font-family: Calibri, 'Segoe UI', sans-serif;
-        font-size: 48pt;
-        color: #000000;
-        text-transform: uppercase;
-        font-weight: normal;
-        margin: 0;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #ccc;
-        line-height: 1.2;
+      font-family: Calibri, 'Segoe UI', sans-serif;
+      font-size: 48pt;
+      color: #000000;
+      text-transform: uppercase;
+      font-weight: normal;
+      margin: 0;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+      line-height: 1.2;
     }
-
     .subheader {
-        color: var(--uca-gray);
-        font-size: 0.9em; 
-        margin-top: 5px; 
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        font-style: italic; 
-        font-weight: normal;
+      color: var(--uca-gray);
+      font-size: 0.9em;
+      margin-top: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-style: italic;
+      font-weight: normal;
     }
-    
     .intro-banner {
-        background-color: var(--soft-purple-banner); 
-        color: white; 
-        padding: 15px;
-        border-radius: 4px;
-        margin-bottom: 20px;
-        font-weight: normal;
+      background-color: var(--soft-purple-banner);
+      color: white;
+      padding: 15px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      font-weight: normal;
     }
-    
     .intro-banner h2 {
-        color: white; 
-        margin: 0;
-        font-size: 1.5em;
-        border-bottom: none;
-        padding-bottom: 0;
+      color: white;
+      margin: 0;
+      font-size: 1.5em;
+      border-bottom: none;
+      padding-bottom: 0;
     }
 
     /* === TYPOGRAPHY STYLES === */
-    
-    /* Auto-generated Page Title H1 from front matter - PRIMARY method */
+
     h1.page-title {
-        font-family: Calibri, sans-serif !important;
-        font-size: 40pt !important;
-        color: #63666a !important;
-        text-transform: uppercase;
-        font-weight: normal;
-        margin: 0 0 20px 0;
-        padding-bottom: 10px;
-        border-bottom: 1px solid var(--body-text-gray);
-        line-height: 1.2;
+      font-family: Calibri, sans-serif !important;
+      font-size: 40pt !important;
+      color: #63666a !important;
+      text-transform: uppercase;
+      font-weight: normal;
+      margin: 0 0 20px 0;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--body-text-gray);
+      line-height: 1.2;
     }
-    
-    /* H1 in content - BACKUP method (matches page-title exactly) */
     .main-content-box h1 {
-        font-family: Calibri, sans-serif !important;
-        font-size: 40pt !important;
-        color: #63666a !important;
-        text-transform: uppercase;
-        font-weight: normal;
-        margin: 0 0 20px 0;
-        padding-bottom: 10px;
-        border-bottom: 1px solid var(--body-text-gray);
-        line-height: 1.2;
+      font-family: Calibri, sans-serif !important;
+      font-size: 40pt !important;
+      color: #63666a !important;
+      text-transform: uppercase;
+      font-weight: normal;
+      margin: 0 0 20px 0;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--body-text-gray);
+      line-height: 1.2;
     }
-    
-    /* H2 - Purple Background Sections - Full width like horizontal lines */
     .main-content-box h2 {
-        font-family: Calibri, 'Segoe UI', sans-serif;
-        font-size: 16.5pt;
-        font-weight: bold;
-        color: #ffffff;
-        background-color: var(--soft-purple-banner);
-        padding: 6px 12px;
-        border-radius: 4px;
-        margin: 25px 0 0 0;
-        border-bottom: none;
-        width: 100%;
-        text-align: left;
+      font-family: Calibri, 'Segoe UI', sans-serif;
+      font-size: 16.5pt;
+      font-weight: bold;
+      color: #ffffff;
+      background-color: var(--soft-purple-banner);
+      padding: 6px 12px;
+      border-radius: 4px;
+      margin: 25px 0 0 0;
+      border-bottom: none;
+      width: 100%;
+      text-align: left;
     }
-    
-    /* H3 - Italic Gray Subheadings - appears immediately below H2 */
     .main-content-box h3 {
-        font-family: Calibri, 'Segoe UI', sans-serif;
-        font-size: 14pt;
-        font-style: italic;
-        color: var(--subheading-gray);
-        font-weight: normal;
-        margin-top: 5px;
-        margin-bottom: 10px;
+      font-family: Calibri, 'Segoe UI', sans-serif;
+      font-size: 14pt;
+      font-style: italic;
+      color: var(--subheading-gray);
+      font-weight: normal;
+      margin-top: 5px;
+      margin-bottom: 10px;
     }
-    
-    /* H4 - Standard Subheadings */
     .main-content-box h4 {
-        font-family: Calibri, 'Segoe UI', sans-serif;
-        font-size: 13pt;
-        color: var(--body-text-gray);
-        font-weight: bold;
-        margin-top: 15px;
-        margin-bottom: 8px;
+      font-family: Calibri, 'Segoe UI', sans-serif;
+      font-size: 13pt;
+      color: var(--body-text-gray);
+      font-weight: bold;
+      margin-top: 15px;
+      margin-bottom: 8px;
     }
-    
-    /* Body Paragraphs (12pt, Dark Gray) */
     .main-content-box p {
-        font-family: Calibri, 'Segoe UI', sans-serif;
-        font-size: 12pt;
-        color: var(--body-text-gray);
-        margin-bottom: 15px;
-        line-height: 1.6;
+      font-family: Calibri, 'Segoe UI', sans-serif;
+      font-size: 12pt;
+      color: var(--body-text-gray);
+      margin-bottom: 15px;
+      line-height: 1.6;
     }
-    
-    /* Lists - Simple and clean with proper indentation */
     .main-content-box ul,
     .main-content-box ol {
-        font-family: Calibri, 'Segoe UI', sans-serif;
-        font-size: 12pt;
-        color: var(--body-text-gray);
-        margin-left: 40px;
-        margin-bottom: 15px;
-        line-height: 1.6;
-        padding-left: 0;
+      font-family: Calibri, 'Segoe UI', sans-serif;
+      font-size: 12pt;
+      color: var(--body-text-gray);
+      margin-left: 40px;
+      margin-bottom: 15px;
+      line-height: 1.6;
+      padding-left: 0;
     }
-    
-    /* List items */
     .main-content-box li {
-        margin-bottom: 8px;
+      margin-bottom: 8px;
     }
-    
-    /* Bullet lists use standard bullets */
     .main-content-box ul {
-        list-style-type: disc;
+      list-style-type: disc;
     }
-    
-    /* Ordered lists - First level: A, B, C */
     .main-content-box ol {
-        list-style-type: upper-alpha;
-        counter-reset: item;
+      list-style-type: upper-alpha;
+      counter-reset: item;
     }
-    
-    /* Ordered lists - Second level: 1, 2, 3 */
     .main-content-box ol ol {
-        list-style-type: decimal;
-        margin-left: 25px;
-        margin-top: 8px;
-        margin-bottom: 8px;
+      list-style-type: decimal;
+      margin-left: 25px;
+      margin-top: 8px;
+      margin-bottom: 8px;
     }
-    
-    /* Ordered lists - Third level: a, b, c */
     .main-content-box ol ol ol {
-        list-style-type: lower-alpha;
-        margin-left: 25px;
-        margin-top: 8px;
-        margin-bottom: 8px;
+      list-style-type: lower-alpha;
+      margin-left: 25px;
+      margin-top: 8px;
+      margin-bottom: 8px;
     }
-    
-    /* Nested bullet lists */
     .main-content-box ul ul {
-        list-style-type: circle;
-        margin-left: 25px;
-        margin-top: 8px;
-        margin-bottom: 8px;
+      list-style-type: circle;
+      margin-left: 25px;
+      margin-top: 8px;
+      margin-bottom: 8px;
     }
-    
     .main-content-box ul ul ul {
-        list-style-type: square;
-        margin-left: 25px;
-        margin-top: 8px;
-        margin-bottom: 8px;
+      list-style-type: square;
+      margin-left: 25px;
+      margin-top: 8px;
+      margin-bottom: 8px;
     }
-    
-    /* Paragraphs within list items */
     .main-content-box li > p {
-        margin: 0 0 10px 0;
-        padding: 0;
+      margin: 0 0 10px 0;
+      padding: 0;
     }
-    
     .main-content-box li > p:last-child {
-        margin-bottom: 0;
+      margin-bottom: 0;
     }
-    
-    /* Paragraphs immediately following lists - maintain indent */
     .main-content-box ul + p,
     .main-content-box ol + p {
-        margin-left: 40px;
+      margin-left: 40px;
     }
-    
-    /* Bold text */
     .main-content-box strong {
-        font-weight: bold;
-        color: #000000;
+      font-weight: bold;
+      color: #000000;
     }
-    
-    /* Italic text */
     .main-content-box em {
-        font-style: italic;
+      font-style: italic;
     }
-    
-    /* Tables */
     .main-content-box table {
-        font-family: Calibri, 'Segoe UI', sans-serif;
-        font-size: 11pt;
-        border-collapse: collapse;
-        width: 100%;
-        margin: 20px 0;
+      font-family: Calibri, 'Segoe UI', sans-serif;
+      font-size: 11pt;
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
     }
-    
     .main-content-box table th {
-        background-color: var(--soft-purple-banner);
-        color: white;
-        padding: 12px;
-        text-align: left;
-        font-weight: bold;
-        border: 1px solid #ddd;
+      background-color: var(--soft-purple-banner);
+      color: white;
+      padding: 12px;
+      text-align: left;
+      font-weight: bold;
+      border: 1px solid #ddd;
     }
-    
     .main-content-box table td {
-        padding: 10px;
-        border: 1px solid #ddd;
-        color: var(--body-text-gray);
+      padding: 10px;
+      border: 1px solid #ddd;
+      color: var(--body-text-gray);
     }
-    
     .main-content-box table tr:nth-child(even) {
-        background-color: #f8f9fa;
+      background-color: #f8f9fa;
     }
-    
-    /* Links */
     .main-content-box a {
-        color: var(--uca-purple);
-        text-decoration: none;
+      color: var(--uca-purple);
+      text-decoration: none;
     }
-    
     .main-content-box a:hover {
-        text-decoration: underline;
+      text-decoration: underline;
     }
-    
-    /* Code blocks */
     .main-content-box code {
-        background-color: #f8f9fa;
-        padding: 2px 6px;
-        border-radius: 3px;
-        font-family: 'Courier New', monospace;
-        font-size: 11pt;
+      background-color: #f8f9fa;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      font-size: 11pt;
     }
-    
     .main-content-box pre {
-        background-color: #f8f9fa;
-        padding: 15px;
-        border-radius: 5px;
-        overflow-x: auto;
-        font-size: 11pt;
+      background-color: #f8f9fa;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+      font-size: 11pt;
     }
-    
-    /* Horizontal rules */
     .main-content-box hr {
-        border: none;
-        border-top: 2px solid #e0e0e0;
-        margin: 30px 0;
+      border: none;
+      border-top: 2px solid #e0e0e0;
+      margin: 30px 0;
     }
 
     /* === END TYPOGRAPHY STYLES === */
-    
-    .tag-cloud { 
-        display: flex; 
-        flex-wrap: wrap; 
-        gap: 8px 6px; 
-        margin-top: 10px; 
+
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 6px;
+      margin-top: 10px;
     }
-    
-    .tag-item { 
-        font-size: 0.85em; 
-        padding: 4px 10px; 
-        border-radius: 12px; 
-        color: white !important; 
-        text-decoration: none; 
-        font-weight: bold; 
-        background-color: var(--tag-color, var(--uca-gray)); 
-        transition: opacity 0.2s; 
-        border: none; 
+    .tag-item {
+      font-size: 0.85em;
+      padding: 4px 10px;
+      border-radius: 12px;
+      color: white !important;
+      text-decoration: none;
+      font-weight: bold;
+      background-color: var(--tag-color, var(--uca-gray));
+      transition: opacity 0.2s;
+      border: none;
+      display: inline-block;
     }
-    
-    .tag-item:hover { 
-        text-decoration: none; 
-        opacity: 0.8; 
+    .tag-item:hover {
+      text-decoration: none;
+      opacity: 0.8;
     }
 
     @media (max-width: 968px) {
@@ -542,7 +478,7 @@
       .sidebar { width: 100%; position: relative; margin-bottom: 30px; max-height: none; top: 0; }
       .main-content { padding: 20px; }
     }
-    
+
     @media print {
       .sidebar { display: none; }
       .site-header { background-color: white; border-bottom: 2px solid #333; }
@@ -552,51 +488,33 @@
   </style>
 </head>
 <body>
-  
+
   <header class="site-header">
     <div class="wrapper">
       <a href="{{ '/' | relative_url }}" style="text-decoration: none; display: flex; align-items: center;">
-        <img src="{{ '/assets/images/logos/logo-header-2.png' | relative_url }}" alt="UCA Construction Standards Logo"> 
+        <img src="{{ '/assets/images/logos/logo-header-2.png' | relative_url }}" alt="UCA Construction Standards Logo">
       </a>
     </div>
   </header>
 
   <div class="site-content">
-    
-    <aside class="sidebar">
-      
-    <div class="search-widget-box">
-  <input
-    type="text"
-    id="search-input"
-    placeholder="Search standards..."
-    style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; font-size: 11pt;"
-  >
-  <ul id="search-results" style="
-    list-style: none;
-    margin: 8px 0 0 0;
-    padding: 0;
-    max-height: 300px;
-    overflow-y: auto;
-  "></ul>
-</div>
 
-<script src="{{ '/assets/js/simple-jekyll-search.min.js' | relative_url }}"></script>
-<script>
-  SimpleJekyllSearch({
-    searchInput: document.getElementById('search-input'),
-    resultsContainer: document.getElementById('search-results'),
-    json: '{{ "/assets/js/search.json" | relative_url }}',
-    searchResultTemplate: '<li style="border-bottom: 1px solid #eee; padding: 8px 0;"><a href="{url}" style="color: var(--uca-purple); font-weight: bold; font-size: 11pt;">{title}</a><br><span style="font-size: 9pt; color: var(--subheading-gray);">{tags}</span></li>',
-    noResultsText: '<li style="padding: 8px 0; color: var(--subheading-gray); font-size: 11pt; font-style: italic;">No results found</li>',
-    limit: 8,
-    fuzzy: false
-  });
-</script>
-      
+    <aside class="sidebar">
+
+      <!-- Search Widget -->
+      <div class="search-widget-box">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search standards..."
+          style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; font-size: 11pt;"
+        >
+        <ul id="search-results"></ul>
+      </div>
+
       <nav>
         <ul>
-          
+
           <li class="has-submenu">
             <span class="parent-link">
               <img src="{{ '/assets/images/logos/Exclamation-Icon.png' | relative_url }}" alt="Instructions icon" class="nav-icon">
@@ -620,7 +538,7 @@
               <span>PROCUREMENT & CONTRACT DOCUMENTS</span>
             </a>
           </li>
-          
+
           <li class="has-submenu">
             <span class="parent-link">
               <img src="{{ '/assets/images/logos/Landscape.png' | relative_url }}" alt="Landscape icon" class="nav-icon">
@@ -637,14 +555,14 @@
               </a></li>
             </ul>
           </li>
-          
+
           <li>
             <a href="{{ '/standards/facility-services/' | relative_url }}">
               <img src="{{ '/assets/images/logos/Engineers.png' | relative_url }}" alt="Services icon" class="nav-icon">
               <span>FACILITY SERVICES (FMEP)</span>
             </a>
           </li>
-          
+
           <li>
             <a href="{{ '/standards/general-construction/' | relative_url }}">
               <img src="{{ '/assets/images/logos/Construction.png' | relative_url }}" alt="General Requirements icon" class="nav-icon">
@@ -692,7 +610,7 @@
               </a></li>
             </ul>
           </li>
-          
+
           <li>
             <a href="{{ '/standards/sustainability/' | relative_url }}">
               <img src="{{ '/assets/images/logos/Sustainability.png' | relative_url }}" alt="Sustainability icon" class="nav-icon">
@@ -702,8 +620,9 @@
 
         </ul>
       </nav>
-      
- {% assign tags = page.tags | join: ',' | split: ',' | uniq %}
+
+      <!-- Tag Widget -->
+      {% assign tags = page.tags | join: ',' | split: ',' | uniq %}
       {% if tags.size > 0 %}
       <div class="tag-widget-box" style="margin-top: 20px;">
         <h3>🏷️ Page Tags</h3>
@@ -713,7 +632,7 @@
                 {% assign tag_color = 'uca-gray' %}
                 {% assign tag_slug = tag | slugify %}
                 {% assign tag_url = '/tags/#' | append: tag_slug | relative_url %}
-                
+
                 {% comment %} Navigation category colors — bold {% endcomment %}
                 {% if tag contains 'instruction' or tag == 'a&e' %}
                     {% assign tag_color = 'hvac-orange' %}
@@ -751,13 +670,13 @@
         </div>
       </div>
       {% endif %}
-      
+
     </aside>
 
     <main class="main-content">
-      
+
       <div class="main-content-box">
-          
+
           {% if page.permalink == '/' %}
           <div class="page-header-wrapper">
               <h1>CONSTRUCTION STANDARDS</h1>
@@ -765,9 +684,9 @@
           {% elsif page.title %}
           <h1 class="page-title">{{ page.title }}</h1>
           {% endif %}
-          
+
           {{ content }}
-          
+
           <hr style="margin-top: 50px;">
           <div id="feedback-form">
             <h2>Feedback</h2>
@@ -778,27 +697,39 @@
 
   </div>
 
+  <!-- Simple Jekyll Search -->
+  <script src="{{ '/assets/js/simple-jekyll-search.min.js' | relative_url }}"></script>
+  <script>
+    SimpleJekyllSearch({
+      searchInput: document.getElementById('search-input'),
+      resultsContainer: document.getElementById('search-results'),
+      json: '{{ "/assets/js/search.json" | relative_url }}',
+      searchResultTemplate: '<li style="border-bottom: 1px solid #eee; padding: 8px 0;"><a href="{url}" style="color: var(--uca-purple); font-weight: bold; font-size: 11pt;">{title}</a><br><span style="font-size: 9pt; color: var(--subheading-gray);">{tags}</span></li>',
+      noResultsText: '<li style="padding: 8px 0; color: var(--subheading-gray); font-size: 11pt; font-style: italic;">No results found</li>',
+      limit: 8,
+      fuzzy: false
+    });
+  </script>
+
   <script>
     // Handle collapsible menu expansion
     document.querySelectorAll('.has-submenu > .parent-link').forEach(link => {
       link.addEventListener('click', function(e) {
-        e.preventDefault(); // Always prevent default
+        e.preventDefault();
         const parent = this.parentElement;
         parent.classList.toggle('expanded');
-        
-        // Only navigate if it's an actual link (not a span)
         if (!parent.classList.contains('expanded') && this.tagName === 'A') {
           window.location.href = this.href;
         }
       });
     });
-    
+
     // Auto-expand if on a sub-page
     const currentPath = window.location.pathname;
     document.querySelectorAll('.submenu a').forEach(link => {
       if (currentPath.includes(link.getAttribute('href'))) {
         link.closest('.has-submenu').classList.add('expanded');
-        link.style.backgroundColor = 'rgba(75, 46, 131, 0.1)'; 
+        link.style.backgroundColor = 'rgba(75, 46, 131, 0.1)';
       }
     });
   </script>
