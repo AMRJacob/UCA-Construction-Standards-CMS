@@ -5,7 +5,7 @@ title: "WOOD, PLASTIC AND COMPOSITES"
 
 permalink: /standards/architectural/wood-plastic-composites/
 
-tags: \[architecture, interior-design, plumbing]
+tags: [architecture, interior-design, plumbing]
 
 ---
 

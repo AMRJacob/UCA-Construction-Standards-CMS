@@ -5,7 +5,7 @@ title: "FURNISHINGS"
 
 permalink: /standards/architectural/furnishings/
 
-tags: \[architecture, interior-design, landscape]
+tags: [architecture, interior-design, landscape]
 
 ---
 

@@ -5,7 +5,7 @@ title: "EXTERIOR IMPROVEMENTS"
 
 permalink: /standards/civil-landscape/exterior-improvements/
 
-tags: \[architecture, civil, landscape]
+tags: [architecture, civil, landscape]
 
 ---
 

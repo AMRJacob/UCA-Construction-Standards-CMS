@@ -5,7 +5,7 @@ title: "SPECIALTIES"
 
 permalink: /standards/architectural/specialties/
 
-tags: \[architecture, electrical, interior-design, mechanical, plumbing, specifications]
+tags: [architecture, electrical, interior-design, mechanical, plumbing, specifications]
 
 ---
 

@@ -5,7 +5,7 @@ title: "THERMAL AND MOISTURE PROTECTION"
 
 permalink: /standards/architectural/thermal-moisture-protection/
 
-tags: \[architecture, structure]
+tags: [architecture, structure]
 
 ---
 
