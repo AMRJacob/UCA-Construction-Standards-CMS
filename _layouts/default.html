@@ -23,7 +23,17 @@
       --body-text-gray: #545454;
       --subheading-gray: #9c9c9c;
       --civil-rust: #9d3a08;
-    }
+      /* Muted discipline tag colors — add these inside :root {} */
+      --tag-architecture:  #7b6a9b;   /* muted purple — architectural discipline */
+      --tag-civil:         #8a9e7a;   /* muted sage green — civil/landscape */
+      --tag-mechanical:    #b07840;   /* muted amber — mechanical */
+      --tag-electrical:    #a89040;   /* muted gold — electrical */
+      --tag-plumbing:      #5a8fa8;   /* muted steel blue — plumbing */
+      --tag-structure:     #7a8a72;   /* muted olive — structural */
+      --tag-interior:      #a87890;   /* muted mauve — interior design */
+      --tag-contractor:    #7a7a7a;   /* medium gray — contractor */
+      --tag-specs:         #6a8a8a;   /* muted teal — specifications */
+          }
 	
     /* Expandable submenu styles */
     .has-submenu {
@@ -683,20 +693,35 @@
                 {% assign tag_slug = tag | slugify %}
                 {% assign tag_url = '/tags/#' | append: tag_slug | relative_url %}
                 
-                {% if tag contains 'instruction' or tag contains 'a&e' %}
+                {% comment %} Navigation category colors — bold {% endcomment %}
+                {% if tag contains 'instruction' or tag == 'a&e' %}
                     {% assign tag_color = 'hvac-orange' %}
-                {% elsif tag contains 'procurement' or tag contains 'contract' %}
+                {% elsif tag contains 'procurement' or tag contains 'contracting' %}
                     {% assign tag_color = 'fire-red' %}
-                {% elsif tag contains 'civil' or tag contains 'landscape' or tag contains 'site work' %}
-                    {% assign tag_color = 'uca-gray' %}
                 {% elsif tag contains 'fmep' or tag contains 'services' or tag contains 'hvac' %}
                     {% assign tag_color = 'uca-purple' %}
-                {% elsif tag contains 'general' or tag contains 'construction' %}
-                    {% assign tag_color = 'fire-red' %}
-                {% elsif tag contains 'architectural' or tag contains 'masonry' or tag contains 'structural' %}
-                    {% assign tag_color = 'plumbing-blue' %}
                 {% elsif tag contains 'sustainable' or tag contains 'leed' %}
                     {% assign tag_color = 'sustainable-green' %}
+
+                {% comment %} Discipline colors — muted {% endcomment %}
+                {% elsif tag == 'architecture' %}
+                    {% assign tag_color = 'tag-architecture' %}
+                {% elsif tag == 'civil' or tag == 'landscape' or tag contains 'site work' %}
+                    {% assign tag_color = 'tag-civil' %}
+                {% elsif tag == 'mechanical' %}
+                    {% assign tag_color = 'tag-mechanical' %}
+                {% elsif tag == 'electrical' %}
+                    {% assign tag_color = 'tag-electrical' %}
+                {% elsif tag == 'plumbing' %}
+                    {% assign tag_color = 'tag-plumbing' %}
+                {% elsif tag == 'structure' or tag == 'structural' %}
+                    {% assign tag_color = 'tag-structure' %}
+                {% elsif tag == 'interior-design' %}
+                    {% assign tag_color = 'tag-interior' %}
+                {% elsif tag == 'contractor' %}
+                    {% assign tag_color = 'tag-contractor' %}
+                {% elsif tag == 'specifications' %}
+                    {% assign tag_color = 'tag-specs' %}
                 {% endif %}
 
                 <a href="{{ tag_url }}" class="tag-item" style="--tag-color: var(--{{ tag_color }});">{{ tag }}</a>
