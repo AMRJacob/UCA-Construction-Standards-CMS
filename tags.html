@@ -1,0 +1,98 @@
+---
+layout: default
+title: "TAGS INDEX"
+permalink: /tags/
+---
+
+{% comment %}
+  Collect all tags from all collections and pages
+{% endcomment %}
+
+{% assign all_tags = "" | split: "" %}
+
+{% for collection in site.collections %}
+  {% for doc in collection.docs %}
+    {% for tag in doc.tags %}
+      {% assign all_tags = all_tags | push: tag %}
+    {% endfor %}
+  {% endfor %}
+{% endfor %}
+
+{% for page in site.pages %}
+  {% for tag in page.tags %}
+    {% assign all_tags = all_tags | push: tag %}
+  {% endfor %}
+{% endfor %}
+
+{% assign all_tags = all_tags | uniq | sort %}
+
+<p style="color: var(--body-text-gray); margin-bottom: 30px;">
+  Browse all content by tag. Click any tag below to see related pages.
+</p>
+
+{% for tag in all_tags %}
+  {% if tag != "" %}
+
+    {% comment %} Match the same color logic used in default.html {% endcomment %}
+    {% assign tag_color = '#63666a' %}
+    {% if tag contains 'instruction' or tag contains 'a&e' %}
+      {% assign tag_color = '#ff8200' %}
+    {% elsif tag contains 'procurement' or tag contains 'contract' %}
+      {% assign tag_color = '#c8102e' %}
+    {% elsif tag contains 'civil' or tag contains 'landscape' or tag contains 'site work' %}
+      {% assign tag_color = '#9d3a08' %}
+    {% elsif tag contains 'fmep' or tag contains 'services' or tag contains 'hvac' %}
+      {% assign tag_color = '#4b2e83' %}
+    {% elsif tag contains 'general' or tag contains 'construction' %}
+      {% assign tag_color = '#c8102e' %}
+    {% elsif tag contains 'architectural' or tag contains 'masonry' or tag contains 'structural' %}
+      {% assign tag_color = '#0067b9' %}
+    {% elsif tag contains 'sustainable' or tag contains 'leed' %}
+      {% assign tag_color = '#2e7d32' %}
+    {% endif %}
+
+    <div id="{{ tag | slugify }}" style="margin-bottom: 40px; border-top: 2px solid #e0e0e0; padding-top: 20px;">
+      
+      <span style="
+        display: inline-block;
+        background-color: {{ tag_color }};
+        color: white;
+        font-weight: bold;
+        font-size: 14pt;
+        padding: 5px 14px;
+        border-radius: 12px;
+        margin-bottom: 15px;
+      ">{{ tag }}</span>
+
+      <ul style="list-style: disc; margin-left: 30px;">
+        {% assign found = false %}
+
+        {% for collection in site.collections %}
+          {% for doc in collection.docs %}
+            {% if doc.tags contains tag %}
+              {% assign found = true %}
+              <li style="margin-bottom: 8px;">
+                <a href="{{ doc.url | relative_url }}" style="color: #4b2e83;">{{ doc.title }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+
+        {% for p in site.pages %}
+          {% if p.tags contains tag %}
+            {% assign found = true %}
+            <li style="margin-bottom: 8px;">
+              <a href="{{ p.url | relative_url }}" style="color: #4b2e83;">{{ p.title }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+
+        {% unless found %}
+          <li style="color: #9c9c9c; font-style: italic;">No pages tagged yet.</li>
+        {% endunless %}
+
+      </ul>
+    </div>
+
+  {% endif %}
+{% endfor %}
