@@ -62,4 +62,3 @@ collections:
 # Include custom CMS folder in the site build
 include:
   - _cms
-  - assets/js/search.json

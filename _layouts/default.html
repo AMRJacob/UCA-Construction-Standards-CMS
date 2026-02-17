@@ -703,7 +703,7 @@
     SimpleJekyllSearch({
       searchInput: document.getElementById('search-input'),
       resultsContainer: document.getElementById('search-results'),
-      json: '{{ "/assets/js/search.json" | relative_url }}',
+      json: '{{ "/search.json" | relative_url }}',
       searchResultTemplate: '<li style="border-bottom: 1px solid #eee; padding: 8px 0;"><a href="{url}" style="color: var(--uca-purple); font-weight: bold; font-size: 11pt;">{title}</a><br><span style="font-size: 9pt; color: var(--subheading-gray);">{tags}</span></li>',
       noResultsText: '<li style="padding: 8px 0; color: var(--subheading-gray); font-size: 11pt; font-style: italic;">No results found</li>',
       limit: 8,
