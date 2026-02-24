@@ -21,10 +21,10 @@
       --uca-gray: #63666a; 
       --fire-red: #c8102e; 
       --plumbing-blue: #0067b9;
-      --hvac-orange: #ff8200; 
+      --hvac-orange: #c25f00; /* Darkened from #ff8200 for WCAG AA contrast */
       --site-green: #00a651;
       --sustainable-green: #2e7d32;
-      --soft-purple-banner: #a897c0;
+      --soft-purple-banner: #582C83; /* Official UCA purple */
       --body-text-gray: #545454;
       --subheading-gray: #6b6b6b;
       --civil-rust: #9d3a08;
@@ -197,7 +197,7 @@
 
     /* Hover Effect - Left border matches text color */
     .sidebar nav a[href*="instructions"]:hover { 
-        background-color: rgba(255, 130, 0, 0.1); 
+        background-color: rgba(194, 95, 0, 0.1); 
         border-left-color: var(--hvac-orange) !important; 
     }
     .sidebar nav a[href*="procurement"]:hover { 
@@ -209,7 +209,7 @@
         border-left-color: var(--civil-rust) !important; 
     }
     .sidebar nav a[href*="facility-services"]:hover { 
-        background-color: rgba(75, 46, 131, 0.1); 
+        background-color: rgba(88, 44, 131, 0.1); 
         border-left-color: var(--uca-purple) !important; 
     }
     .sidebar nav a[href*="general-construction"]:hover { 
@@ -755,7 +755,7 @@
     document.querySelectorAll('.submenu a').forEach(link => {
       if (currentPath.includes(link.getAttribute('href'))) {
         link.closest('.has-submenu').classList.add('expanded');
-        link.style.backgroundColor = 'rgba(75, 46, 131, 0.1)'; 
+        link.style.backgroundColor = 'rgba(88, 44, 131, 0.1)'; 
       }
     });
   </script>
