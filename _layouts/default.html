@@ -76,13 +76,13 @@
       --uca-gray: #63666a;
       --fire-red: #c8102e;
       --plumbing-blue: #0067b9;
-      --hvac-orange: #c25f00; /* Darkened from #ff8200 for WCAG AA contrast */
+      --hvac-orange: #a35000; /* Darkened for WCAG AA normal text contrast (5.67:1) */
       --site-green: #00a651;
       --sustainable-green: #2e7d32;
       --soft-purple-banner: #582C83; /* Official UCA purple */
       --body-text-gray: #545454;
       --subheading-gray: #6b6b6b; /* Darkened from #9c9c9c for WCAG AA contrast */
-      --civil-rust: #9d3a08;
+      --civil-rust: #5c3317; /* Dark brown - clearly distinct from orange */
 
       /* Muted discipline tag colors */
       --tag-architecture: #7b6a9b;
@@ -222,9 +222,9 @@
     .has-submenu:has(a[href*="civil-landscape"]) .submenu a { color: var(--civil-rust) !important; }
     .has-submenu:has(a[href*="architectural"]) .submenu a { color: var(--plumbing-blue) !important; }
 
-    .sidebar nav a[href*="instructions"]:hover { background-color: rgba(194, 95, 0, 0.1); border-left-color: var(--hvac-orange) !important; }
+    .sidebar nav a[href*="instructions"]:hover { background-color: rgba(163, 80, 0, 0.1); border-left-color: var(--hvac-orange) !important; }
     .sidebar nav a[href*="procurement"]:hover { background-color: rgba(200, 16, 46, 0.1); border-left-color: var(--fire-red) !important; }
-    .sidebar nav a[href*="civil-landscape"]:hover { background-color: rgba(157, 58, 8, 0.1); border-left-color: var(--civil-rust) !important; }
+    .sidebar nav a[href*="civil-landscape"]:hover { background-color: rgba(92, 51, 23, 0.1); border-left-color: var(--civil-rust) !important; }
     .sidebar nav a[href*="facility-services"]:hover { background-color: rgba(88, 44, 131, 0.1); border-left-color: var(--uca-purple) !important; }
     .sidebar nav a[href*="general-construction"]:hover { background-color: rgba(200, 16, 46, 0.1); border-left-color: var(--fire-red) !important; }
     .sidebar nav a[href*="architectural"]:hover { background-color: rgba(0, 103, 185, 0.1); border-left-color: var(--plumbing-blue) !important; }
@@ -372,7 +372,7 @@
     }
     .main-content-box table td { padding: 10px; border: 1px solid #ddd; color: var(--body-text-gray); }
     .main-content-box table tr:nth-child(even) { background-color: #f8f9fa; }
-    .main-content-box a { color: var(--uca-purple); text-decoration: none; }
+    .main-content-box a { color: var(--uca-purple); text-decoration: underline; }
     .main-content-box a:hover { text-decoration: underline; }
     .main-content-box code {
       background-color: #f8f9fa;
@@ -553,7 +553,7 @@
       {% assign tags = page.tags | join: ',' | split: ',' | uniq %}
       {% if tags.size > 0 %}
       <div class="tag-widget-box" style="margin-top: 20px;">
-        <h3>PAGE TAGS</h3>
+        <p style="margin: 0 0 8px 0; font-weight: bold; font-size: 11pt; letter-spacing: 0.5px;">PAGE TAGS</p>
         <div class="tag-cloud">
             {% for tag in tags %}
                 {% if tag != "" %}
