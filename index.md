@@ -4,7 +4,7 @@ title: "CONSTRUCTION STANDARDS"
 permalink: /
 ---
 
-### UNIVERSITY OF CENTRAL ARKANSAS
+# UNIVERSITY OF CENTRAL ARKANSAS
 
 ## Welcome to the UCA Construction Standards web site.
 
