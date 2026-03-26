@@ -1,42 +1,41 @@
 sections:
-  - name: "INSTRUCTIONS – READ THIS!"
-    key: "instructions"
-    icon: "/assets/images/logos/Exclamation-Icon.png"
-    color: "hvac-orange"
-    bullet: "/assets/images/logos/Bullet Orange.png"
-
-  - name: "PROCUREMENT & CONTRACT DOCUMENTS"
-    key: "procurement"
-    icon: "/assets/images/logos/Document-Icon.png"
-    color: "fire-red"
-    bullet: "/assets/images/logos/Bullet Pink.png"
-
-  - name: "CIVIL AND LANDSCAPE REQUIREMENTS"
-    key: "civil-landscape"
-    icon: "/assets/images/logos/Landscape.png"
-    color: "civil-rust"
-    bullet: "/assets/images/logos/Bullet Rust.png"
-
-  - name: "FACILITY SERVICES (FMEP)"
-    key: "facility-services"
-    icon: "/assets/images/logos/Engineers.png"
-    color: "uca-purple"
-    bullet: "/assets/images/logos/Bullet Purple.png"
-
-  - name: "GENERAL CONSTRUCTION REQUIREMENTS"
-    key: "general-construction"
-    icon: "/assets/images/logos/Construction.png"
-    color: "fire-red"
-    bullet: "/assets/images/logos/Bullet Pink.png"
-
-  - name: "ARCHITECTURAL, INTERIOR DESIGN, AND STRUCTURAL REQUIREMENTS"
-    key: "architectural"
-    icon: "/assets/images/logos/Architecture.png"
-    color: "plumbing-blue"
-    bullet: "/assets/images/logos/Bullet Blue.png"
-
-  - name: "SUSTAINABLE COMPLIANCE"
-    key: "sustainability"
-    icon: "/assets/images/logos/Sustainability.png"
-    color: "sustainable-green"
-    bullet: "/assets/images/logos/Bullet Green.png"
+  - name: INSTRUCTIONS – READ THIS!
+    key: instructions
+    icon: /assets/images/logos/Exclamation-Icon.png
+    color: hvac-orange
+    bullet: /assets/images/logos/Bullet Orange.png
+  - name: PROCUREMENT & CONTRACT DOCUMENTS
+    key: procurement
+    icon: /assets/images/logos/Document-Icon.png
+    color: fire-red
+    bullet: /assets/images/logos/Bullet Pink.png
+  - name: CIVIL AND LANDSCAPE REQUIREMENTS
+    key: civil-landscape
+    icon: /assets/images/logos/Landscape.png
+    color: civil-rust
+    bullet: /assets/images/logos/Bullet Rust.png
+  - name: FACILITY SERVICES (FMEP)
+    key: facility-services
+    icon: /assets/images/logos/Engineers.png
+    color: uca-purple
+    bullet: /assets/images/logos/Bullet Purple.png
+  - name: GENERAL CONSTRUCTION REQUIREMENTS
+    key: general-construction
+    icon: /assets/images/logos/Construction.png
+    color: fire-red
+    bullet: /assets/images/logos/Bullet Pink.png
+  - name: ARCHITECTURAL, INTERIOR DESIGN, AND STRUCTURAL REQUIREMENTS
+    key: architectural
+    icon: /assets/images/logos/Architecture.png
+    color: plumbing-blue
+    bullet: /assets/images/logos/Bullet Blue.png
+  - name: SUSTAINABLE COMPLIANCE
+    key: sustainability
+    icon: /assets/images/logos/Sustainability.png
+    color: sustainable-green
+    bullet: /assets/images/logos/Bullet Green.png
+  - name: TEST SECTION
+    key: test
+    icon: https://picsum.photos/id/101/1920/1280.webp
+    color: plumbing-blue
+    bullet: /assets/images/logos/Bullet Green.png
