@@ -34,8 +34,3 @@ sections:
     icon: /assets/images/logos/Sustainability.png
     color: sustainable-green
     bullet: /assets/images/logos/Bullet Green.png
-  - name: TEST SECTION
-    key: test
-    icon: https://picsum.photos/id/101/1920/1280.webp
-    color: plumbing-blue
-    bullet: /assets/images/logos/Bullet Green.png
