@@ -1,4 +1,5 @@
 ---
+section: general-construction
 layout: default
 title: "GENERAL CONSTRUCTION REQUIREMENTS"
 permalink: /standards/general-construction/

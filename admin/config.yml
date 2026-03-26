@@ -6,7 +6,67 @@ backend:
 media_folder: "assets/images"
 public_folder: "/assets/images"
 
+# ─────────────────────────────────────────────────────────
+# SHARED FIELD DEFINITIONS (referenced via anchors)
+# ─────────────────────────────────────────────────────────
+
 collections:
+
+  # ── NAVIGATION STRUCTURE ──────────────────────────────
+  # Edit top-level categories: name, icon, color, bullet
+  - name: "site-navigation"
+    label: "⚙️ Navigation Sections"
+    description: "Manage the top-level sections in the sidebar navigation. Add new sections, upload icons, and set colors here."
+    files:
+      - label: "Navigation Structure"
+        name: "navigation"
+        file: "_data/navigation.yml"
+        fields:
+          - label: "Sections"
+            name: "sections"
+            widget: "list"
+            label_singular: "Section"
+            summary: "{{fields.name}}"
+            fields:
+              - label: "Display Name"
+                name: "name"
+                widget: "string"
+                hint: "Full name shown in the sidebar, e.g. CIVIL AND LANDSCAPE REQUIREMENTS"
+              - label: "URL Key"
+                name: "key"
+                widget: "string"
+                hint: "Short slug used in URLs and in each page's Section field. Lowercase, hyphens only. e.g. civil-landscape"
+              - label: "Section Icon"
+                name: "icon"
+                widget: "image"
+                media_folder: "/assets/images/logos"
+                public_folder: "/assets/images/logos"
+                hint: "Icon shown next to the section name. Upload a new image or reuse an existing one."
+              - label: "Section Color"
+                name: "color"
+                widget: "select"
+                hint: "Color used for this section's links in the navigation sidebar."
+                options:
+                  - {label: "Blue — Architectural", value: "plumbing-blue"}
+                  - {label: "Orange — Instructions", value: "hvac-orange"}
+                  - {label: "Red — Procurement / General", value: "fire-red"}
+                  - {label: "Purple — Facility Services / UCA brand", value: "uca-purple"}
+                  - {label: "Green — Sustainable Compliance", value: "sustainable-green"}
+                  - {label: "Brown — Civil / Landscape", value: "civil-rust"}
+              - label: "Default Bullet Image"
+                name: "bullet"
+                widget: "select"
+                hint: "Bullet icon used by default for sub-pages in this section."
+                options:
+                  - {label: "Blue Bullet", value: "/assets/images/logos/Bullet Blue.png"}
+                  - {label: "Orange Bullet", value: "/assets/images/logos/Bullet Orange.png"}
+                  - {label: "Pink / Red Bullet", value: "/assets/images/logos/Bullet Pink.png"}
+                  - {label: "Purple Bullet", value: "/assets/images/logos/Bullet Purple.png"}
+                  - {label: "Green Bullet", value: "/assets/images/logos/Bullet Green.png"}
+                  - {label: "Rust Bullet", value: "/assets/images/logos/Bullet Rust.png"}
+                  - {label: "Magenta Bullet", value: "/assets/images/logos/Bullet Magenta.png"}
+
+  # ── INSTRUCTIONS ─────────────────────────────────────
   - name: "instructions"
     label: "Instructions"
     folder: "_standards/instructions"
@@ -15,10 +75,37 @@ collections:
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "default"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Permalink", name: "permalink", widget: "string", required: false}
+      - {label: "Section", name: "section", widget: "hidden", default: "instructions"}
+      - {label: "Permalink", name: "permalink", widget: "string", required: false, hint: "URL path, e.g. /standards/instructions/my-page/"}
+      - label: "Nav Color"
+        name: "nav_color"
+        widget: "select"
+        required: false
+        hint: "Color of this page in the sidebar. Leave blank to use the section default (Orange)."
+        options:
+          - {label: "Blue — Architectural", value: "plumbing-blue"}
+          - {label: "Orange — Instructions (default)", value: "hvac-orange"}
+          - {label: "Red — Procurement / General", value: "fire-red"}
+          - {label: "Purple — Facility / UCA brand", value: "uca-purple"}
+          - {label: "Green — Sustainable", value: "sustainable-green"}
+          - {label: "Brown — Civil / Landscape", value: "civil-rust"}
+      - label: "Bullet Image"
+        name: "bullet"
+        widget: "select"
+        required: false
+        hint: "Bullet icon for this page in the sidebar. Leave blank to use the section default."
+        options:
+          - {label: "Blue Bullet", value: "/assets/images/logos/Bullet Blue.png"}
+          - {label: "Orange Bullet (default for Instructions)", value: "/assets/images/logos/Bullet Orange.png"}
+          - {label: "Pink / Red Bullet", value: "/assets/images/logos/Bullet Pink.png"}
+          - {label: "Purple Bullet", value: "/assets/images/logos/Bullet Purple.png"}
+          - {label: "Green Bullet", value: "/assets/images/logos/Bullet Green.png"}
+          - {label: "Rust Bullet", value: "/assets/images/logos/Bullet Rust.png"}
+          - {label: "Magenta Bullet", value: "/assets/images/logos/Bullet Magenta.png"}
       - {label: "Tags", name: "tags", widget: "list", required: false}
       - {label: "Body", name: "body", widget: "markdown"}
 
+  # ── PROCUREMENT ───────────────────────────────────────
   - name: "procurement"
     label: "Procurement & Contract Documents"
     folder: "_standards/procurement"
@@ -27,10 +114,37 @@ collections:
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "default"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Permalink", name: "permalink", widget: "string", required: false}
+      - {label: "Section", name: "section", widget: "hidden", default: "procurement"}
+      - {label: "Permalink", name: "permalink", widget: "string", required: false, hint: "URL path, e.g. /standards/procurement/my-page/"}
+      - label: "Nav Color"
+        name: "nav_color"
+        widget: "select"
+        required: false
+        hint: "Color of this page in the sidebar. Leave blank to use the section default (Red)."
+        options:
+          - {label: "Blue — Architectural", value: "plumbing-blue"}
+          - {label: "Orange — Instructions", value: "hvac-orange"}
+          - {label: "Red — Procurement / General (default)", value: "fire-red"}
+          - {label: "Purple — Facility / UCA brand", value: "uca-purple"}
+          - {label: "Green — Sustainable", value: "sustainable-green"}
+          - {label: "Brown — Civil / Landscape", value: "civil-rust"}
+      - label: "Bullet Image"
+        name: "bullet"
+        widget: "select"
+        required: false
+        hint: "Bullet icon for this page in the sidebar. Leave blank to use the section default."
+        options:
+          - {label: "Blue Bullet", value: "/assets/images/logos/Bullet Blue.png"}
+          - {label: "Orange Bullet", value: "/assets/images/logos/Bullet Orange.png"}
+          - {label: "Pink / Red Bullet (default for Procurement)", value: "/assets/images/logos/Bullet Pink.png"}
+          - {label: "Purple Bullet", value: "/assets/images/logos/Bullet Purple.png"}
+          - {label: "Green Bullet", value: "/assets/images/logos/Bullet Green.png"}
+          - {label: "Rust Bullet", value: "/assets/images/logos/Bullet Rust.png"}
+          - {label: "Magenta Bullet", value: "/assets/images/logos/Bullet Magenta.png"}
       - {label: "Tags", name: "tags", widget: "list", required: false}
       - {label: "Body", name: "body", widget: "markdown"}
 
+  # ── CIVIL AND LANDSCAPE ───────────────────────────────
   - name: "civil-landscape"
     label: "Civil and Landscape"
     folder: "_standards/civil-landscape"
@@ -39,10 +153,36 @@ collections:
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "default"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Permalink", name: "permalink", widget: "string", required: false}
+      - {label: "Section", name: "section", widget: "hidden", default: "civil-landscape"}
+      - {label: "Permalink", name: "permalink", widget: "string", required: false, hint: "URL path, e.g. /standards/civil-landscape/my-page/"}
+      - label: "Nav Color"
+        name: "nav_color"
+        widget: "select"
+        required: false
+        hint: "Color of this page in the sidebar. Leave blank to use the section default (Brown)."
+        options:
+          - {label: "Blue — Architectural", value: "plumbing-blue"}
+          - {label: "Orange — Instructions", value: "hvac-orange"}
+          - {label: "Red — Procurement / General", value: "fire-red"}
+          - {label: "Purple — Facility / UCA brand", value: "uca-purple"}
+          - {label: "Green — Sustainable", value: "sustainable-green"}
+          - {label: "Brown — Civil / Landscape (default)", value: "civil-rust"}
+      - label: "Bullet Image"
+        name: "bullet"
+        widget: "select"
+        required: false
+        options:
+          - {label: "Blue Bullet", value: "/assets/images/logos/Bullet Blue.png"}
+          - {label: "Orange Bullet", value: "/assets/images/logos/Bullet Orange.png"}
+          - {label: "Pink / Red Bullet", value: "/assets/images/logos/Bullet Pink.png"}
+          - {label: "Purple Bullet", value: "/assets/images/logos/Bullet Purple.png"}
+          - {label: "Green Bullet", value: "/assets/images/logos/Bullet Green.png"}
+          - {label: "Rust Bullet (default for Civil)", value: "/assets/images/logos/Bullet Rust.png"}
+          - {label: "Magenta Bullet", value: "/assets/images/logos/Bullet Magenta.png"}
       - {label: "Tags", name: "tags", widget: "list", required: false}
       - {label: "Body", name: "body", widget: "markdown"}
 
+  # ── FACILITY SERVICES ─────────────────────────────────
   - name: "facility-services"
     label: "Facility Services (FMEP)"
     folder: "_standards/facility-services"
@@ -51,10 +191,36 @@ collections:
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "default"}
       - {label: "Title", name: "title", widget: "string"}
+      - {label: "Section", name: "section", widget: "hidden", default: "facility-services"}
       - {label: "Permalink", name: "permalink", widget: "string", required: false}
+      - label: "Nav Color"
+        name: "nav_color"
+        widget: "select"
+        required: false
+        hint: "Color of this page in the sidebar. Leave blank to use the section default (Purple)."
+        options:
+          - {label: "Blue — Architectural", value: "plumbing-blue"}
+          - {label: "Orange — Instructions", value: "hvac-orange"}
+          - {label: "Red — Procurement / General", value: "fire-red"}
+          - {label: "Purple — Facility / UCA brand (default)", value: "uca-purple"}
+          - {label: "Green — Sustainable", value: "sustainable-green"}
+          - {label: "Brown — Civil / Landscape", value: "civil-rust"}
+      - label: "Bullet Image"
+        name: "bullet"
+        widget: "select"
+        required: false
+        options:
+          - {label: "Blue Bullet", value: "/assets/images/logos/Bullet Blue.png"}
+          - {label: "Orange Bullet", value: "/assets/images/logos/Bullet Orange.png"}
+          - {label: "Pink / Red Bullet", value: "/assets/images/logos/Bullet Pink.png"}
+          - {label: "Purple Bullet (default for Facility)", value: "/assets/images/logos/Bullet Purple.png"}
+          - {label: "Green Bullet", value: "/assets/images/logos/Bullet Green.png"}
+          - {label: "Rust Bullet", value: "/assets/images/logos/Bullet Rust.png"}
+          - {label: "Magenta Bullet", value: "/assets/images/logos/Bullet Magenta.png"}
       - {label: "Tags", name: "tags", widget: "list", required: false}
       - {label: "Body", name: "body", widget: "markdown"}
 
+  # ── GENERAL CONSTRUCTION ──────────────────────────────
   - name: "general-construction"
     label: "General Construction Requirements"
     folder: "_standards/general-construction"
@@ -63,10 +229,36 @@ collections:
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "default"}
       - {label: "Title", name: "title", widget: "string"}
+      - {label: "Section", name: "section", widget: "hidden", default: "general-construction"}
       - {label: "Permalink", name: "permalink", widget: "string", required: false}
+      - label: "Nav Color"
+        name: "nav_color"
+        widget: "select"
+        required: false
+        hint: "Color of this page in the sidebar. Leave blank to use the section default (Red)."
+        options:
+          - {label: "Blue — Architectural", value: "plumbing-blue"}
+          - {label: "Orange — Instructions", value: "hvac-orange"}
+          - {label: "Red — Procurement / General (default)", value: "fire-red"}
+          - {label: "Purple — Facility / UCA brand", value: "uca-purple"}
+          - {label: "Green — Sustainable", value: "sustainable-green"}
+          - {label: "Brown — Civil / Landscape", value: "civil-rust"}
+      - label: "Bullet Image"
+        name: "bullet"
+        widget: "select"
+        required: false
+        options:
+          - {label: "Blue Bullet", value: "/assets/images/logos/Bullet Blue.png"}
+          - {label: "Orange Bullet", value: "/assets/images/logos/Bullet Orange.png"}
+          - {label: "Pink / Red Bullet (default for General)", value: "/assets/images/logos/Bullet Pink.png"}
+          - {label: "Purple Bullet", value: "/assets/images/logos/Bullet Purple.png"}
+          - {label: "Green Bullet", value: "/assets/images/logos/Bullet Green.png"}
+          - {label: "Rust Bullet", value: "/assets/images/logos/Bullet Rust.png"}
+          - {label: "Magenta Bullet", value: "/assets/images/logos/Bullet Magenta.png"}
       - {label: "Tags", name: "tags", widget: "list", required: false}
       - {label: "Body", name: "body", widget: "markdown"}
 
+  # ── ARCHITECTURAL ─────────────────────────────────────
   - name: "architectural"
     label: "Architectural Standards"
     folder: "_standards/architectural"
@@ -75,106 +267,37 @@ collections:
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "default"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Permalink", name: "permalink", widget: "string", required: false}
+      - {label: "Section", name: "section", widget: "hidden", default: "architectural"}
+      - {label: "Permalink", name: "permalink", widget: "string", required: false, hint: "URL path, e.g. /standards/architectural/my-page/"}
+      - label: "Nav Color"
+        name: "nav_color"
+        widget: "select"
+        required: false
+        hint: "Color of this page in the sidebar. Leave blank to use the section default (Blue)."
+        options:
+          - {label: "Blue — Architectural (default)", value: "plumbing-blue"}
+          - {label: "Orange — Instructions", value: "hvac-orange"}
+          - {label: "Red — Procurement / General", value: "fire-red"}
+          - {label: "Purple — Facility / UCA brand", value: "uca-purple"}
+          - {label: "Green — Sustainable", value: "sustainable-green"}
+          - {label: "Brown — Civil / Landscape", value: "civil-rust"}
+      - label: "Bullet Image"
+        name: "bullet"
+        widget: "select"
+        required: false
+        hint: "Bullet icon for this page. Leave blank to use the section default (Blue Bullet)."
+        options:
+          - {label: "Blue Bullet (default for Architectural)", value: "/assets/images/logos/Bullet Blue.png"}
+          - {label: "Orange Bullet", value: "/assets/images/logos/Bullet Orange.png"}
+          - {label: "Pink / Red Bullet", value: "/assets/images/logos/Bullet Pink.png"}
+          - {label: "Purple Bullet", value: "/assets/images/logos/Bullet Purple.png"}
+          - {label: "Green Bullet", value: "/assets/images/logos/Bullet Green.png"}
+          - {label: "Rust Bullet", value: "/assets/images/logos/Bullet Rust.png"}
+          - {label: "Magenta Bullet", value: "/assets/images/logos/Bullet Magenta.png"}
       - {label: "Tags", name: "tags", widget: "list", required: false}
       - {label: "Body", name: "body", widget: "markdown"}
 
-  - name: "architectural-masonry"
-    label: "Architectural - Masonry"
-    folder: "_standards/architectural/masonry"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "default"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Permalink", name: "permalink", widget: "string", required: false}
-      - {label: "Tags", name: "tags", widget: "list", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "architectural-wood"
-    label: "Architectural - Wood, Plastic and Composites"
-    folder: "_standards/architectural/wood-plastic-composites"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "default"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Permalink", name: "permalink", widget: "string", required: false}
-      - {label: "Tags", name: "tags", widget: "list", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "architectural-thermal"
-    label: "Architectural - Thermal and Moisture Protection"
-    folder: "_standards/architectural/thermal-moisture-protection"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "default"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Permalink", name: "permalink", widget: "string", required: false}
-      - {label: "Tags", name: "tags", widget: "list", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "architectural-openings"
-    label: "Architectural - Openings"
-    folder: "_standards/architectural/openings"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "default"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Permalink", name: "permalink", widget: "string", required: false}
-      - {label: "Tags", name: "tags", widget: "list", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "architectural-finishes"
-    label: "Architectural - Finishes"
-    folder: "_standards/architectural/finishes"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "default"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Permalink", name: "permalink", widget: "string", required: false}
-      - {label: "Tags", name: "tags", widget: "list", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "architectural-specialties"
-    label: "Architectural - Specialties"
-    folder: "_standards/architectural/specialties"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "default"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Permalink", name: "permalink", widget: "string", required: false}
-      - {label: "Tags", name: "tags", widget: "list", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "architectural-furnishings"
-    label: "Architectural - Furnishings"
-    folder: "_standards/architectural/furnishings"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "default"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Permalink", name: "permalink", widget: "string", required: false}
-      - {label: "Tags", name: "tags", widget: "list", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "architectural-equipment"
-    label: "Architectural - Equipment"
-    folder: "_standards/architectural/equipment"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "default"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Permalink", name: "permalink", widget: "string", required: false}
-      - {label: "Tags", name: "tags", widget: "list", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
+  # ── SUSTAINABLE COMPLIANCE ────────────────────────────
   - name: "sustainability"
     label: "Sustainable Compliance"
     folder: "_standards/sustainability"
@@ -183,6 +306,31 @@ collections:
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "default"}
       - {label: "Title", name: "title", widget: "string"}
+      - {label: "Section", name: "section", widget: "hidden", default: "sustainability"}
       - {label: "Permalink", name: "permalink", widget: "string", required: false}
+      - label: "Nav Color"
+        name: "nav_color"
+        widget: "select"
+        required: false
+        hint: "Color of this page in the sidebar. Leave blank to use the section default (Green)."
+        options:
+          - {label: "Blue — Architectural", value: "plumbing-blue"}
+          - {label: "Orange — Instructions", value: "hvac-orange"}
+          - {label: "Red — Procurement / General", value: "fire-red"}
+          - {label: "Purple — Facility / UCA brand", value: "uca-purple"}
+          - {label: "Green — Sustainable (default)", value: "sustainable-green"}
+          - {label: "Brown — Civil / Landscape", value: "civil-rust"}
+      - label: "Bullet Image"
+        name: "bullet"
+        widget: "select"
+        required: false
+        options:
+          - {label: "Blue Bullet", value: "/assets/images/logos/Bullet Blue.png"}
+          - {label: "Orange Bullet", value: "/assets/images/logos/Bullet Orange.png"}
+          - {label: "Pink / Red Bullet", value: "/assets/images/logos/Bullet Pink.png"}
+          - {label: "Purple Bullet", value: "/assets/images/logos/Bullet Purple.png"}
+          - {label: "Green Bullet (default for Sustainable)", value: "/assets/images/logos/Bullet Green.png"}
+          - {label: "Rust Bullet", value: "/assets/images/logos/Bullet Rust.png"}
+          - {label: "Magenta Bullet", value: "/assets/images/logos/Bullet Magenta.png"}
       - {label: "Tags", name: "tags", widget: "list", required: false}
       - {label: "Body", name: "body", widget: "markdown"}

@@ -61,9 +61,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
   
-  <!-- Netlify Identity Widget -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  
   <!-- Google Fonts: Source Sans Pro (UCA brand font) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -206,29 +203,10 @@
     .sidebar nav li a:hover { background-color: #e8e9ea; }
     .nav-icon { width: 24px; height: 24px; margin-right: 10px; flex-shrink: 0; }
 
-    .sidebar nav a[href*="instructions"] { color: var(--hvac-orange) !important; }
-    .sidebar nav a[href*="procurement"] { color: var(--fire-red) !important; }
-    .sidebar nav a[href*="civil-landscape"] { color: var(--civil-rust) !important; }
-    .sidebar nav a[href*="facility-services"] { color: var(--uca-purple) !important; }
-    .sidebar nav a[href*="general-construction"] { color: var(--fire-red) !important; }
-    .sidebar nav a[href*="architectural"] { color: var(--plumbing-blue) !important; }
-    .sidebar nav a[href*="sustainability"] { color: var(--sustainable-green) !important; }
-
-    .has-submenu:has([href*="instructions"]) > .parent-link { color: var(--hvac-orange) !important; }
-    .has-submenu:has([href*="civil-landscape"]) > .parent-link { color: var(--civil-rust) !important; }
-    .has-submenu:has([href*="architectural"]) > .parent-link { color: var(--plumbing-blue) !important; }
-
-    .has-submenu:has(a[href*="instructions"]) .submenu a { color: var(--hvac-orange) !important; }
-    .has-submenu:has(a[href*="civil-landscape"]) .submenu a { color: var(--civil-rust) !important; }
-    .has-submenu:has(a[href*="architectural"]) .submenu a { color: var(--plumbing-blue) !important; }
-
-    .sidebar nav a[href*="instructions"]:hover { background-color: rgba(163, 80, 0, 0.1); border-left-color: var(--hvac-orange) !important; }
-    .sidebar nav a[href*="procurement"]:hover { background-color: rgba(200, 16, 46, 0.1); border-left-color: var(--fire-red) !important; }
-    .sidebar nav a[href*="civil-landscape"]:hover { background-color: rgba(92, 51, 23, 0.1); border-left-color: var(--civil-rust) !important; }
-    .sidebar nav a[href*="facility-services"]:hover { background-color: rgba(88, 44, 131, 0.1); border-left-color: var(--uca-purple) !important; }
-    .sidebar nav a[href*="general-construction"]:hover { background-color: rgba(200, 16, 46, 0.1); border-left-color: var(--fire-red) !important; }
-    .sidebar nav a[href*="architectural"]:hover { background-color: rgba(0, 103, 185, 0.1); border-left-color: var(--plumbing-blue) !important; }
-    .sidebar nav a[href*="sustainability"]:hover { background-color: rgba(46, 125, 50, 0.1); border-left-color: var(--sustainable-green) !important; }
+    /* Nav link colors are now set inline via data-driven navigation.
+       Hover uses currentColor so it adapts to whatever color is applied. */
+    .sidebar nav li a:hover { background-color: rgba(0,0,0,0.06); border-left-color: currentColor; }
+    .submenu li a:hover { background-color: rgba(0,0,0,0.04) !important; border-left-color: transparent; }
 
     .main-content { flex: 1; padding: 0 0 0 20px; min-width: 0; }
 
@@ -442,110 +420,39 @@
 
       <nav>
         <ul>
+          {% for section in site.data.navigation.sections %}
+            {% assign sec_key = section.key %}
+            {% assign section_url = '/standards/' | append: sec_key | append: '/' %}
+            {% assign all_sec_pages = site.standards | where: "section", sec_key | sort: "title" %}
+            {% assign child_pages = all_sec_pages | where_exp: "pg", "pg.url != section_url" %}
+            {% assign index_page = all_sec_pages | where: "url", section_url | first %}
 
-          <li class="has-submenu">
-            <span class="parent-link">
-              <img src="{{ '/assets/images/logos/Exclamation-Icon.png' | relative_url }}" alt="Instructions icon" class="nav-icon">
-              <span>INSTRUCTIONS – READ THIS!</span>
-            </span>
-            <ul class="submenu">
-              <li><a href="{{ '/standards/instructions/architect-engineer/' | relative_url }}">
-                <img src="{{ '/assets/images/logos/Bullet Orange.png' | relative_url }}" alt="Bullet" class="nav-icon">
-                <span>ARCHITECT AND ENGINEER INSTRUCTIONS</span>
-              </a></li>
-              <li><a href="{{ '/standards/instructions/space-planning/' | relative_url }}">
-                <img src="{{ '/assets/images/logos/Bullet Orange.png' | relative_url }}" alt="Bullet" class="nav-icon">
-                <span>SPACE PLANNING REQUIREMENTS</span>
-              </a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="{{ '/standards/procurement/' | relative_url }}">
-              <img src="{{ '/assets/images/logos/Document-Icon.png' | relative_url }}" alt="Procurement icon" class="nav-icon">
-              <span>PROCUREMENT & CONTRACT DOCUMENTS</span>
-            </a>
-          </li>
-
-          <li class="has-submenu">
-            <span class="parent-link">
-              <img src="{{ '/assets/images/logos/Landscape.png' | relative_url }}" alt="Landscape icon" class="nav-icon">
-              <span>CIVIL AND LANDSCAPE REQUIREMENTS</span>
-            </span>
-            <ul class="submenu">
-              <li><a href="{{ '/standards/civil-landscape/earthwork/' | relative_url }}">
-                <img src="{{ '/assets/images/logos/Bullet Rust.png' | relative_url }}" alt="Bullet" class="nav-icon">
-                <span>EARTHWORK</span>
-              </a></li>
-              <li><a href="{{ '/standards/civil-landscape/exterior-improvements/' | relative_url }}">
-                <img src="{{ '/assets/images/logos/Bullet Rust.png' | relative_url }}" alt="Bullet" class="nav-icon">
-                <span>EXTERIOR IMPROVEMENTS</span>
-              </a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="{{ '/standards/facility-services/' | relative_url }}">
-              <img src="{{ '/assets/images/logos/Engineers.png' | relative_url }}" alt="Services icon" class="nav-icon">
-              <span>FACILITY SERVICES (FMEP)</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="{{ '/standards/general-construction/' | relative_url }}">
-              <img src="{{ '/assets/images/logos/Construction.png' | relative_url }}" alt="General Requirements icon" class="nav-icon">
-              <span>GENERAL CONSTRUCTION REQUIREMENTS</span>
-            </a>
-          </li>
-
-          <li class="has-submenu">
-            <span class="parent-link">
-              <img src="{{ '/assets/images/logos/Architecture.png' | relative_url }}" alt="Architecture icon" class="nav-icon">
-              <span>ARCHITECTURAL, INTERIOR DESIGN, AND STRUCTURAL REQUIREMENTS</span>
-            </span>
-            <ul class="submenu">
-              <li><a href="{{ '/standards/architectural/masonry/' | relative_url }}">
-                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
-                <span>MASONRY</span>
-              </a></li>
-              <li><a href="{{ '/standards/architectural/wood-plastic-composites/' | relative_url }}">
-                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
-                <span>WOOD, PLASTIC AND COMPOSITES</span>
-              </a></li>
-              <li><a href="{{ '/standards/architectural/thermal-moisture-protection/' | relative_url }}">
-                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
-                <span>THERMAL AND MOISTURE PROTECTION</span>
-              </a></li>
-              <li><a href="{{ '/standards/architectural/openings/' | relative_url }}">
-                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
-                <span>OPENINGS</span>
-              </a></li>
-              <li><a href="{{ '/standards/architectural/finishes/' | relative_url }}">
-                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
-                <span>FINISHES</span>
-              </a></li>
-              <li><a href="{{ '/standards/architectural/specialties/' | relative_url }}">
-                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
-                <span>SPECIALTIES</span>
-              </a></li>
-              <li><a href="{{ '/standards/architectural/furnishings/' | relative_url }}">
-                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
-                <span>FURNISHINGS</span>
-              </a></li>
-              <li><a href="{{ '/standards/architectural/equipment/' | relative_url }}">
-                <img src="{{ '/assets/images/logos/Bullet Blue.png' | relative_url }}" alt="Bullet" class="nav-icon">
-                <span>EQUIPMENT</span>
-              </a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="{{ '/standards/sustainability/' | relative_url }}">
-              <img src="{{ '/assets/images/logos/Sustainability.png' | relative_url }}" alt="Sustainability icon" class="nav-icon">
-              <span>SUSTAINABLE COMPLIANCE</span>
-            </a>
-          </li>
-
+            {% if child_pages.size > 0 %}
+            <li class="has-submenu">
+              <span class="parent-link" style="color: var(--{{ section.color }});">
+                <img src="{{ section.icon | relative_url }}" alt="{{ section.name }} icon" class="nav-icon">
+                <span>{{ section.name }}</span>
+              </span>
+              <ul class="submenu">
+                {% for pg in child_pages %}
+                <li>
+                  <a href="{{ pg.url | relative_url }}" style="color: var(--{{ pg.nav_color | default: section.color }});">
+                    <img src="{{ pg.bullet | default: section.bullet | relative_url }}" alt="" class="nav-icon">
+                    <span>{{ pg.title | upcase }}</span>
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            </li>
+            {% elsif index_page %}
+            <li>
+              <a href="{{ index_page.url | relative_url }}" style="color: var(--{{ section.color }});">
+                <img src="{{ section.icon | relative_url }}" alt="{{ section.name }} icon" class="nav-icon">
+                <span>{{ section.name }}</span>
+              </a>
+            </li>
+            {% endif %}
+          {% endfor %}
         </ul>
       </nav>
 
@@ -694,18 +601,7 @@
     });
   </script>
 
-  <!-- Netlify Identity Redirect -->
-  <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/UCA-Construction-Standards/admin/";
-          });
-        }
-      });
-    }
-  </script>
+
 
 </body>
 </html>

@@ -8,5 +8,12 @@
 </head>
 <body>
   <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+  <script>
+    window.addEventListener('load', function () {
+      // Inject site typography into the editor preview pane
+      // so editors see content styled like the live site
+      CMS.registerPreviewStyle('../assets/css/preview.css');
+    });
+  </script>
 </body>
 </html>

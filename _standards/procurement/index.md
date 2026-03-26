@@ -1,4 +1,5 @@
 ---
+section: procurement
 layout: default
 title: "PROCUREMENT & CONTRACT DOCUMENTS"
 permalink: /standards/procurement/

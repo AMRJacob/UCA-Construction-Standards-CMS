@@ -1,4 +1,5 @@
 ---
+section: architectural
 layout: default
 
 title: "THERMAL AND MOISTURE PROTECTION"

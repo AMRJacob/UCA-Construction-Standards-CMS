@@ -1,4 +1,5 @@
 ---
+section: instructions
 layout: default
 title: "SPACE PLANNING REQUIREMENTS"
 permalink: /standards/instructions/space-planning/
