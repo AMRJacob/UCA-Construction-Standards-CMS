@@ -1,11 +1,12 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: AMRJacob/UCA-Construction-Standards-CMS
   branch: main
-  identity_url: "https://ucaconstructionstandards.netlify.app/.netlify/identity"
-  gateway_url: "https://ucaconstructionstandards.netlify.app/.netlify/git/github"
+  auth_type: pkce
+  app_id: REPLACE_WITH_YOUR_OAUTH_APP_CLIENT_ID
 
 media_folder: "assets/images"
-public_folder: "/UCA-Construction-Standards/assets/images"
+public_folder: "/assets/images"
 
 collections:
   - name: "instructions"
