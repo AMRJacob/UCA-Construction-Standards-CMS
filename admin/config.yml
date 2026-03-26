@@ -2,8 +2,6 @@ backend:
   name: github
   repo: AMRJacob/UCA-Construction-Standards-CMS
   branch: main
-  auth_type: pkce
-  app_id: Ov23lik4QnCY04YU0RJq
 
 media_folder: "assets/images"
 public_folder: "/assets/images"
